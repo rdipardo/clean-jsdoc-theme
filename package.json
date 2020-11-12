@@ -7,7 +7,9 @@
         "test": "node_modules/jsdoc/jsdoc.js -c jsdoc-config.json",
         "lint:js": "eslint . --ext .js",
         "lint:style": "stylelint static/styles/",
-        "lint": "concurrently --prefix '{time}-{pid}' 'npm run lint:types' 'npm run lint:style'"
+        "lint": "concurrently --prefix '{time}-{pid}' 'npm run lint:types' 'npm run lint:style'",
+        "browse:issue": "xdg-open ./@default-tag-issue/doc/index.html 2> /dev/null || exit 0",
+        "doc:issue": "node_modules/jsdoc/jsdoc.js ./@default-tag-issue/src/*.js -c ./@default-tag-issue/.jsdoc.json && npm run browse:issue"
     },
     "repository": {
         "type": "git",
@@ -33,6 +35,7 @@
         "@jsdoc/eslint-config": "^1.1.4",
         "concurrently": "^5.3.0",
         "eslint": "^7.11.0",
+        "jsdoc": "^3.6.6",
         "prettier": "^2.1.2",
         "stylelint": "^13.7.2",
         "stylelint-config-sass-guidelines": "^7.1.0",
