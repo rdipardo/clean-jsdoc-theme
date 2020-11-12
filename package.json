@@ -8,8 +8,8 @@
         "lint:js": "eslint . --ext .js",
         "lint:style": "stylelint static/styles/",
         "lint": "concurrently --prefix '{time}-{pid}' 'npm run lint:types' 'npm run lint:style'",
-        "browse:issue": "xdg-open ./@default-tag-issue/doc/index.html 2> /dev/null || exit 0",
-        "doc:issue": "node_modules/jsdoc/jsdoc.js ./@default-tag-issue/src/*.js -c ./@default-tag-issue/.jsdoc.json && npm run browse:issue"
+        "browse:issue": "xdg-open @default-tag-issue/doc/index.html 2> /dev/null || exit 0",
+        "doc:issue": "node_modules/.bin/jsdoc @default-tag-issue/src/css.js -c @default-tag-issue/.jsdoc.json && npm run browse:issue"
     },
     "repository": {
         "type": "git",
