@@ -1,26 +1,28 @@
 {
-    "name": "clean-jsdoc-theme",
-    "version": "2.2.14",
-    "description": "A beautifully crafted theme/template for JSDoc 3. This theme/template looks and feels like a premium theme/template. This is a fully mobile responsive theme and also fully customizable theme.",
+    "name": "clean-jsdoc",
+    "version": "2.2.14.01",
+    "description": "A stylish fork of clean-jsdoc-theme",
     "main": "publish.js",
     "scripts": {
-        "test": "node_modules/jsdoc/jsdoc.js -c jsdoc-config.json",
-        "lint:js": "eslint . --ext .js",
+        "lint:js": "eslint --fix static/scripts",
         "lint:style": "stylelint static/styles/",
-        "lint": "concurrently --prefix '{time}-{pid}' 'npm run lint:types' 'npm run lint:style'",
+        "lint": "concurrently --prefix '{time}-{pid}' 'npm run lint:js' 'npm run lint:style'",
+        "test": "npm run lint && ./demo/copy && node_modules/.bin/jsdoc -c jsdoc-config.json",
+        "browse": "npm test && xdg-open demo/output/index.html 2> /dev/null || exit 0",
+        "fetch:issue": "git checkout e71940a -- @default-tag-issue/ && npm install jsdoc --no-save",
         "browse:issue": "xdg-open @default-tag-issue/doc/index.html 2> /dev/null || exit 0",
-        "doc:issue": "node_modules/.bin/jsdoc @default-tag-issue/src/css.js -c @default-tag-issue/.jsdoc.json && npm run browse:issue"
+        "doc:issue": "npm run fetch:issue && node_modules/.bin/jsdoc @default-tag-issue/src/css.js -c @default-tag-issue/.jsdoc.json && npm run browse:issue"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/ankitskvmdam/clean-jsdoc-theme.git"
+        "url": "git+https://github.com/rdipardo/clean-jsdoc-theme.git"
     },
-    "author": "Ank",
-    "license": "ISC",
+    "author": "Robert Di Pardo",
+    "license": "MIT",
     "bugs": {
-        "url": "https://github.com/ankitskvmdam/clean-jsdoc-theme/issues"
+        "url": "https://github.com/rdipardo/clean-jsdoc-theme/issues"
     },
-    "homepage": "https://ankdev.me/clean-jsdoc-theme/dark/index.html",
+    "homepage": "https://heredocs.com/demos/js/clean-jsdoc",
     "peerDependencies": {
         "jsdoc": "3"
     },
@@ -35,7 +37,6 @@
         "@jsdoc/eslint-config": "^1.1.4",
         "concurrently": "^5.3.0",
         "eslint": "^7.11.0",
-        "jsdoc": "^3.6.6",
         "prettier": "^2.1.2",
         "stylelint": "^13.7.2",
         "stylelint-config-sass-guidelines": "^7.1.0",

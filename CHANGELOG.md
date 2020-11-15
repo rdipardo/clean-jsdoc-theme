@@ -1,0 +1,40 @@
+## 2.2.14.01
+
+### Fixed
+- only code is copied to the clipboard, with no extra HTML markup
+
+### Changed
+- use web-friendly Google fonts
+- tweak styles, layout
+
+### Added
+- new `langNames` option to hide language names from code blocks
+- new `project` option to display version and repo information
+
+## In version 2.2.14
+
+### Bug Fix
+
+1.  Malformed HTML when parsing 'default' JSDoc tags [issue: [#48](https://github.com/ankitskvmdam/clean-jsdoc-theme/issues/48)]
+
+## In version 2.2.13
+
+### New
+
+1.  Make the # before members and methods a clickable anchor. [pull request: [#44](https://github.com/ankitskvmdam/clean-jsdoc-theme/pull/44)] [Thanks to [GMartigny](https://github.com/GMartigny)]
+
+### Other
+
+1.  Change jsdoc into a peerDependency [pull request: [#45](https://github.com/ankitskvmdam/clean-jsdoc-theme/pull/45)][Thanks to [GMartigny](https://github.com/GMartigny)]
+
+## In version 2.2.12
+
+### New
+
+1.  Add dark theme.
+
+### Bug fix
+
+1.  Fix typescript-eslint camelCase rule issue [issue: [#37](https://github.com/ankitskvmdam/clean-jsdoc-theme/issues/37)]
+1.  Fix ordered list style [issue: [#40](https://github.com/ankitskvmdam/clean-jsdoc-theme/issues/40)]
+1.  Fix code overflow issue.

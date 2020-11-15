@@ -10,13 +10,15 @@ cache:
 jobs:
   include:
     - stage: test
+      os: linux
+      dist: focal
       language: node_js
       node_js:
         - "12"
-      install: "npm install && npm install jsdoc"
+      install: "npm i && npm i jsdoc --no-save"
       script:
-        - npm run test
-        
+        - npm test
+
     - stage: deploy
       language: node_js
       node_js: "12"

@@ -7,18 +7,18 @@ class Tree extends Alive {
     constructor() {
         super();
         /**
-		 * Donec imperdiet dignissim
-		 * @type {Array<Alive>}
-		 */
+         * Donec imperdiet dignissim
+         * @type {Array<Alive>}
+         */
         this.branches = null;
     }
     /**
-	 * @param {Environment} environment the environment when this Alive thing is surviving
-	 * @return {Energy} the energy wasted in this surviving instance
-	 * @method
-	 * @fires Tree.crop
-	 * @Throws Err
-	 */
+     * @param {Environment} environment - The environment when this {@link Tree} is surviving
+     * @return {Energy} The energy wasted in this surviving instance
+     * @method
+     * @fires Tree.crop
+     * @throws Err
+     */
     crop() {
         return null;
     }

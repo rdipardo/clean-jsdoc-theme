@@ -1,27 +1,26 @@
 /**
  * Lorem ipsum dolor sit amet, {@link Energy} consectetur adipiscing elit. Vestibulum condimentum tempus diam. Ut eget ultricies metus, vitae ornare turpis. Vivamus lectus metus, euismod quis tortor quis, pretium semper massa. Nulla mauris sapien, faucibus vitae metus et, ultrices fringilla sem. Sed laoreet tempor odio, elementum scelerisque nunc aliquet quis.
- *
  * @class
  */
 class Environment {
     constructor() {
-        /**
-		 * All the living things in this environment
-		 * @type {Array<Alive>}
-		 */
+      /**
+       * All the living things in this {@link Environment}
+       * @type {Array<Alive>}
+       */
         this.livingThings = null;
 
-        /**
-		 * The name of this environment
-		 * @type {String}
-		 */
+      /**
+       * The name of this {@link Environment}
+       * @type {String}
+       */
         this.name = null;
     }
 
     /**
      * Vestibulum condimentum tempus {@link Alive} diam.
-	 * @param {EnvironmentConfiguration} config
-	 */
+     * @param {EnvironmentConfiguration} config - Configuration options
+     */
     start(config) {
 
     }
@@ -29,13 +28,13 @@ class Environment {
 
 /**
  * @typedef {Object} EnvironmentConfiguration
- * @property {String} name
- * @property {Map<String,Number>} strange
+ * @property {String} name - Name of a living thing
+ * @property {Map<String,Number>} attributes - A mapping of attributes
  */
 
 /**
  * Lorem ipsum dolor sit amet, {@link Energy} consectetur adipiscing el
  * @event Environment#beforeDestroy
  * @type {Energy}
- * @property {boolean} foo aalks djlas
+ * @property {boolean} isLiving - Pulvis et umbra sumus
  */

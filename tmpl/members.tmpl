@@ -12,23 +12,31 @@ var self = this;
 <?js } ?>
 
 <?js if (data.description) { ?>
-<div class="description">
-    <?js= data.description ?>
-</div>
-<?js } ?>
-
-<?js if (data.type && data.type.names) {?>
-    <div class="member-item-container flex">
-        <strong>Type: </strong>
-        <ul>
-            <li>
-                <?js= self.partial('type.tmpl', data.type.names) ?>
-            </li>
-        </ul>
+    <div class="description">
+        <?js= data.description ?>
+        <?js if (data.type && data.type.names) {?>
+            <div class="member-item-container flex">
+                <strong>Type: </strong>
+                <ul>
+                    <li>
+                        <?js= self.partial('type.tmpl', data.type.names) ?>
+                    </li>
+                </ul>
+            </div>
+        <?js } ?>
     </div>
+<?js } else { ?>
+    <?js if (data.type && data.type.names) {?>
+        <div class="member-item-container flex">
+            <strong>Type: </strong>
+            <ul>
+                <li>
+                    <?js= self.partial('type.tmpl', data.type.names) ?>
+                </li>
+            </ul>
+        </div>
+    <?js } ?>
 <?js } ?>
-
-<?js= this.partial('details.tmpl', data) ?>
 
 <?js if (data.fires && fires.length) { ?>
     <h5>Fires:</h5>
@@ -41,3 +49,5 @@ var self = this;
     <h5>Example<?js= examples.length > 1? 's':'' ?></h5>
     <?js= this.partial('examples.tmpl', examples) ?>
 <?js } ?>
+
+<?js= this.partial('details.tmpl', data) ?>

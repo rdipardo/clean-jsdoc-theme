@@ -1,0 +1,4 @@
+#!/bin/sh
+rm -rf demo/output
+mkdir demo/output
+cp -rf img demo/output/img

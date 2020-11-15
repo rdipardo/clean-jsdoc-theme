@@ -5,14 +5,14 @@
 class Alive {
     constructor() {
         /**
-         * amount of energy
-         * @property {Energy}
+         * An amount of energy
+         * @type {Energy}
          */
         this.energy = null;
     }
     /**
-     * @param {Environment} environment the environment when this Alive thing is surviving
-     * @return {Energy} the energy wasted in this surviving instance
+     * @param {Environment} environment The environment when this instance of {@link Alive} is surviving
+     * @return {Energy} The energy wasted in this surviving instance
      * @method
      */
     survive() {

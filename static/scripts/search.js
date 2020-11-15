@@ -1,4 +1,3 @@
-/* global document */
 function hideSearchList() {
     document.getElementById('search-item-ul').style.display = 'none';
 }
@@ -8,8 +7,8 @@ function showSearchList() {
 }
 
 function checkClick(e) {
-    if ( e.target.id !== 'search-box') {
-        setTimeout(function() {
+    if (e.target.id !== 'search-box') {
+        setTimeout(() => {
             hideSearchList();
         }, 60);
 
@@ -19,47 +18,49 @@ function checkClick(e) {
 }
 
 function search(list, keys, searchKey) {
-    var options = {
-        shouldSort: true,
-        threshold: 0.4,
-        location: 0,
-        distance: 100,
-        maxPatternLength: 32,
-        minMatchCharLength: 1,
-        keys: keys
+    const options = {
+        'shouldSort': true,
+        'threshold': 0.4,
+        'location': 0,
+        'distance': 100,
+        'maxPatternLength': 32,
+        'minMatchCharLength': 1,
+        keys
     };
 
     /* eslint-disable-next-line */
     var fuse = new Fuse(list, options);
-    var result = fuse.search(searchKey);
-    var searchUL = document.getElementById('search-item-ul');
+    const result = fuse.search(searchKey);
+    const searchUL = document.getElementById('search-item-ul');
 
     searchUL.innerHTML = '';
 
     if (result.length === 0) {
         searchUL.innerHTML += '<li> No Result Found </li>';
     } else {
-        result.forEach(function(item) {
-            searchUL.innerHTML += '<li>' + item.link + '</li>';
+        result.forEach(item => {
+            searchUL.innerHTML += `<li>${item.link}</li>`;
         });
     }
 }
 
 /* eslint-disable-next-line */
-function setupSearch(list) {
-    var inputBox = document.getElementById('search-box');
-    var keys = ['title'];
+function setupSearch (list) {
+    const inputBox = document.getElementById('search-box');
+    const keys = ['title'];
 
-    inputBox.addEventListener('keyup', function() {
+    inputBox.addEventListener('keyup', () => {
         if (inputBox.value !== '') {
             showSearchList();
             search(list, keys, inputBox.value);
+        } else {
+            hideSearchList();
         }
-        else { hideSearchList(); }
     });
 
-    inputBox.addEventListener('focus', function() {
+    inputBox.addEventListener('focus', () => {
         showSearchList();
+
         if (inputBox.value !== '') {
             search(list, keys, inputBox.value);
         }
@@ -68,5 +69,3 @@ function setupSearch(list) {
         window.addEventListener('click', checkClick);
     });
 }
-
-

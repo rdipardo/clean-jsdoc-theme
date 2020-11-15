@@ -1,203 +1,188 @@
-# clean-jsdoc-theme
+# clean-jsdoc
 
-[![Stars](https://img.shields.io/github/stars/ankitskvmdam/clean-jsdoc-theme)](https://github.com/ankitskvmdam/clean-jsdoc-theme) [![Fork](https://img.shields.io/github/forks/ankitskvmdam/clean-jsdoc-theme)](https://github.com/ankitskvmdam/clean-jsdoc-theme/fork) ![Version](https://img.shields.io/badge/version-2.2.14-%23007bff) [![Issues Open](https://img.shields.io/github/issues/ankitskvmdam/clean-jsdoc-theme)](https://github.com/ankitskvmdam/clean-jsdoc-theme/issues) [![Isses Closed](https://img.shields.io/github/issues-closed/ankitskvmdam/clean-jsdoc-theme?color=%234caf50)](https://github.com/ankitskvmdam/clean-jsdoc-theme/issues?q=is%3Aissue+is%3Aclosed) [![Contributors](https://img.shields.io/github/contributors/ankitskvmdam/clean-jsdoc-theme)](https://github.com/ankitskvmdam/clean-jsdoc-theme/graphs/contributors) [![npm downloads](https://img.shields.io/npm/dt/clean-jsdoc-theme)](https://www.npmjs.com/package/clean-jsdoc-theme) [![Build Status](https://travis-ci.org/ankitskvmdam/clean-jsdoc-theme.svg?branch=production)](https://travis-ci.org/ankitskvmdam/clean-jsdoc-theme) [![lisence](https://img.shields.io/github/license/ankitskvmdam/clean-jsdoc-theme)](https://github.com/ankitskvmdam/clean-jsdoc-theme/blob/master/LICENSE) [![Website Of/ficial](https://img.shields.io/website?up_message=official&url=https%3A%2F%2Fankdev.me%2Fclean-jsdoc-theme)](https://ankdev.me/clean-jsdoc-theme/index.html) [![Code of Conduct](https://img.shields.io/badge/code%20of%20conduct-hindi-%23007bff)](https://github.com/ankitskvmdam/clean-jsdoc-theme/blob/master/CODE_OF_CONDUCT_HINDI.md) [![Code of Conduct](https://img.shields.io/badge/code%20of%20conduct-english-%234caf50)](https://github.com/ankitskvmdam/clean-jsdoc-theme/blob/master/CODE_OF_CONDUCT.md)
-<br>
-A beautifully crafted theme/template for JSDoc 3. This theme/template looks and feels like a premium theme/template. This is a fully mobile responsive theme and also fully customizable theme (for more look below in <a href="#features">feature section</a>).<br>
+A stylish fork of [clean-jsdoc-theme][]
 
-I give extra care on every part of this theme/template, like instead of using a simple search mechanism I have used one of the most advance search technology <a href="https://fusejs.io/">Fuse.js</a>.<br>
+![light_screen_1](img/light_doc_example_1.png)
+![dark_screen_1](img/dark_doc_example_1.png)
 
-Feel free to raise <a href="https://github.com/ankitskvmdam/clean-jsdoc-theme/issues">issues</a>,
+## Quick start
 
-Live demo (dark): https://ankdev.me/clean-jsdoc-theme/dark/index.html <br>
-Live demo (light): https://ankdev.me/clean-jsdoc-theme/light/index.html
-
-### Demo screen
-
-![Screen-1](./example/screen-1.png)
-![Screen-2](./example/screen-2.png)
-![Screen-3](./example/screen-3.png)
-![Screen-4](./example/screen-4.png)
-![Screen-5](./example/screen-5.png)
-![Screen-6](./example/screen-6.png)
-
-## Install
-
-> Note you must have `npm` installed on your machine.
-
-On your command line type
+Install `jsdoc`:
 
 ```bash
-npm install clean-jsdoc-theme
+npm i --save-dev jsdoc
 ```
 
-## Usage
-
-Clone repository to your designated jsdoc template directory, then
+Clone this repo to your desired template directory:
 
 ```bash
-jsdoc entry-file.js -t path/to/clean-jsdoc-theme
+git clone 'https://github.com/rdipardo/clean-jsdoc-theme.git' path/to/template/directory
 ```
 
-## Node.js Dependency
+Now run:
 
-In your projects package.json file add a generate script
-
-```json
-"script": {
-  "generate-docs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose"
-}
+```bash
+node_modules/.bin/jsdoc path/to/src/**/*.js -t path/to/clean-jsdoc
 ```
 
-In your `jsdoc.json` file, add a template option.
+### Advanced Usage
+
+Configure `jsdoc` to use this template in your `.jsdoc.json` file:
 
 ```json
 "opts": {
-  "template": "node_modules/clean-jsdoc-theme"
+  "template": "./node_modules/clean-jsdoc-theme"
 }
 ```
 
-## Example JSDoc Config
+For example:
 
 ```json
 {
+    "plugins": ["plugins/markdown"],
     "source": {
-        "include": ["lib", "package.json", "README.md"],
-        "includePattern": ".js$",
+        "include": ["src", "README.md"],
+        "includePattern": ".+\\.js(doc|x)?$",
         "excludePattern": "(node_modules/|docs)"
     },
-
-    "plugins": ["plugins/markdown"],
-
+    "sourceType": "module",
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc", "closure"]
+    },
     "opts": {
+        "template": "./node_modules/clean-jsdoc-theme",
+        // see below
+        "theme_opts": {},
         "encoding": "utf8",
         "readme": "./README.md",
         "destination": "docs/",
-        "recurse": true,
-        "verbose": true,
-        "template": "./node_modules/clean-jsdoc-theme"
+        "recurse": true
     }
 }
 ```
 
-## Features
+Add a script to your `package.json`:
 
-I believe in giving freedom to the developer, that's why I have given many options to
-the developer to customize this theme according to their needs.
-You can pass an object called `theme_opts` under `opts` for more options like:
+```json
+"script": {
+  // ...
+  "gendocs": "node_modules/.bin/jsdoc -c .jsdoc.json --verbose"
+}
+```
 
-```json5
-"opts":{
-  /*
-    Default options
-  */
-  "theme_opts":{
-    // Set theme. Default is light
-    "theme": "dark",
-    /*
-      Instead of only string you can pass html element like
-      <img src="src to your img relative to the output path" class="my-custom-class"/>
-      Path must be relative to the output file (relative to generated html files.) you
-      can use the absolute path.
-      Note: If you use html the default overwrite. Also for custom class you have to create
-      a class using create_style.This is shown below.
-    */
-    "title": "clean-jsdoc-theme",
+Build your docmentation with: `npm run gendocs`
 
-   "filter": false, /*  The default value is true. This will turn the color of image white.
-      If you did not want any
-      filter set it to false.
-   */
+## Options
 
-  // Adding additional menu.
+_All options must be defined under `opts.theme_opts` in your `.jsdoc.json`_
+
+### Basic
+
+| name        | purpose                                                 | type                       | default                            | options                                       |
+|:-----------:|:-------------------------------------------------------:|:--------------------------:|:----------------------------------:|:---------------------------------------------:|
+| `theme`     | the overall style theme                                 | string                     | `"light"`                          | `["light", "dark"]`                           |
+| `search`    | enable fuzzy search using [Fuse.js][]                   | bool                       | `true`                             |                                               |
+| `langNames` | display language names in code blocks                   | bool                       | `true`                             |                                               |
+| `title`     | the name of the home link to display on the nav bar     | HTML string                | `"README"`                         | any valid HTML markup, or just a plain string |
+| `footer`    | a footer to display in the page layout                  | HTML string                | JSDoc version, date and theme info | any valid HTML markup                         |
+| `meta`      | a list of elements to add to the `head` of each page    | ["HTML string", ...]       | [  ]                              | any valid HTML `meta` or `link` element        |
+| `add_style_path` | a list of user-defined stylesheets                 | ["path/to/style.css", ...] | [  ]                              | file paths (relative to `index.html`)          |
+| `add_script_path` | a list of user-defined scripts                    | ["path/to/script.js", ...] | [  ]                              | _as above_                                     |
+
+### Advanced
+
+### `"project": {}`
+
+Basic details about the status of your project, e.g.
+
+```json
+  "project": {
+      "title": "clean-jsdoc",
+      "version": "2.2.14.01",
+      "repo": "https://github.com/rdipardo/clean-jsdoc-theme"
+  }
+```
+
+##### Required properties
+
+| name      | type   |
+|:---------:|:------:|
+| `version` | string |
+| `repo`    | URL    |
+
+##### Optional properties
+
+| name    | purpose                                                              | type   |
+|:-------:|:--------------------------------------------------------------------:|:------:|
+| `title` | the title of the project; it will appear in every page's `title` tag | string |
+
+
+#### `"menu": [{}, ...]`
+
+A list of hyperlinks to add to the navigation bar, e.g.
+
+```json
   "menu": [
     {
-      "title": "Website", //You have to give title otherwise you get error.
-      "link": "https://ankdev.me/clean-jsdoc-theme/index.html", // You have to give link otherwise you get error.
-      // Below properties are optional.
-      "target": "_blank",
-      "class": "some-class",
-      "id": "some-id"
-    },
-    {
-      "title": "Github",
-      "link": "https://github.com/ankitskvmdam/clean-jsdoc-theme/",
+      "title": "Website",
+      "link": "https://heredocs.com",
       "target": "_blank",
       "class": "some-class",
       "id": "some-id"
     }
-  ],
-
-  // You can pass meta options also
-  "meta": [
-      "<meta name=\"author\" content=\"Ankit Kumar\">",
-      "<meta name=\"description\" content=\"Best Clean and minimal JSDoc 3 Template / Theme\">"
-    ],
-
-  "search": false, //This option is for either showing or hiding the search. By default it is true.
-
-  // You can create custom style which will overwrite the exisiting class property.
-  "create_style": "nav{background: yellow}", // This will change the background color of sidebar.
-  //You can add path of your style file. Note it must be relative to your output file. (relative to generated html files.)
-  "add_style_path": ["../custom.css"], // Pass array of path or url
-
-  // You can add custom script to html
-  "add_scripts": "function foo(){console.log('foo')}",
-
-  // You can add path of your script file. Note it must be relative to your output file. (relative to generated html files.)
-  "add_script_path": ["../custom.js"], // Pass array of path or url
-
-  "footer": "This is footer",   // Here again you can pass html element
-  }
-}
+  ]
 ```
 
-## In version 2.2.14
+##### Required properties
 
-### Bug Fix
+| name    | type   |
+|:-------:|:------:|
+| `title` | string |
+| `link`  | URL    |
 
-1.  Malformed HTML when parsing 'default' JSDoc tags [issue: [#48](https://github.com/ankitskvmdam/clean-jsdoc-theme/issues/48)]
+##### Optional properties
 
-## In version 2.2.13
+| name     | type                  |
+|:--------:|:---------------------:|
+| `target` | HTML target attribute |
+| `class`  | CSS class selector    |
+| `id`     | CSS id selector       |
 
-### New
 
-1.  Make the # before members and methods a clickable anchor. [pull request: [#44](https://github.com/ankitskvmdam/clean-jsdoc-theme/pull/44)] [Thanks to [GMartigny](https://github.com/GMartigny)]
+#### `"create_style": ""`
 
-### Other
+Inline CSS for the `head` of the page layout, e.g.:
 
-1.  Change jsdoc into a peerDependency [pull request: [#45](https://github.com/ankitskvmdam/clean-jsdoc-theme/pull/45)][Thanks to [GMartigny](https://github.com/GMartigny)]
+```json
+    "create_style": "nav { background: yellow }"
+```
 
-## In version 2.2.12
+#### `"add_scripts": ""`
 
-### New
+Inline JavaScript to add to the page layout, e.g.:
 
-1.  Add dark theme.
+```json
+    "add_scripts": "function foo() { console.log('foo') }",
+```
 
-### Bug fix
+## Testing
 
-1.  Fix typescript-eslint camelCase rule issue [issue: [#37](https://github.com/ankitskvmdam/clean-jsdoc-theme/issues/37)]
-1.  Fix ordered list style [issue: [#40](https://github.com/ankitskvmdam/clean-jsdoc-theme/issues/40)]
-1.  Fix code overflow issue.
-
-## Developing
-
-Before starting please go through our [contributing guide](https://github.com/ankitskvmdam/clean-jsdoc-theme/blob/master/CONTRIBUTING.md).
+To generate a demo website in the `demo/output` folder, run:
 
 ```bash
-git clone https://github.com/ankitskvmdam/clean-jsdoc-theme.git
-cd clean-jsdoc-theme
-npm install
-npm install jsdoc --no-save
-npm run test
+npm i && npm i jsdoc --no-save
+npm test
 ```
 
-`npm run test` will generate files in output folder.
-
-## Contact
-
-If you like our work, then give me a <a href="https://github.com/ankitskvmdam/clean-jsdoc-theme" data-icon="octicon-star" aria-label="Star ankitskvmdam/clean-jsdoc-theme on GitHub">star</a>. This will act as a driving force to add new feature more frequently. <br>
-Mail me at: hello@ankdev.me <br>
+If `xdg-open` is on your system, you can build and preview the site in one step with: `npm run browse`
 
 ## License
 
-Licensed under the MIT license.
+Copyright (c) 2019 [Ankit Kumar](https://github.com/ankitskvmdam/)
+Copyright (c) 2020 [Robert Di Pardo](https://github.com/rdipardo/)
+
+Distributed under the terms of the MIT license.
+
+[clean-jsdoc-theme]: https://github.com/ankitskvmdam/clean-jsdoc-theme
+[Fuse.js]: https://fusejs.io/

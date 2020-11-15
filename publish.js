@@ -1,5 +1,4 @@
 /* global env: true */
-
 var doop = require('jsdoc/util/doop');
 var fs = require('jsdoc/fs');
 var helper = require('jsdoc/util/templateHelper');
@@ -373,6 +372,15 @@ function getMetaTagData() {
     return meta;
 }
 
+function getProjectAttributes() {
+    /* prettier-ignore-start */
+    // eslint-disable-next-line
+    var meta = env && env.opts && env.opts['theme_opts'] && env.opts['theme_opts'].project || undefined;
+    /* prettier-ignore-end */
+
+    return meta;
+}
+
 function getTheme() {
     /* prettier-ignore-start */
     // eslint-disable-next-line
@@ -387,7 +395,6 @@ function getTheme() {
 function searchList() {
     return searchListArray;
 }
-
 
 function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
     var nav = '';
@@ -468,13 +475,13 @@ function linktoExternal(longName, name) {
 function buildNav(members) {
     /* prettier-ignore-start */
     // eslint-disable-next-line
-    var title = (env && env.opts && env.opts['theme_opts'] && env.opts['theme_opts'].title) || 'Home';
+    var title = (env && env.opts && env.opts['theme_opts'] && env.opts['theme_opts'].title) || 'README';
     /* prettier-ignore-end */
 
     var isHTML = RegExp.prototype.test.bind(/(<([^>]+)>)/i);
     var nav;
 
-    if (!isHTML(title)) { nav = '<h2><a href="index.html"><div class="text">' + title + '</div></a></h2>'; }
+    if (!isHTML(title)) { nav = '<h2><a href="index.html"><span class="text">' + title + '</span></a></h2>'; }
     else {
         // eslint-disable-next-line no-restricted-globals
         var filter = env && env.opts && env.opts.theme_opts;
@@ -737,6 +744,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     view.dynamicScript = createDynamicsScripts();
     view.dynamicScriptSrc = returnPathOfScriptScr();
     view.meta = getMetaTagData();
+    view.project = getProjectAttributes();
     view.theme = getTheme();
     // once for all
     view.nav = buildNav(members);

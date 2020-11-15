@@ -7,9 +7,9 @@ class Apple extends Alive {
     constructor() {
         super();
         /**
-		 * Donec imperdiet dignissim
-		 * @type {String}
-		 */
+         * Donec imperdiet dignissim
+         * @type {string}
+         */
         this.color = null;
     }
 }

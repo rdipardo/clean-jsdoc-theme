@@ -10,21 +10,26 @@
         "cleverLinks": false,
         "monospaceLinks": false,
         "default": {
-            "outputSourceFiles": true
+            "outputSourceFiles": true,
+            "includeDate": false
         }
     },
     "opts": {
         "encoding": "utf8",
-        "destination": "output",
+        "destination": "demo/output",
         "recurse": true,
         "template": "./",
         "theme_opts": {
-            "theme": "dark",
-            "title": "clean-jsdoc-theme",
-            "footer": "Fork: <a href='https://github.com/ankitskvmdam/clean-jsdoc-theme'>https://github.com/ankitskvmdam/clean-jsdoc-theme</a>",
+            "project": {
+                "title": "clean-jsdoc",
+                "version": "2.2.14.01",
+                "repo": "https://github.com/rdipardo/clean-jsdoc-theme"
+            },
             "meta": [
-                "<meta name=\"author\" content=\"Ankit Kumar\">",
-                "<meta name=\"description\" content=\"A beautifully crafted theme/template for JSDoc 3.\">"
+                "<meta name=\"author\" content=\"Robert Di Pardo\">",
+                "<meta name=\"description\" content=\"A stylish fork of clean-jsdoc-theme\">",
+                "<meta name=\"attribution\" content=\"Favicon made by http://www.freepik.com from https://www.flaticon.com\">",
+                "<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"img/html-5.png\">"
             ]
         }
     },

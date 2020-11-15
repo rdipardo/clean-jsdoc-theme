@@ -1,4 +1,3 @@
-/* global document */
 function copy(value) {
     const el = document.createElement('textarea');
 
@@ -10,58 +9,54 @@ function copy(value) {
 }
 
 function showTooltip(id) {
-    var tooltip = document.getElementById(id);
+    const tooltip = document.getElementById(id);
 
     tooltip.classList.add('show-tooltip');
-    setTimeout(function() {
+    setTimeout(() => {
         tooltip.classList.remove('show-tooltip');
     }, 3000);
 }
 
 /* eslint-disable-next-line */
-function copyFunction(id) {
-    // selecting the pre element
-    var code = document.getElementById(id);
+function copyFunction (id) {
+    // Selecting the pre element
+    let code = document.getElementById(id);
 
-    // selecting the code element of that pre element
-    code = code.childNodes[0];
+    // Selecting the code element of that pre element
+    code = code.childNodes[0].childNodes[0].innerText;
 
-    // copy
-    copy(code.innerText);
+    // Copy
+    copy(code);
 
-    // show tooltip
-    showTooltip('tooltip-' + id);
+    // Show tooltip
+    showTooltip(`tooltip-${id}`);
 }
 
 (function() {
-    // capturing all pre element on the page
-    var allPre = document.getElementsByTagName('pre');
+    // Capturing all pre element on the page
+    const allPre = document.getElementsByTagName('pre');
 
+    for (let i = 0; i < allPre.length; i++) {
+        // Get the list of class in current pre element
+        const { classList } = allPre[i];
+        const id = `pre-id-${i}`;
 
-    var i, classList;
+        // Tooltip
+        const tooltip = `<div class="tooltip" id="tooltip-${id}">Copied!</div>`;
 
-    for ( i = 0; i < allPre.length; i++) {
-        // get the list of class in current pre element
-        classList = allPre[i].classList;
-        var id = 'pre-id-' + i;
+        // Template of copy to clipboard icon container
+        const copyToClipboard = `<div class="code-copy-icon-container" onclick="copyFunction('${id}')"><div><svg class="sm-icon" alt="click to copy"><use xlink:href="#copy-icon"></use></svg>${tooltip}<div></div>`;
 
-        // tooltip
-        var tooltip = '<div class="tooltip" id="tooltip-' + id + '">Copied!</div>';
+        // Extract the code language
+        const langName = classList && classList.length ?
+            classList[classList.length - 1].split('-')[1] || 'javascript' :
+            '';
 
-        // template of copy to clipboard icon container
-        var copyToClipboard = '<div class="code-copy-icon-container" onclick="copyFunction(\'' + id + '\')"><div><svg class="sm-icon" alt="click to copy"><use xlink:href="#copy-icon"></use></svg>' + tooltip + '<div></div>';
+        const langNameDiv =
+              `<div class="code-lang-name-container"><div class="code-lang-name">${langName.toLocaleUpperCase()}</div></div>`;
 
-        // extract the code language
-        var langName = classList[classList.length - 1].split('-')[1];
-
-        if ( langName === undefined ) { langName = 'JavaScript'; }
-
-        // if(langName != undefined)
-        var langNameDiv = '<div class="code-lang-name-container"><div class="code-lang-name">' + langName.toLocaleUpperCase() + '</div></div>';
-        // else langNameDiv = '';
-
-        // appending everything to the current pre element
-        allPre[i].innerHTML += langNameDiv + copyToClipboard;
+        // Appending everything to the current pre element
+        allPre[i].innerHTML += langNameDiv + (langName.length ? copyToClipboard : '');
         allPre[i].setAttribute('id', id);
     }
 })();
