@@ -1,5 +1,7 @@
 /**
- * A unit of energy. Curabitur sollicitudin porttitor turpis vitae rutrum. Mauris interdum neque id massa sollicitudin, fermentum facilisis erat commodo. In at purus a risus aliquam faucibus.
+ * A unit of energy. Curabitur sollicitudin porttitor turpis vitae
+ * rutrum. Mauris interdum neque id massa sollicitudin, fermentum
+ * facilisis erat commodo. In at purus a risus aliquam faucibus.
  * @class
  */
 class Energy {

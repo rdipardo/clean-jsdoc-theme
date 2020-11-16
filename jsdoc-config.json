@@ -6,6 +6,9 @@
         "include": ["./demo/src", "./README.md"]
     },
     "plugins": ["plugins/markdown"],
+    "markdown": {
+        "idInHeadings": true
+    },
     "templates": {
         "cleverLinks": false,
         "monospaceLinks": false,
@@ -20,9 +23,10 @@
         "recurse": true,
         "template": "./",
         "theme_opts": {
+            "langNames": false,
             "project": {
                 "title": "clean-jsdoc",
-                "version": "2.2.14.01",
+                "version": "2.2.14.02",
                 "repo": "https://github.com/rdipardo/clean-jsdoc-theme"
             },
             "meta": [
@@ -30,11 +34,8 @@
                 "<meta name=\"description\" content=\"A stylish fork of clean-jsdoc-theme\">",
                 "<meta name=\"attribution\" content=\"Favicon made by http://www.freepik.com from https://www.flaticon.com\">",
                 "<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"img/html-5.png\">"
-            ]
+            ],
+            "create_style": ".readme img { max-width: 900px; }"
         }
-    },
-    "markdown.hardwrap": true,
-    "markdown": {
-        "hardwrap": true
     }
 }

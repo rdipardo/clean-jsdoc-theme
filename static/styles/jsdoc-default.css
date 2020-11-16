@@ -279,7 +279,7 @@ nav h2, nav h3, nav h3 a {
 }
 
 nav h3 {
-    padding: 10px 10px 6px;
+    padding: 10px 16px 6px;
 }
 
 .sidebar-list-div {
@@ -318,7 +318,7 @@ nav a:hover {
 }
 
 .sidebar-list-div>ul {
-    padding-left: 10px;
+    padding-left: 18px;
 }
 
 /* stylelint-disable */
@@ -805,7 +805,7 @@ dl.param-type {
     align-items: flex-start;
     color: #fff;
     justify-content: center;
-    margin: 1.25em auto 0;
+    margin: 1.75em auto 0;
 }
 
 .gh-meta p {
@@ -825,7 +825,7 @@ dl.param-type {
 
 @media only screen and (max-width: 750px) {
     .gh-meta {
-        padding-top: 1.5em;
+        padding-top: 0;
     }
     .gh-meta p {
         white-space: nowrap;

@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <?js
-  var themeName = (env.opts && env.opts.theme_opts && env.opts.theme_opts.theme) || "light"
-  var wantLangNames = (env.opts && env.opts.theme_opts && env.opts.theme_opts.langNames !== false) || true
-  var wantDate = env.conf.templates && env.conf.templates.default && env.conf.templates.default.includeDate !== false
-  Date.prototype.toLongDate =
-    function (locale) {
-      return new Date().toLocaleDateString(locale || 'en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      });
-    }
+  var themeName = (env.opts && env.opts.theme_opts
+                     && env.opts.theme_opts.theme)
+                     || "light"
+  var hideLangNames = env.opts && env.opts.theme_opts
+                        && env.opts.theme_opts.langNames !== undefined
+                        && !env.opts.theme_opts.langNames
+  var noSearch = env.opts && env.opts.theme_opts
+                   && env.opts.theme_opts.search !== undefined
+                   && !env.opts.theme_opts.search
+  var wantDate = env.conf.templates
+                   && env.conf.templates.default
+                   && env.conf.templates.default.includeDate !== false
+
+  if (wantDate) {
+    Date.prototype.toLongDate =
+      function (locale) {
+        return new Date().toLocaleDateString(locale || 'en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+      }
+  }
 ?>
 <html lang="en">
 <head>
@@ -64,22 +76,15 @@
       </style>
     <?js } ?>
 
-    <?js if (this.project !== undefined &&
-             (env.opts.theme_opts.search ||
-              env.opts.theme_opts.search === undefined)) { ?>
-      <?js
-          var mainTitle = env.opts.theme_opts.title
-          var homeTitle = mainTitle ? mainTitle.trim() : title
-          var headRoom = Math.ceil(homeTitle.length * 2.5)
-      ?>
+    <?js if (noSearch) { ?>
       <style>
-          .sidebar-list-div {
-              margin-top: <?js= headRoom?>px;
-          }
+        nav > h2 {
+            padding: 0;
+        }
       </style>
     <?js } ?>
 
-    <?js if (!wantLangNames) { ?>
+    <?js if (hideLangNames) { ?>
       <style>
         .code-lang-name  {
             display: none;
@@ -89,6 +94,17 @@
         }
       </style>
     <?js } ?>
+
+    <style>
+      <?js
+        var isTitleSet = env.opts && env.opts.theme_opts && env.opts.theme_opts.title
+        var homeTitle = isTitleSet ? env.opts.theme_opts.title.trim() : title
+        var headRoom = Math.ceil(homeTitle.length * 2.5)
+      ?>
+      .sidebar-list-div {
+          margin-top: <?js= headRoom?>px;
+      }
+    </style>
 </head>
 <body>
 <?js= this.partial('icons.tmpl') ?>

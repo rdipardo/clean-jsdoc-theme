@@ -1,5 +1,7 @@
 /**
- * Donec imperdiet dignissim semper. Sed vehicula purus dui, eget porta lectus convallis sagittis. Suspendisse ac lectus dignissim, tincidunt nisi quis, gravida metus.
+ * Donec imperdiet dignissim semper. Sed vehicula purus dui, eget porta
+ * lectus convallis sagittis. Suspendisse ac lectus dignissim, tincidunt
+ * nisi quis, gravida metus.
  * @class
  * @extends Alive
  */
@@ -13,7 +15,8 @@ class Tree extends Alive {
         this.branches = null;
     }
     /**
-     * @param {Environment} environment - The environment when this {@link Tree} is surviving
+     * @param {Environment} environment - The environment when this
+     *  {@link Tree} is surviving
      * @return {Energy} The energy wasted in this surviving instance
      * @method
      * @fires Tree.crop

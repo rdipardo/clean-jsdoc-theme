@@ -1,17 +1,19 @@
 {
     "name": "clean-jsdoc",
-    "version": "2.2.14.01",
+    "version": "2.2.14.02",
     "description": "A stylish fork of clean-jsdoc-theme",
     "main": "publish.js",
     "scripts": {
         "lint:js": "eslint --fix static/scripts",
         "lint:style": "stylelint static/styles/",
+        "lint:win": "npm run lint:js && npm run lint:style",
         "lint": "concurrently --prefix '{time}-{pid}' 'npm run lint:js' 'npm run lint:style'",
         "test": "npm run lint && ./demo/copy && node_modules/.bin/jsdoc -c jsdoc-config.json",
+        "test:win": "npm run lint:win && demo\\copy && node_modules\\.bin\\jsdoc -c jsdoc-config.json",
         "browse": "npm test && xdg-open demo/output/index.html 2> /dev/null || exit 0",
         "fetch:issue": "git checkout e71940a -- @default-tag-issue/ && npm install jsdoc --no-save",
         "browse:issue": "xdg-open @default-tag-issue/doc/index.html 2> /dev/null || exit 0",
-        "doc:issue": "npm run fetch:issue && node_modules/.bin/jsdoc @default-tag-issue/src/css.js -c @default-tag-issue/.jsdoc.json && npm run browse:issue"
+        "doc:issue": "npm run fetch:issue && node node_modules/jsdoc/jsdoc.js @default-tag-issue/src/css.js -c @default-tag-issue/.jsdoc.json && npm run browse:issue"
     },
     "repository": {
         "type": "git",

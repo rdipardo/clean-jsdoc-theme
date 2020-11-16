@@ -1,5 +1,7 @@
 /**
- * Donec imperdiet dignissim semper. Sed vehicula purus dui, eget porta lectus convallis sagittis. Suspendisse ac lectus dignissim, tincidunt nisi quis, gravida metus.
+ * Donec imperdiet dignissim semper. Sed vehicula purus dui, eget porta
+ * lectus convallis sagittis. Suspendisse ac lectus dignissim, tincidunt
+ * nisi quis, gravida metus.
  * @class
  * @extends Alive
  */

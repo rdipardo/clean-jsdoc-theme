@@ -1,3 +1,16 @@
+## 2.2.14.02
+
+### Fixed
+- the `langNames` option is now properly detected by the layout template
+- the `demo/copy.cmd` script works now
+
+### Changed
+- the nav bar's top margin is always dynamically set, with or without the search box present
+- show [npm installation steps][] in the README
+
+### Added
+-  special development scripts for Windows users
+
 ## 2.2.14.01
 
 ### Fixed
@@ -38,3 +51,5 @@
 1.  Fix typescript-eslint camelCase rule issue [issue: [#37](https://github.com/ankitskvmdam/clean-jsdoc-theme/issues/37)]
 1.  Fix ordered list style [issue: [#40](https://github.com/ankitskvmdam/clean-jsdoc-theme/issues/40)]
 1.  Fix code overflow issue.
+
+[npm installation steps]: https://github.com/rdipardo/clean-jsdoc-theme#quick-start

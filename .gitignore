@@ -1,6 +1,6 @@
 node_modules/
 .vscode/
 .DS_Store
-./output/**
+./out*/**
 demo/output/**
 @default-tag-issue/**

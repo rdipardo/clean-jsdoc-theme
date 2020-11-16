@@ -1,4 +1,4 @@
 @echo off
-del /S /Q /F demo/output
-mkdir demo/output
-xcopy /S /C img demo/output/img
+del /S /Q /F demo\output
+mkdir demo\output
+echo D | xcopy /S /C /Y img demo\output\img

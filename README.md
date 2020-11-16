@@ -2,46 +2,57 @@
 
 A stylish fork of [clean-jsdoc-theme][]
 
-![light_screen_1](img/light_doc_example_1.png)
-![dark_screen_1](img/dark_doc_example_1.png)
+![light_screen_1](https://rdipardo.github.io/demos/js/clean-jsdoc/img/light_doc_example_1.png)
+![dark_screen_1](https://rdipardo.github.io/demos/js/clean-jsdoc/img/dark_doc_example_1.png)
+
+- [Getting Started](#quick-start)
+- [Adding to Your Workflow](#workflow-integration)
+- [Configuration](#options)
+  + [Basic Options](#basic)
+  + [Advanced Options](#advanced)
+- [Testing](#testing)
+- [License](#license)
 
 ## Quick start
 
 Install `jsdoc`:
 
-```bash
+```shell
 npm i --save-dev jsdoc
 ```
 
-Clone this repo to your desired template directory:
+Install the template assets:
 
-```bash
-git clone 'https://github.com/rdipardo/clean-jsdoc-theme.git' path/to/template/directory
+```shell
+npm i --save-dev rdipardo/clean-jsdoc-theme
 ```
 
 Now run:
 
-```bash
-node_modules/.bin/jsdoc path/to/src/**/*.js -t path/to/clean-jsdoc
+```shell
+npx jsdoc path/to/source/files -t node_modules/clean-jsdoc -r README.md
 ```
 
-### Advanced Usage
+### Workflow Integration
 
-Configure `jsdoc` to use this template in your `.jsdoc.json` file:
+Configure `jsdoc` to use the template in your `.jsdoc.json` file:
 
 ```json
-"opts": {
-  "template": "./node_modules/clean-jsdoc-theme"
-}
+  "opts": {
+    "template": "node_modules/clean-jsdoc"
+  }
 ```
 
 For example:
 
-```json
+```json5
 {
     "plugins": ["plugins/markdown"],
+    "markdown": {
+        "idInHeadings": true
+    },
     "source": {
-        "include": ["src", "README.md"],
+        "include": ["lib", "README.md"],
         "includePattern": ".+\\.js(doc|x)?$",
         "excludePattern": "(node_modules/|docs)"
     },
@@ -51,8 +62,8 @@ For example:
         "dictionaries": ["jsdoc", "closure"]
     },
     "opts": {
-        "template": "./node_modules/clean-jsdoc-theme",
-        // see below
+        "template": "node_modules/clean-jsdoc",
+        /* see below */
         "theme_opts": {},
         "encoding": "utf8",
         "readme": "./README.md",
@@ -64,14 +75,14 @@ For example:
 
 Add a script to your `package.json`:
 
-```json
-"script": {
-  // ...
-  "gendocs": "node_modules/.bin/jsdoc -c .jsdoc.json --verbose"
-}
+```json5
+  "script": {
+    /* ... */
+    "gendocs": "node_modules/.bin/jsdoc -c .jsdoc.json --verbose"
+  }
 ```
 
-Build your docmentation with: `npm run gendocs`
+Build your documentation with: `npm run gendocs`
 
 ## Options
 
@@ -81,7 +92,7 @@ _All options must be defined under `opts.theme_opts` in your `.jsdoc.json`_
 
 | name        | purpose                                                 | type                       | default                            | options                                       |
 |:-----------:|:-------------------------------------------------------:|:--------------------------:|:----------------------------------:|:---------------------------------------------:|
-| `theme`     | the overall style theme                                 | string                     | `"light"`                          | `["light", "dark"]`                           |
+| `theme`     | the overall style theme                                 | string                     | `"light"`                          | `"light"`, `"dark"`                           |
 | `search`    | enable fuzzy search using [Fuse.js][]                   | bool                       | `true`                             |                                               |
 | `langNames` | display language names in code blocks                   | bool                       | `true`                             |                                               |
 | `title`     | the name of the home link to display on the nav bar     | HTML string                | `"README"`                         | any valid HTML markup, or just a plain string |
@@ -92,14 +103,14 @@ _All options must be defined under `opts.theme_opts` in your `.jsdoc.json`_
 
 ### Advanced
 
-### `"project": {}`
+#### `"project": {}`
 
-Basic details about the status of your project, e.g.
+Details of your project, e.g.
 
 ```json
   "project": {
       "title": "clean-jsdoc",
-      "version": "2.2.14.01",
+      "version": "2.2.14.02",
       "repo": "https://github.com/rdipardo/clean-jsdoc-theme"
   }
 ```
@@ -155,7 +166,7 @@ A list of hyperlinks to add to the navigation bar, e.g.
 Inline CSS for the `head` of the page layout, e.g.:
 
 ```json
-    "create_style": "nav { background: yellow }"
+    "create_style": ".readme img { max-width: 900px; }"
 ```
 
 #### `"add_scripts": ""`
@@ -168,18 +179,35 @@ Inline JavaScript to add to the page layout, e.g.:
 
 ## Testing
 
-To generate a demo website in the `demo/output` folder, run:
+To preview a small demo website, first run:
 
-```bash
+```shell
+git clone 'https://github.com/rdipardo/clean-jsdoc-theme.git' clean-jsdoc
+cd clean-jsdoc
 npm i && npm i jsdoc --no-save
+```
+
+On Windows, run:
+
+```shell
+npm run test:win
+```
+
+Otherwise:
+
+```shell
 npm test
 ```
 
-If `xdg-open` is on your system, you can build and preview the site in one step with: `npm run browse`
+If `xdg-open` is available on your system, you can build and preview the site in one step with:
+
+```shell
+npm run browse
+```
 
 ## License
 
-Copyright (c) 2019 [Ankit Kumar](https://github.com/ankitskvmdam/)
+Copyright (c) 2019 [Ankit Kumar](https://github.com/ankitskvmdam/)<br/>
 Copyright (c) 2020 [Robert Di Pardo](https://github.com/rdipardo/)
 
 Distributed under the terms of the MIT license.
