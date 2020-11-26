@@ -1,32 +1,35 @@
-stages:
-  - name: test
-  - name: deploy
-    if: branch == production
+os: linux
+dist: focal
+language: node_js
+node_js:
+  - "12"
+cache: npm
 
-cache:
-  directories:
-    - node_modules
+install: npm i && npm i --save-dev jsdoc
+before_script: chmod +x ./demo/copy
+script:
+  - npm test
+
+stages:
+  - name: browser_stack
+    if: branch = master OR tag IS present
 
 jobs:
   include:
-    - stage: test
-      os: linux
-      dist: focal
-      language: node_js
-      node_js:
-        - "12"
-      install: "npm i && npm i jsdoc --no-save"
+    - os: linux
+    - os: osx
+    - os: windows
+      before_script: echo "Nothing to do"
       script:
-        - npm test
+        - npm run test:win
 
-    - stage: deploy
-      language: node_js
-      node_js: "12"
-      script: echo "Deploying to npm ..."
-      deploy:
-        provider: npm
-        email: $NPM_EMAIL
-        api_token: $NPM_API_TOKEN
-        cleanup: false
-        on:
-          tags: true
+    - stage: browser_stack
+      env:
+        - BROWSERSTACK_USERNAME=$BROWSERSTACK_USERNAME
+        - BROWSERSTACK_ACCESS_KEY=$BROWSERSTACK_ACCESS_KEY
+        - PORT=3001
+      after_success:
+        - npm run bs
+        - npm run bs:safari
+        - npm run bs:android
+        - npm run bs:ios

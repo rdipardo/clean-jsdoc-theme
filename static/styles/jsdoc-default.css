@@ -717,7 +717,7 @@ dl.param-type {
     .navicon-button {
         border-radius: 10px;
         display: inline-block;
-        position: fixed;
+        position: absolute;
         right: 30px;
         top: 30px;
         z-index: 1000;

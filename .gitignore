@@ -4,3 +4,6 @@ node_modules/
 ./out*/**
 demo/output/**
 @default-tag-issue/**
+*.log
+*.err
+.env*

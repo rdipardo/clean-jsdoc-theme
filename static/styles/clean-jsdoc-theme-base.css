@@ -1,16 +1,40 @@
 @font-face {
     font-family: 'heading';
-    src: url('../fonts/Quicksand-SemiBold.ttf') format('truetype');
+    src: url('../fonts/Quicksand-SemiBold.eot');
+    src: url('../fonts/Quicksand-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Quicksand-SemiBold.woff2') format('woff2'),
+        url('../fonts/Quicksand-SemiBold.woff') format('woff'),
+        url('../fonts/Quicksand-SemiBold.ttf') format('truetype'),
+        url('../fonts/Quicksand-SemiBold.svg#Quicksand-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'body';
-    src: url('../fonts/Nunito-Regular.ttf') format('truetype');
+    src: url('../fonts/Nunito-Regular.eot');
+    src: url('../fonts/Nunito-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Nunito-Regular.woff2') format('woff2'),
+        url('../fonts/Nunito-Regular.woff') format('woff'),
+        url('../fonts/Nunito-Regular.ttf') format('truetype'),
+        url('../fonts/Nunito-Regular.svg#Nunito-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'code';
-    src: url('../fonts/SourceCodePro-Regular.ttf') format('truetype');
+    src: url('../fonts/SourceCodePro-Regular.eot');
+    src: url('../fonts/SourceCodePro-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/SourceCodePro-Regular.woff2') format('woff2'),
+        url('../fonts/SourceCodePro-Regular.woff') format('woff'),
+        url('../fonts/SourceCodePro-Regular.ttf') format('truetype'),
+        url('../fonts/SourceCodePro-Regular.svg#SourceCodePro-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 pre {

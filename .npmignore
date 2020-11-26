@@ -9,8 +9,12 @@ CNAME
 example/
 img/
 .github/
+*.log
+*.err
 *.json
 *.yml
 *.eslint*
 *.style*
 *.prettier*
+.babelrc
+.env*

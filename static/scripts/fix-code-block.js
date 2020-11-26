@@ -1,5 +1,5 @@
 (function() {
-    const targets = document.querySelectorAll('pre');
+    const targets = Array.prototype.slice.call(document.querySelectorAll('pre'));
 
     setTimeout(() => {
         targets.forEach(item => {
