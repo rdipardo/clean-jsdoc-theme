@@ -1,6 +1,16 @@
 # clean-jsdoc
 
-A stylish fork of [clean-jsdoc-theme][]
+<h3 align="center">
+
+[![Build Docs Workflow][]][Build Docs]
+[![Chrome, Firefox, IE, Safari on macOS Workflow][]][Chrome, Firefox, IE, Safari on macOS]
+[![Chrome on Android, Safari on iOS Workflow][]][Chrome on Android, Safari on iOS]
+[![BrowserStack Status Badge][]][BrowserStack Status]
+[![License: MIT][]][Read the MIT]
+
+</h3>
+
+A feature-enhanced fork of [clean-jsdoc-theme][]
 
 ![light_screen_1](https://rdipardo.github.io/demos/js/clean-jsdoc/img/light_doc_example_1.png)
 ![dark_screen_1](https://rdipardo.github.io/demos/js/clean-jsdoc/img/dark_doc_example_1.png)
@@ -214,3 +224,15 @@ Distributed under the terms of the MIT license.
 
 [clean-jsdoc-theme]: https://github.com/ankitskvmdam/clean-jsdoc-theme
 [Fuse.js]: https://fusejs.io/
+
+<!-- badges -->
+[Build Docs Workflow]: https://github.com/rdipardo/clean-jsdoc-theme/workflows/Build%20Docs/badge.svg?branch=master
+[Build Docs]: https://github.com/rdipardo/clean-jsdoc-theme/actions?query=workflow%3ADocs
+[Chrome, Firefox, IE, Safari on macOS Workflow]: https://github.com/rdipardo/clean-jsdoc-theme/workflows/Chrome,%20Firefox,%20IE,%20Safari%20on%20macOS/badge.svg?branch=master
+[Chrome, Firefox, IE, Safari on macOS]: https://github.com/rdipardo/clean-jsdoc-theme/actions?query=workflow%3AIE
+[Chrome on Android, Safari on iOS Workflow]: https://github.com/rdipardo/clean-jsdoc-theme/workflows/Chrome%20on%20Android,%20Safari%20on%20iOS/badge.svg?branch=master
+[Chrome on Android, Safari on iOS]: https://github.com/rdipardo/clean-jsdoc-theme/actions?query=workflow%3AAndroid
+[BrowserStack Status]: https://automate.browserstack.com/public-build/UmpiQjdrd0h6SGt6YlJYWUUvcERSRXNmZUpaR2pFVFJQb0I0MGwrM0dVcz0tLS9ENVVPc1I1eW5NQUF5MWFEUzUrOUE9PQ==--8a4ece5b7c6ffbe261a062d49079b8408b32760c
+[BrowserStack Status Badge]: https://automate.browserstack.com/badge.svg?badge_key=UmpiQjdrd0h6SGt6YlJYWUUvcERSRXNmZUpaR2pFVFJQb0I0MGwrM0dVcz0tLS9ENVVPc1I1eW5NQUF5MWFEUzUrOUE9PQ==--8a4ece5b7c6ffbe261a062d49079b8408b32760c
+[License: MIT]: https://img.shields.io/github/license/rdipardo/clean-jsdoc-theme.svg?logo=Github
+[Read the MIT]: https://github.com/rdipardo/clean-jsdoc-theme/blob/master/LICENSE

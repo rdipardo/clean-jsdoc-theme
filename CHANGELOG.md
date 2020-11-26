@@ -1,3 +1,16 @@
+## 1.0.0
+
+### Fixed
+- use `position: absolute;` to keep the navigation toggle button inside
+  the view-port on small mobile screens
+
+### Changed
+- versioning scheme is now independent of upstream
+
+### Added
+- provide fonts in `.eot`, `svg`, `.woff` and `woff2` file formats
+- JS assets are now compiled to make them safe for IE 11
+
 ## 2.2.14.02
 
 ### Fixed

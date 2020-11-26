@@ -717,7 +717,7 @@ dl.param-type {
     .navicon-button {
         border-radius: 10px;
         display: inline-block;
-        position: fixed;
+        position: absolute;
         right: 30px;
         top: 30px;
         z-index: 1000;
@@ -771,6 +771,12 @@ dl.param-type {
 
 .readme h4, .readme h5, .readme h6, .readme strong {
     font-style: italic;
+}
+
+/* status badges should have no border */
+
+.readme h1 img, .readme h2 img, .readme h3 img, .readme h4 img, .readme h5 img, .readme h6 img {
+    border: 0;
 }
 
 .readme ul, .readme ol {
