@@ -24,7 +24,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-npm-
     - name: Install dependencies
-        if: ${{ steps.restore-cache.outputs.cache-hit != 'true' }}
+        if: steps.restore-cache.outputs.cache-hit != 'true'
         run: npm i && npm i --save-dev jsdoc
     - name: Set file perms on dev script
         run: chmod +x ./demo/copy
