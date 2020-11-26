@@ -24,17 +24,17 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-npm-
     - name: Install dependencies
-        if: steps.restore-cache.outputs.cache-hit != 'true'
-        run: npm i && npm i --save-dev jsdoc
+      if: steps.restore-cache.outputs.cache-hit != 'true'
+      run: npm i && npm i --save-dev jsdoc
     - name: Set file perms on dev script
-        run: chmod +x ./demo/copy
+      run: chmod +x ./demo/copy
     - name: Build docs
-        run: npm test
+      run: npm test
     - name: Run Selenium tests
       env:
         BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
         BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
         PORT: 3003
-        run: |
-          npm run bs:android
-          npm run bs:ios
+      run: |
+        npm run bs:android
+        npm run bs:ios
