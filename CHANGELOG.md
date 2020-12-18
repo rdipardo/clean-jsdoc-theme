@@ -1,3 +1,14 @@
+## 2.0.0
+
+### Added
+- new features introduced by [upstream][]
+- the `add_assets` option will generate a `link` tag for stylesheets and
+  image icons (so far) when only an `href` attribute is provided.
+  Otherwise, it behaves the same as the (removed) `add_style_path` option
+
+### Changed
+- ~~add_style_path~~
+
 ## 1.0.0
 
 ### Fixed
@@ -65,4 +76,5 @@
 1.  Fix ordered list style [issue: [#40](https://github.com/ankitskvmdam/clean-jsdoc-theme/issues/40)]
 1.  Fix code overflow issue.
 
+[upstream]: https://github.com/ankitskvmdam/clean-jsdoc-theme/commits/master
 [npm installation steps]: https://github.com/rdipardo/clean-jsdoc-theme#quick-start

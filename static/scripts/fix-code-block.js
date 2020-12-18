@@ -39,9 +39,11 @@
         const [, location] = window.location.href.split('#');
 
         if (location && location.length > 0) {
+          try {
             const element = document.querySelector('#'.concat(location));
 
             element.scrollIntoView();
+          } catch (_) {}
         }
     }, 300);
 })();

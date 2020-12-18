@@ -10,7 +10,7 @@
 
 </h3>
 
-A Github-centric fork of [clean-jsdoc-theme][]
+A style-conscious fork of [clean-jsdoc-theme][]
 
 ![light_screen_1](https://rdipardo.github.io/demos/js/clean-jsdoc/img/light_doc_example_1.png)
 ![dark_screen_1](https://rdipardo.github.io/demos/js/clean-jsdoc/img/dark_doc_example_1.png)
@@ -103,8 +103,8 @@ _All options must be defined under `opts.theme_opts` in your `.jsdoc.json`_
 | name           | purpose                                             | type         | default                            | options                                       |
 |:--------------:|:---------------------------------------------------:|:------------:|:----------------------------------:|:---------------------------------------------:|
 | `theme`        | the overall style theme                             | string       | `"light"`                          | `"light"`, `"dark"`                           |
-| `search`       | enable fuzzy search using [Fuse.js][]               | bool         | `true`                             |                                               |
-| `langNames`    | display language names in code blocks               | bool         | `true`                             |                                               |
+| `search`       | enable fuzzy search using [Fuse.js][]               | bool         | `true`                             | `true`, `false`                               |
+| `langNames`    | display language names in code blocks               | bool         | `true`                             | `true`, `false`                               |
 | `title`        | the name of the home link to display on the nav bar | HTML string  | `"README"`                         | any valid HTML markup, or just a plain string |
 | `footer`       | a footer to display in the page layout              | HTML string  | JSDoc version, date and theme info | any valid HTML markup                         |
 | `create_style` | inline CSS for the `head` of the page layout        | CSS string   | `null`                             | any valid CSS markup                          |
@@ -119,7 +119,7 @@ Details of your project, e.g.
 ```json
   "project": {
       "title": "clean-jsdoc",
-      "version": "1.1.0",
+      "version": "2.0.0",
       "repo": "https://github.com/rdipardo/clean-jsdoc-theme"
   }
 ```
@@ -206,7 +206,7 @@ A list of `link` tag attributes for asset resources, e.g.
 |:-------:|:------:|
 | `href`  | URL    |
 
-##### Optional properties
+##### Optional properties <a id="optional_asset_attrs"></a>
 | name          | purpose                                         | type   |
 |:-------------:|:-----------------------------------------------:|:------:|
 | `integrity`   | A Subresource Integrity hash in base64 encoding | string |
@@ -215,7 +215,7 @@ A list of `link` tag attributes for asset resources, e.g.
 
 Some assets will need additional [link attributes][] to load properly.
 
-As of version 1.1.0, this template can detect stylesheets and shortcut
+As of version 2.0.0, this template can detect stylesheets and shortcut
 icons from the file extension in the `href`. Support for more media types
 may be added in future releases.
 
@@ -240,7 +240,7 @@ A list of `script` tag attributes for third-party JavaScript sources. e.g.
 
 ##### Optional properties
 
-Mostly the same as [`add_assets`](#optional-properties-3)
+Mostly the same as [`add_assets`](#optional_asset_attrs)
 
 
 #### `"overlay_scrollbar": { "options": {} }`

@@ -4,14 +4,11 @@ on:
     branches:
       - develop
       - master
-  pull_request:
-    branches:
-      - master
 jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-20.04, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v2
@@ -19,16 +16,17 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
+    - name: Get npm cache directory
+      id: npm-cache
+      run: echo "::set-output name=dir::$(npm config get cache)"
     - name: Cache modules
       uses: actions/cache@v2
       id: restore-cache
       with:
-        path: '**/node_modules'
+        path: ${{ steps.npm-cache.outputs.dir }}
         key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-npm-
+        restore-keys: ${{ runner.os }}-npm-
     - name: Install dependencies
-      if: steps.restore-cache.outputs.cache-hit != 'true'
       run: npm i && npm i --save-dev jsdoc
     - name: Set file perms on dev script
       if: ${{ !startsWith(runner.os, 'windows') }}
@@ -40,3 +38,13 @@ jobs:
       if: ${{ startsWith(runner.os, 'windows') }}
       run: npm run test:win
       shell: cmd
+    - name: Publish Docs
+      uses: peaceiris/actions-gh-pages@v3
+      if: ${{ startsWith(runner.os, 'Linux') }}
+      with:
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        enable_jekyll: false
+        publish_dir: ./demo/output
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions@users.noreply.github.com'
+        commit_message: '${{ github.event.head_commit.message }}'

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <?js
-  var themeName = (env.opts && env.opts.theme_opts
+  const themeName = (env.opts && env.opts.theme_opts
                      && env.opts.theme_opts.theme)
                      || "light"
-  var hideLangNames = env.opts && env.opts.theme_opts
+  const hideLangNames = env.opts && env.opts.theme_opts
                         && env.opts.theme_opts.langNames !== undefined
                         && !env.opts.theme_opts.langNames
-  var noSearch = env.opts && env.opts.theme_opts
+  const noSearch = env.opts && env.opts.theme_opts
                    && env.opts.theme_opts.search !== undefined
                    && !env.opts.theme_opts.search
-  var wantDate = env.conf.templates
+  const wantDate = env.conf.templates
                    && env.conf.templates.default
                    && env.conf.templates.default.includeDate !== false
 
@@ -103,12 +103,8 @@
         .code-lang-name  {
             display: none;
         }
-        .readme .prettyprint {
-           padding-bottom: 0;
-        }
         .readme code {
             margin: 0;
-            padding-top: 0;
         }
       </style>
     <?js } ?>
@@ -192,8 +188,8 @@ if (document.getElementById('search-box')) {
 
 <?js if(this.overlayScrollbar !== undefined ) { ?>
   <script type="text/javascript">
-    var option = JSON.parse('<?js=this.overlayScrollbar ?>')
-    console.log(option)
+    const option = JSON.parse('<?js=this.overlayScrollbar?>')
+    console.log('Loaded OverlayScrollbars with options', option)
     document.addEventListener("DOMContentLoaded", function() {
     OverlayScrollbars(document.querySelectorAll('body'), option.option || {});
   });

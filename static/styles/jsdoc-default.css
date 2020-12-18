@@ -796,8 +796,13 @@ dl.param-type {
     padding: 0.5em 0.85em;
 }
 
+.readme .prettyprint {
+    padding-bottom: 0;
+}
+
 .readme code {
     margin-top: 1em;
+    padding-top: 0;
 }
 
 .readme blockquote {
