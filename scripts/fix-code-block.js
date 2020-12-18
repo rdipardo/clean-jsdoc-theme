@@ -48,8 +48,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         location = _window$location$href2[1];
 
     if (location && location.length > 0) {
-      var element = document.querySelector('#'.concat(location));
-      element.scrollIntoView();
+      try {
+        var element = document.querySelector('#'.concat(location));
+        element.scrollIntoView();
+      } catch (_) {}
     }
   }, 300);
 })();
