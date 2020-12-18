@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- Adding meta -->
+    
+      
+        <meta name="author" content="Robert Di Pardo">
+      
+        <meta name="description" content="A style-conscious fork of clean-jsdoc-theme">
+      
+        <meta name="attribution" content="Favicon made by http://www.freepik.com from https://www.flaticon.com">
+      
+    
+    <title>
+      
+      clean-jsdoc - Home
+      
+    </title>
+    <script>
+        function replaceIcon() {
+            var metaField = document.querySelector('.gh-meta')
+            var iconField = document.querySelector('.gh-meta p ~ p')
+            var icon = document.querySelector('.fa.fa-github')
+            icon.style.fontSize = 'initial'
+            icon.style.lineHeight = '0'
+            icon.style.fontWeight = 500
+            icon.innerText = 'View Source'
+            iconField.style.margin = '0'
+            metaField.style.flexDirection = 'column'
+        }
+    </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/third-party/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/third-party/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+    <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-base.css">
+    <link type="text/css" rel="stylesheet" href="styles/clean-jsdoc-theme-light.css">
+    <link type="text/css" rel="stylesheet" onerror="replaceIcon()"
+        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Adding assets -->
+    
+      
+        <link href="img/html-5.png" type="image/x-icon" rel="shortcut icon">
+      
+    
+    <!-- Adding style-->
+    
+    <!-- Dynamic style tweaks -->
+    
+    
+      <style>
+        .code-lang-name  {
+            display: none;
+        }
+        .readme code {
+            margin: 0;
+        }
+      </style>
+    
+    <style>
+      
+      .sidebar-list-div {
+          margin-top: 10px;
+      }
+    </style>
+    <!-- Adding external script-->
+    
+    <!-- Adding scripts-->
+    
+    <!-- Adding overlay -->
+    
+</head>
+<body>
+<svg aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display:none">
+    <defs>
+        <symbol id="copy-icon" viewbox="0 0 488.3 488.3">
+            <g>
+                <path d="M314.25,85.4h-227c-21.3,0-38.6,17.3-38.6,38.6v325.7c0,21.3,17.3,38.6,38.6,38.6h227c21.3,0,38.6-17.3,38.6-38.6V124    C352.75,102.7,335.45,85.4,314.25,85.4z M325.75,449.6c0,6.4-5.2,11.6-11.6,11.6h-227c-6.4,0-11.6-5.2-11.6-11.6V124    c0-6.4,5.2-11.6,11.6-11.6h227c6.4,0,11.6,5.2,11.6,11.6V449.6z"/>
+                <path d="M401.05,0h-227c-21.3,0-38.6,17.3-38.6,38.6c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5c0-6.4,5.2-11.6,11.6-11.6h227    c6.4,0,11.6,5.2,11.6,11.6v325.7c0,6.4-5.2,11.6-11.6,11.6c-7.5,0-13.5,6-13.5,13.5s6,13.5,13.5,13.5c21.3,0,38.6-17.3,38.6-38.6    V38.6C439.65,17.3,422.35,0,401.05,0z"/>
+            </g>
+        </symbol>
+    </defs>
+</svg>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <span class="navicon"></span>
+</label>
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    
+    <div class="gh-meta">
+    <p><b>Version</b> 2.0.0</p>
+    <p>
+      <a href="https://github.com/rdipardo/clean-jsdoc-theme" title="View project on Github"><span class="fa fa-github" aria-hidden="true"></span></a>
+    </p>
+    </div>
+    
+    <h2><a href="index.html"><span class="text">README</span></a></h2><div class="search-box"><input type="text" placeholder="Search..." id="search-box" /><div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div><div class="sidebar-list-div"><h3>Classes</h3><ul><li><a href="Alive.html">Alive</a><ul class='methods'><li data-type='method'><a href="Alive.html#survive">survive</a></li></ul></li><li><a href="Apple.html">Apple</a><ul class='methods'><li data-type='method'><a href="Apple.html#survive">survive</a></li></ul></li><li><a href="Energy.html">Energy</a></li><li><a href="Environment.html">Environment</a><ul class='methods'><li data-type='method'><a href="Environment.html#start">start</a></li></ul></li><li><a href="Tree.html">Tree</a><ul class='methods'><li data-type='method'><a href="Tree.html#crop">crop</a></li><li data-type='method'><a href="Tree.html#survive">survive</a></li></ul></li></ul><h3>Events</h3><ul><li><a href="Apple.html#event:beEaten">beEaten</a></li><li><a href="Environment.html#event:beforeDestroy">beforeDestroy</a></li></ul><h3><a href="global.html">Global</a></h3></div>
+</nav>
+
+<div id="main">
+    
+    
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+
+
+    <section class="readme">
+        <article><h1 id="clean-jsdoc">clean-jsdoc</h1>
+<h3 align="center">
+<p><a href="https://github.com/rdipardo/clean-jsdoc-theme/actions?query=workflow%3ADocs"><img src="https://github.com/rdipardo/clean-jsdoc-theme/workflows/Build%20Docs/badge.svg?branch=develop" alt="Build Docs Workflow"></a>
+<a href="https://github.com/rdipardo/clean-jsdoc-theme/actions?query=workflow%3AIE"><img src="https://github.com/rdipardo/clean-jsdoc-theme/workflows/Chrome,%20Firefox,%20IE,%20Safari%20on%20macOS/badge.svg?branch=develop" alt="Chrome, Firefox, IE, Safari on macOS Workflow"></a>
+<a href="https://github.com/rdipardo/clean-jsdoc-theme/actions?query=workflow%3AAndroid"><img src="https://github.com/rdipardo/clean-jsdoc-theme/workflows/Chrome%20on%20Android,%20Safari%20on%20iOS/badge.svg?branch=develop" alt="Chrome on Android, Safari on iOS Workflow"></a>
+<a href="https://automate.browserstack.com/public-build/UmpiQjdrd0h6SGt6YlJYWUUvcERSRXNmZUpaR2pFVFJQb0I0MGwrM0dVcz0tLS9ENVVPc1I1eW5NQUF5MWFEUzUrOUE9PQ==--8a4ece5b7c6ffbe261a062d49079b8408b32760c"><img src="https://automate.browserstack.com/badge.svg?badge_key=UmpiQjdrd0h6SGt6YlJYWUUvcERSRXNmZUpaR2pFVFJQb0I0MGwrM0dVcz0tLS9ENVVPc1I1eW5NQUF5MWFEUzUrOUE9PQ==--8a4ece5b7c6ffbe261a062d49079b8408b32760c" alt="BrowserStack Status Badge"></a>
+<a href="https://github.com/rdipardo/clean-jsdoc-theme/blob/master/LICENSE"><img src="https://img.shields.io/github/license/rdipardo/clean-jsdoc-theme.svg?logo=Github" alt="License: MIT"></a></p>
+</h3>
+<p>A style-conscious fork of <a href="https://github.com/ankitskvmdam/clean-jsdoc-theme">clean-jsdoc-theme</a></p>
+<p><img src="https://rdipardo.github.io/demos/js/clean-jsdoc/img/light_doc_example_1.png" alt="light_screen_1">
+<img src="https://rdipardo.github.io/demos/js/clean-jsdoc/img/dark_doc_example_1.png" alt="dark_screen_1"></p>
+<ul>
+<li><a href="#quick-start">Getting Started</a></li>
+<li><a href="#workflow-integration">Adding to Your Workflow</a></li>
+<li><a href="#options">Configuration</a>
+<ul>
+<li><a href="#basic">Basic Options</a></li>
+<li><a href="#advanced">Advanced Options</a></li>
+</ul>
+</li>
+<li><a href="#testing">Testing</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+<h2 id="quick-start">Quick start</h2>
+<p>Install <code>jsdoc</code>:</p>
+<pre class="prettyprint source lang-shell"><code>npm i --save-dev jsdoc
+</code></pre>
+<p>Install the template assets:</p>
+<pre class="prettyprint source lang-shell"><code>npm i --save-dev rdipardo/clean-jsdoc-theme
+</code></pre>
+<p>Now run:</p>
+<pre class="prettyprint source lang-shell"><code>npx jsdoc path/to/source/files -t node_modules/clean-jsdoc -r README.md
+</code></pre>
+<h3 id="workflow-integration">Workflow Integration</h3>
+<p>Configure <code>jsdoc</code> to use the template in your <code>.jsdoc.json</code> file:</p>
+<pre class="prettyprint source lang-json"><code>  &quot;opts&quot;: {
+    &quot;template&quot;: &quot;node_modules/clean-jsdoc&quot;
+  }
+</code></pre>
+<p>For example:</p>
+<pre class="prettyprint source lang-json5"><code>{
+    &quot;plugins&quot;: [&quot;plugins/markdown&quot;],
+    &quot;markdown&quot;: {
+        &quot;idInHeadings&quot;: true
+    },
+    &quot;source&quot;: {
+        &quot;include&quot;: [&quot;lib&quot;, &quot;README.md&quot;],
+        &quot;includePattern&quot;: &quot;.+\\.js(doc|x)?$&quot;,
+        &quot;excludePattern&quot;: &quot;(node_modules/|docs)&quot;
+    },
+    &quot;sourceType&quot;: &quot;module&quot;,
+    &quot;tags&quot;: {
+        &quot;allowUnknownTags&quot;: true,
+        &quot;dictionaries&quot;: [&quot;jsdoc&quot;, &quot;closure&quot;]
+    },
+    &quot;opts&quot;: {
+        &quot;template&quot;: &quot;node_modules/clean-jsdoc&quot;,
+        /* see below */
+        &quot;theme_opts&quot;: {},
+        &quot;encoding&quot;: &quot;utf8&quot;,
+        &quot;readme&quot;: &quot;./README.md&quot;,
+        &quot;destination&quot;: &quot;docs/&quot;,
+        &quot;recurse&quot;: true
+    }
+}
+</code></pre>
+<p>Add a script to your <code>package.json</code>:</p>
+<pre class="prettyprint source lang-json5"><code>  &quot;script&quot;: {
+    /* ... */
+    &quot;gendocs&quot;: &quot;node_modules/.bin/jsdoc -c .jsdoc.json --verbose&quot;
+  }
+</code></pre>
+<p>Build your documentation with: <code>npm run gendocs</code></p>
+<h2 id="options">Options</h2>
+<p><em>All options must be defined under <code>opts.theme_opts</code> in your <code>.jsdoc.json</code></em></p>
+<h3 id="basic">Basic</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">name</th>
+<th style="text-align:center">purpose</th>
+<th style="text-align:center">type</th>
+<th style="text-align:center">default</th>
+<th style="text-align:center">options</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>theme</code></td>
+<td style="text-align:center">the overall style theme</td>
+<td style="text-align:center">string</td>
+<td style="text-align:center"><code>&quot;light&quot;</code></td>
+<td style="text-align:center"><code>&quot;light&quot;</code>, <code>&quot;dark&quot;</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>search</code></td>
+<td style="text-align:center">enable fuzzy search using <a href="https://fusejs.io/">Fuse.js</a></td>
+<td style="text-align:center">bool</td>
+<td style="text-align:center"><code>true</code></td>
+<td style="text-align:center"><code>true</code>, <code>false</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>langNames</code></td>
+<td style="text-align:center">display language names in code blocks</td>
+<td style="text-align:center">bool</td>
+<td style="text-align:center"><code>true</code></td>
+<td style="text-align:center"><code>true</code>, <code>false</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>title</code></td>
+<td style="text-align:center">the name of the home link to display on the nav bar</td>
+<td style="text-align:center">HTML string</td>
+<td style="text-align:center"><code>&quot;README&quot;</code></td>
+<td style="text-align:center">any valid HTML markup, or just a plain string</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>footer</code></td>
+<td style="text-align:center">a footer to display in the page layout</td>
+<td style="text-align:center">HTML string</td>
+<td style="text-align:center">JSDoc version, date and theme info</td>
+<td style="text-align:center">any valid HTML markup</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>create_style</code></td>
+<td style="text-align:center">inline CSS for the <code>head</code> of the page layout</td>
+<td style="text-align:center">CSS string</td>
+<td style="text-align:center"><code>null</code></td>
+<td style="text-align:center">any valid CSS markup</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>add_scripts</code></td>
+<td style="text-align:center">inline JavaScript to add to the page layout</td>
+<td style="text-align:center">JS string</td>
+<td style="text-align:center"><code>null</code></td>
+<td style="text-align:center">any valid JS code</td>
+</tr>
+</tbody>
+</table>
+<h3 id="advanced">Advanced</h3>
+<h4 id="%22project%22%3A-%7B%7D"><code>&quot;project&quot;: {}</code></h4>
+<p>Details of your project, e.g.</p>
+<pre class="prettyprint source lang-json"><code>  &quot;project&quot;: {
+      &quot;title&quot;: &quot;clean-jsdoc&quot;,
+      &quot;version&quot;: &quot;2.0.0&quot;,
+      &quot;repo&quot;: &quot;https://github.com/rdipardo/clean-jsdoc-theme&quot;
+  }
+</code></pre>
+<h5 id="required-properties">Required properties</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">name</th>
+<th style="text-align:center">type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>version</code></td>
+<td style="text-align:center">string</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>repo</code></td>
+<td style="text-align:center">URL</td>
+</tr>
+</tbody>
+</table>
+<h5 id="optional-properties">Optional properties</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">name</th>
+<th style="text-align:center">purpose</th>
+<th style="text-align:center">type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>title</code></td>
+<td style="text-align:center">the title of the project; it will appear in every page's <code>title</code> tag</td>
+<td style="text-align:center">string</td>
+</tr>
+</tbody>
+</table>
+<h4 id="%22menu%22%3A-%5B%7B%7D%2C-...%5D"><code>&quot;menu&quot;: [{}, ...]</code></h4>
+<p>A list of hyperlinks to add to the navigation bar, e.g.</p>
+<pre class="prettyprint source lang-json"><code>  &quot;menu&quot;: [
+    {
+      &quot;title&quot;: &quot;Website&quot;,
+      &quot;link&quot;: &quot;https://heredocs.com&quot;,
+      &quot;target&quot;: &quot;_blank&quot;,
+      &quot;class&quot;: &quot;some-class&quot;,
+      &quot;id&quot;: &quot;some-id&quot;
+    }
+  ]
+</code></pre>
+<h5 id="required-properties-2">Required properties</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">name</th>
+<th style="text-align:center">type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>title</code></td>
+<td style="text-align:center">string</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>link</code></td>
+<td style="text-align:center">URL</td>
+</tr>
+</tbody>
+</table>
+<h5 id="optional-properties-2">Optional properties</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">name</th>
+<th style="text-align:center">type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>target</code></td>
+<td style="text-align:center">HTML target attribute</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>class</code></td>
+<td style="text-align:center">CSS class selector</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>id</code></td>
+<td style="text-align:center">CSS id selector</td>
+</tr>
+</tbody>
+</table>
+<h4 id="%22meta%22%3A-%5B%7B%7D%2C-...%5D"><code>&quot;meta&quot;: [{}, ...]</code></h4>
+<p>A list of <code>meta</code> tag attributes to add to the <code>head</code> of each page, e.g.</p>
+<pre class="prettyprint source lang-json"><code>  &quot;meta&quot;: [
+      {
+        &quot;name&quot;: &quot;author&quot;,
+        &quot;content&quot;: &quot;Ankit Kumar&quot;
+      },
+      {
+        &quot;name&quot;: &quot;description&quot;,
+        &quot;content&quot;: &quot;Best Clean and minimal JSDoc 3 Template/Theme&quot;
+      }
+    ]
+</code></pre>
+<h5 id="required-properties-3">Required properties</h5>
+<p>Any valid combinaton of <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta#Attributes">HTML metadata attributes</a>.</p>
+<h4 id="%22add_assets%22%3A-%5B%7B%7D%2C-...%5D"><code>&quot;add_assets&quot;: [{}, ...]</code></h4>
+<p>A list of <code>link</code> tag attributes for asset resources, e.g.</p>
+<pre class="prettyprint source lang-json5"><code>  &quot;add_assets&quot;: [
+    {
+      &quot;href&quot;: &quot;https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css&quot;,
+      &quot;integrity&quot;: &quot;sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1&quot;,
+      &quot;crossorigin&quot;: &quot;anonymous&quot;
+    },
+    {
+      &quot;href&quot;: &quot;img/favicon.ico&quot;,
+      &quot;rel&quot;: &quot;shortcut icon&quot;,
+      &quot;type&quot;: &quot;image/x-icon&quot;
+    }
+  ]
+</code></pre>
+<h5 id="required-properties-4">Required properties</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">name</th>
+<th style="text-align:center">type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>href</code></td>
+<td style="text-align:center">URL</td>
+</tr>
+</tbody>
+</table>
+<h5 id="optional-properties-3">Optional properties</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">name</th>
+<th style="text-align:center">purpose</th>
+<th style="text-align:center">type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>integrity</code></td>
+<td style="text-align:center">A Subresource Integrity hash in base64 encoding</td>
+<td style="text-align:center">string</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>crossorigin</code></td>
+<td style="text-align:center">The CORS policy for the resource</td>
+<td style="text-align:center">string</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<p>Some assets will need additional <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#Attributes">link attributes</a> to load properly.</p>
+<p>As of version 2.0.0, this template can detect stylesheets and shortcut
+icons from the file extension in the <code>href</code>. Support for more media types
+may be added in future releases.</p>
+<h4 id="%22add_script_path%3A-%5B%7B%7D%2C-...%5D"><code>&quot;add_script_path: [{}, ...]</code></h4>
+<p>A list of <code>script</code> tag attributes for third-party JavaScript sources. e.g.</p>
+<pre class="prettyprint source lang-json5"><code>  &quot;add_script_path&quot;: [
+    {
+      &quot;src&quot;: &quot;https://code.jquery.com/jquery-3.5.1.js&quot;,
+      &quot;integrity&quot;: &quot;sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=&quot;,
+      &quot;crossorigin&quot;: &quot;anonymous&quot;
+    }
+  ]
+</code></pre>
+<h5 id="required-properties-5">Required properties</h5>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">name</th>
+<th style="text-align:center">type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>src</code></td>
+<td style="text-align:center">URL</td>
+</tr>
+</tbody>
+</table>
+<h5 id="optional-properties-4">Optional properties</h5>
+<p>Mostly the same as <a href="#optional-properties-3"><code>add_assets</code></a></p>
+<h4 id="%22overlay_scrollbar%22%3A-%7B-%22options%22%3A-%7B%7D-%7D"><code>&quot;overlay_scrollbar&quot;: { &quot;options&quot;: {} }</code></h4>
+<p>Includes the <a href="https://kingsora.github.io/OverlayScrollbars/#!documentation/options">OverlayScrollbars</a> plugin.</p>
+<h5 id="required-properties-6">Required properties</h5>
+<p>None. Simply passing an empty object will activate this feature.</p>
+<h5 id="optional-properties-5">Optional properties</h5>
+<p>Any option supported by <a href="https://kingsora.github.io/OverlayScrollbars/#!documentation/options">OverlayScrollbars</a>.</p>
+<h2 id="testing">Testing</h2>
+<p>To preview a small demo website, first run:</p>
+<pre class="prettyprint source lang-shell"><code>git clone 'https://github.com/rdipardo/clean-jsdoc-theme.git' clean-jsdoc
+cd clean-jsdoc
+npm i && npm i jsdoc --no-save
+</code></pre>
+<p>On Windows, run:</p>
+<pre class="prettyprint source lang-shell"><code>npm run test:win
+</code></pre>
+<p>Otherwise:</p>
+<pre class="prettyprint source lang-shell"><code>npm test
+</code></pre>
+<p>If <code>xdg-open</code> is available on your system, you can build and preview the site in one step with:</p>
+<pre class="prettyprint source lang-shell"><code>npm run browse
+</code></pre>
+<h2 id="license">License</h2>
+<p>Copyright (c) 2019 <a href="https://github.com/ankitskvmdam/">Ankit Kumar</a><br/>
+Copyright (c) 2020 <a href="https://github.com/rdipardo/">Robert Di Pardo</a></p>
+<p>Distributed under the terms of the MIT license.</p>
+<!-- badges --></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<footer id="footer">
+  
+  Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> using the <a href="https://github.com/rdipardo/clean-jsdoc-theme">clean-jsdoc</a> light theme.
+  
+</footer>
+
+<script src="scripts/third-party/prettify.js"></script>
+<script src="scripts/third-party/lang-css.js"></script>
+<script src="scripts/third-party/fuse.js"></script>
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+<script src="scripts/fix-code-block.js"></script>
+<script src="scripts/search.js"></script>
+<script src="scripts/misc.js"></script>
+<script>
+if (document.getElementById('search-box')) {
+    var list = [{"title":"Alive","link":"<a href=\"Alive.html\">Alive</a>"},{"title":"Alive#survive","link":"<a href=\"Alive.html#survive\">Alive &rtrif; survive</a>"},{"title":"Apple","link":"<a href=\"Apple.html\">Apple</a>"},{"title":"Apple#survive","link":"<a href=\"Apple.html#survive\">Apple &rtrif; survive</a>"},{"title":"Energy","link":"<a href=\"Energy.html\">Energy</a>"},{"title":"Environment","link":"<a href=\"Environment.html\">Environment</a>"},{"title":"Environment#start","link":"<a href=\"Environment.html#start\">Environment &rtrif; start</a>"},{"title":"Tree","link":"<a href=\"Tree.html\">Tree</a>"},{"title":"Tree#crop","link":"<a href=\"Tree.html#crop\">Tree &rtrif; crop</a>"},{"title":"Tree#survive","link":"<a href=\"Tree.html#survive\">Tree &rtrif; survive</a>"},{"title":"beEaten","link":"<a href=\"Apple.html#event:beEaten\">beEaten</a>"},{"title":"beforeDestroy","link":"<a href=\"Environment.html#event:beforeDestroy\">beforeDestroy</a>"}];
+    setupSearch(list)
+}
+</script>
+
+
+
+ 
+</body>
+</html>
