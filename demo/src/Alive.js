@@ -7,8 +7,9 @@
 class Alive {
     constructor() {
         /**
-         * An amount of energy
-         * @type {Energy}
+         * amount of energy
+         * @property {Energy}
+         * @defaultvalue null
          */
         this.energy = null;
     }

@@ -23,15 +23,29 @@
         });
       }
   }
+
+  function toAssetLink(src) {
+    const [ext] = (src.href || '').split('.').reverse()
+    if (ext.toLowerCase() == 'css') {
+       src.type = 'text/css'
+       src.rel = 'stylesheet'
+    } else if (!src.type && !src.rel &&
+        ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'ico'].includes(ext.toLowerCase())) {
+       src.type = 'image/x-icon'
+       src.rel = 'shortcut icon'
+    }
+    return src
+  }
 ?>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <?js if (this.meta !== undefined ) { ?>
-      <?js this.meta.forEach(function(data){ ?>
-        <?js= data ?>
+    <!-- Adding meta -->
+    <?js if(this.meta !== undefined) { ?>
+      <?js this.meta.forEach(function(src){ ?>
+        <meta <?js=Object.keys(src).map(key => `${key}="${src[key]}"`).join(" ") ?>>
       <?js }) ?>
     <?js } ?>
     <title>
@@ -64,18 +78,19 @@
     <link type="text/css" rel="stylesheet" href="styles/<?js= this.theme ?>">
     <link type="text/css" rel="stylesheet" onerror="replaceIcon()"
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <?js if(this.dynamicStyleSrc !== undefined ) { ?>
-      <?js this.dynamicStyleSrc.forEach(function(source){ ?>
+    <!-- Adding assets -->
+    <?js if(this.externalAssets !== undefined) { ?>
+      <?js this.externalAssets.forEach(src => { ?>
+        <link <?js=Object.keys(src).map(key => `${key}="${toAssetLink(src)[key]}"`).join(" ") ?>>
+      <?js }) ?>
+    <?js } ?>
+    <!-- Adding style-->
+    <?js if(this.includeCss !== undefined) { ?>
+      <?js this.includeCss.forEach(function(source){ ?>
         <link type="text/css" rel="stylesheet" href="<?js= source ?>">
       <?js }) ?>
     <?js } ?>
-
-    <?js if (this.dynamicStyle !== undefined ) { ?>
-      <style>
-        <?js= this.dynamicStyle ?>
-      </style>
-    <?js } ?>
-
+    <!-- Dynamic style tweaks -->
     <?js if (noSearch) { ?>
       <style>
         nav > h2 {
@@ -83,18 +98,20 @@
         }
       </style>
     <?js } ?>
-
     <?js if (hideLangNames) { ?>
       <style>
         .code-lang-name  {
             display: none;
         }
+        .readme .prettyprint {
+           padding-bottom: 0;
+        }
         .readme code {
             margin: 0;
+            padding-top: 0;
         }
       </style>
     <?js } ?>
-
     <style>
       <?js
         var isTitleSet = env.opts && env.opts.theme_opts && env.opts.theme_opts.title
@@ -105,6 +122,23 @@
           margin-top: <?js= headRoom?>px;
       }
     </style>
+    <!-- Adding external script-->
+    <?js if(this.dynamicScriptSrc !== undefined) { ?>
+      <?js this.dynamicScriptSrc.forEach(function(src){ ?>
+        <script <?js=Object.keys(src).map(key => `${key}="${src[key]}"`).join(" ") ?> ></script>
+      <?js }) ?>
+    <?js } ?>
+    <!-- Adding scripts-->
+    <?js if(this.includeScript !== undefined) { ?>
+        <?js this.includeScript.forEach(function(source){ ?>
+        <script src="<?js= source ?>"></script>
+        <?js }) ?>
+    <?js } ?>
+    <!-- Adding overlay -->
+    <?js if(this.overlayScrollbar !== undefined) { ?>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.0/css/OverlayScrollbars.min.css" integrity="sha512-pYQcc5kgavar0ah58/O8hw/6Tbo3mWlmQTmvoi1i96cBz7jQYS9as5J+Nfy32rAHY6CgR9ExwnFMcBdGVcKM7g==" crossorigin="anonymous" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.0/js/OverlayScrollbars.min.js" integrity="sha512-5R3ngaUdvyhXkQkIqTf/k+Noq3phjmrqlUQyQYbgfI34Mzcx7vLIIYTy/K1VMHkL33T709kfh5y6R9Xy/Cbt7Q==" crossorigin="anonymous"></script>
+    <?js } ?>
 </head>
 <body>
 <?js= this.partial('icons.tmpl') ?>
@@ -113,6 +147,7 @@
   <span class="navicon"></span>
 </label>
 <label for="nav-trigger" class="overlay"></label>
+
 <nav>
     <?js if (this.project !== undefined) { ?>
     <div class="gh-meta">
@@ -132,9 +167,7 @@
     <?js= content ?>
 </div>
 
-<br class="clear">
-
-<footer>
+<footer id="footer">
   <?js if (this.footer) { ?>
   <?js= this.footer ?>
   <?js } else { ?>
@@ -150,11 +183,21 @@
 <script src="scripts/fix-code-block.js"></script>
 <script src="scripts/search.js"></script>
 <script src="scripts/misc.js"></script>
+<script>
+if (document.getElementById('search-box')) {
+    var list = [<?js= this.searchList ?>];
+    setupSearch(list)
+}
+</script>
 
-<?js if (this.dynamicScriptSrc !== undefined ) { ?>
-  <?js this.dynamicScriptSrc.forEach(function(source){ ?>
-    <script src="<?js= source ?>"></script>
-  <?js }) ?>
+<?js if(this.overlayScrollbar !== undefined ) { ?>
+  <script type="text/javascript">
+    var option = JSON.parse('<?js=this.overlayScrollbar ?>')
+    console.log(option)
+    document.addEventListener("DOMContentLoaded", function() {
+    OverlayScrollbars(document.querySelectorAll('body'), option.option || {});
+  });
+  </script>
 <?js } ?>
 
  <?js if (this.dynamicScript !== undefined ) { ?>
@@ -162,12 +205,5 @@
     <?js= this.dynamicScript ?>
   </script>
 <?js } ?>
-
-<script>
-if (document.getElementById('search-box')) {
-    var list = [<?js= this.searchList ?>];
-    setupSearch(list)
-}
-</script>
 </body>
 </html>

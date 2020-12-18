@@ -20,13 +20,16 @@ function showTooltip(id) {
 /* eslint-disable-next-line */
 function copyFunction (id) {
     // Selecting the pre element
-    let code = document.getElementById(id);
+    const code = document.getElementById(id);
+    let element = code.querySelector('.linenums');
 
-    // Selecting the code element of that pre element
-    code = code.childNodes[0].childNodes[0].innerText;
+    if (!element) {
+        // selecting the code block
+        element = code.querySelector('code');
+    }
 
-    // Copy
-    copy(code);
+    // copy
+    copy(element.innerText);
 
     // Show tooltip
     showTooltip(`tooltip-${id}`);
@@ -45,7 +48,10 @@ function copyFunction (id) {
         const tooltip = `<div class="tooltip" id="tooltip-${id}">Copied!</div>`;
 
         // Template of copy to clipboard icon container
-        const copyToClipboard = `<div class="code-copy-icon-container" onclick="copyFunction('${id}')"><div><svg class="sm-icon" alt="click to copy"><use xlink:href="#copy-icon"></use></svg>${tooltip}<div></div>`;
+        const copyToClipboard =
+            `<div class="code-copy-icon-container" onclick="copyFunction('${id}')">` +
+            '<div><svg class="sm-icon" alt="Click to copy"><use xlink:href="#copy-icon"></use></svg>' +
+            `${tooltip}<div></div>`;
 
         // Extract the code language
         const langName = classList && classList.length ?
@@ -53,10 +59,13 @@ function copyFunction (id) {
             '';
 
         const langNameDiv =
-              `<div class="code-lang-name-container"><div class="code-lang-name">${langName.toLocaleUpperCase()}</div></div>`;
+            '<div class="code-lang-name-container"><div class="code-lang-name">' +
+            `${langName.toLocaleUpperCase()}</div></div>`;
 
-        // Appending everything to the current pre element
-        allPre[i].innerHTML += langNameDiv + (langName.length ? copyToClipboard : '');
+        // appending everything to the current pre element
+        allPre[i].innerHTML +=
+            '<div class="pre-top-bar-container">' +
+            `${langNameDiv}${langName.length ? copyToClipboard : ''}</div>`;
         allPre[i].setAttribute('id', id);
     }
 })();

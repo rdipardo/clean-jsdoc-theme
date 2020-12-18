@@ -14,6 +14,7 @@
     "selector-max-compound-selectors": null,
     "selector-list-comma-newline-after": null,
     "order/properties-alphabetical-order": null,
+    "no-missing-end-of-source-newline": null,
     "block-opening-brace-space-before": "always",
     "block-closing-brace-newline-after": [
       "always", {

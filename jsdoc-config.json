@@ -26,14 +26,27 @@
             "langNames": false,
             "project": {
                 "title": "clean-jsdoc",
-                "version": "1.0.0",
+                "version": "1.1.0",
                 "repo": "https://github.com/rdipardo/clean-jsdoc-theme"
             },
             "meta": [
-                "<meta name=\"author\" content=\"Robert Di Pardo\">",
-                "<meta name=\"description\" content=\"A feature-enhanced fork of clean-jsdoc-theme\">",
-                "<meta name=\"attribution\" content=\"Favicon made by http://www.freepik.com from https://www.flaticon.com\">",
-                "<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"img/html-5.png\">"
+                {
+                    "name": "author",
+                    "content": "Robert Di Pardo"
+                },
+                {
+                    "name": "description",
+                    "content": "A Github-centric fork of clean-jsdoc-theme"
+                },
+                {
+                    "name": "attribution",
+                    "content": "Favicon made by http://www.freepik.com from https://www.flaticon.com"
+                }
+            ],
+            "add_assets": [
+                {
+                    "href": "img/html-5.png"
+                }
             ],
             "create_style": ".readme img { max-width: 900px; }"
         }

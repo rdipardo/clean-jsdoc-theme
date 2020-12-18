@@ -10,7 +10,7 @@
 
 </h3>
 
-A feature-enhanced fork of [clean-jsdoc-theme][]
+A Github-centric fork of [clean-jsdoc-theme][]
 
 ![light_screen_1](https://rdipardo.github.io/demos/js/clean-jsdoc/img/light_doc_example_1.png)
 ![dark_screen_1](https://rdipardo.github.io/demos/js/clean-jsdoc/img/dark_doc_example_1.png)
@@ -100,16 +100,15 @@ _All options must be defined under `opts.theme_opts` in your `.jsdoc.json`_
 
 ### Basic
 
-| name        | purpose                                                 | type                       | default                            | options                                       |
-|:-----------:|:-------------------------------------------------------:|:--------------------------:|:----------------------------------:|:---------------------------------------------:|
-| `theme`     | the overall style theme                                 | string                     | `"light"`                          | `"light"`, `"dark"`                           |
-| `search`    | enable fuzzy search using [Fuse.js][]                   | bool                       | `true`                             |                                               |
-| `langNames` | display language names in code blocks                   | bool                       | `true`                             |                                               |
-| `title`     | the name of the home link to display on the nav bar     | HTML string                | `"README"`                         | any valid HTML markup, or just a plain string |
-| `footer`    | a footer to display in the page layout                  | HTML string                | JSDoc version, date and theme info | any valid HTML markup                         |
-| `meta`      | a list of elements to add to the `head` of each page    | ["HTML string", ...]       | [  ]                              | any valid HTML `meta` or `link` element        |
-| `add_style_path` | a list of user-defined stylesheets                 | ["path/to/style.css", ...] | [  ]                              | file paths (relative to `index.html`)          |
-| `add_script_path` | a list of user-defined scripts                    | ["path/to/script.js", ...] | [  ]                              | _as above_                                     |
+| name           | purpose                                             | type         | default                            | options                                       |
+|:--------------:|:---------------------------------------------------:|:------------:|:----------------------------------:|:---------------------------------------------:|
+| `theme`        | the overall style theme                             | string       | `"light"`                          | `"light"`, `"dark"`                           |
+| `search`       | enable fuzzy search using [Fuse.js][]               | bool         | `true`                             |                                               |
+| `langNames`    | display language names in code blocks               | bool         | `true`                             |                                               |
+| `title`        | the name of the home link to display on the nav bar | HTML string  | `"README"`                         | any valid HTML markup, or just a plain string |
+| `footer`       | a footer to display in the page layout              | HTML string  | JSDoc version, date and theme info | any valid HTML markup                         |
+| `create_style` | inline CSS for the `head` of the page layout        | CSS string   | `null`                             | any valid CSS markup                          |
+| `add_scripts`  | inline JavaScript to add to the page layout         | JS string    | `null`                             | any valid JS code                             |
 
 ### Advanced
 
@@ -120,20 +119,18 @@ Details of your project, e.g.
 ```json
   "project": {
       "title": "clean-jsdoc",
-      "version": "2.2.14.02",
+      "version": "1.1.0",
       "repo": "https://github.com/rdipardo/clean-jsdoc-theme"
   }
 ```
 
 ##### Required properties
-
 | name      | type   |
 |:---------:|:------:|
 | `version` | string |
 | `repo`    | URL    |
 
 ##### Optional properties
-
 | name    | purpose                                                              | type   |
 |:-------:|:--------------------------------------------------------------------:|:------:|
 | `title` | the title of the project; it will appear in every page's `title` tag | string |
@@ -154,38 +151,107 @@ A list of hyperlinks to add to the navigation bar, e.g.
     }
   ]
 ```
-
 ##### Required properties
-
 | name    | type   |
 |:-------:|:------:|
 | `title` | string |
 | `link`  | URL    |
 
 ##### Optional properties
-
 | name     | type                  |
 |:--------:|:---------------------:|
 | `target` | HTML target attribute |
 | `class`  | CSS class selector    |
 | `id`     | CSS id selector       |
 
+#### `"meta": [{}, ...]`
 
-#### `"create_style": ""`
-
-Inline CSS for the `head` of the page layout, e.g.:
-
-```json
-    "create_style": ".readme img { max-width: 900px; }"
-```
-
-#### `"add_scripts": ""`
-
-Inline JavaScript to add to the page layout, e.g.:
+A list of `meta` tag attributes to add to the `head` of each page, e.g.
 
 ```json
-    "add_scripts": "function foo() { console.log('foo') }",
+  "meta": [
+      {
+        "name": "author",
+        "content": "Ankit Kumar"
+      },
+      {
+        "name": "description",
+        "content": "Best Clean and minimal JSDoc 3 Template/Theme"
+      }
+    ]
 ```
+##### Required properties
+Any valid combinaton of [HTML metadata attributes][].
+
+#### `"add_assets": [{}, ...]`
+A list of `link` tag attributes for asset resources, e.g.
+
+```json5
+  "add_assets": [
+    {
+      "href": "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css",
+      "integrity": "sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1",
+      "crossorigin": "anonymous"
+    },
+    {
+      "href": "img/favicon.ico",
+      "rel": "shortcut icon",
+      "type": "image/x-icon"
+    }
+  ]
+```
+
+##### Required properties
+| name    | type   |
+|:-------:|:------:|
+| `href`  | URL    |
+
+##### Optional properties
+| name          | purpose                                         | type   |
+|:-------------:|:-----------------------------------------------:|:------:|
+| `integrity`   | A Subresource Integrity hash in base64 encoding | string |
+| `crossorigin` | The CORS policy for the resource                | string |
+<br/>
+
+Some assets will need additional [link attributes][] to load properly.
+
+As of version 1.1.0, this template can detect stylesheets and shortcut
+icons from the file extension in the `href`. Support for more media types
+may be added in future releases.
+
+#### `"add_script_path: [{}, ...]`
+A list of `script` tag attributes for third-party JavaScript sources. e.g.
+
+```json5
+  "add_script_path": [
+    {
+      "src": "https://code.jquery.com/jquery-3.5.1.js",
+      "integrity": "sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=",
+      "crossorigin": "anonymous"
+    }
+  ]
+```
+
+##### Required properties
+
+| name    | type   |
+|:-------:|:------:|
+| `src`   | URL    |
+
+##### Optional properties
+
+Mostly the same as [`add_assets`](#optional-properties-3)
+
+
+#### `"overlay_scrollbar": { "options": {} }`
+Includes the [OverlayScrollbars] plugin.
+
+##### Required properties
+None. Simply passing an empty object will activate this feature.
+
+##### Optional properties
+Any option supported by [OverlayScrollbars].
+
 
 ## Testing
 
@@ -224,7 +290,9 @@ Distributed under the terms of the MIT license.
 
 [clean-jsdoc-theme]: https://github.com/ankitskvmdam/clean-jsdoc-theme
 [Fuse.js]: https://fusejs.io/
-
+[OverlayScrollbars]: https://kingsora.github.io/OverlayScrollbars/#!documentation/options
+[HTML metadata attributes]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta#Attributes
+[link attributes]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#Attributes
 <!-- badges -->
 [Build Docs Workflow]: https://github.com/rdipardo/clean-jsdoc-theme/workflows/Build%20Docs/badge.svg?branch=master
 [Build Docs]: https://github.com/rdipardo/clean-jsdoc-theme/actions?query=workflow%3ADocs

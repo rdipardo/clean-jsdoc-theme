@@ -1,10 +1,10 @@
 {
     "name": "clean-jsdoc",
-    "version": "1.0.0",
-    "description": "A feature-enhanced fork of clean-jsdoc-theme",
+    "version": "1.1.0",
+    "description": "A Github-centric fork of clean-jsdoc-theme",
     "main": "publish.js",
     "scripts": {
-        "lint:js": "eslint --fix static/scripts tests/specs",
+        "lint:js": "eslint --fix *.js static/scripts tests/specs",
         "lint:style": "stylelint static/styles/",
         "lint": "concurrently --prefix \"{time}-{pid}\" \"npm run lint:js\" \"npm run lint:style\"",
         "2es5": "babel static/scripts/*.js -d demo/output/scripts",
@@ -63,5 +63,8 @@
         "stylelint-config-standard": "^20.0.0",
         "stylelint-order": "^4.1.0",
         "stylelint-scss": "^3.18.0"
+    },
+    "dependencies": {
+        "fs-extra": "^9.0.1"
     }
 }
