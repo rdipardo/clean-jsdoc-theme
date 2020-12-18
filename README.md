@@ -240,7 +240,7 @@ A list of `script` tag attributes for third-party JavaScript sources. e.g.
 
 ##### Optional properties
 
-Mostly the same as [`add_assets`](#optional-properties-3)
+Mostly the same as [`add_assets`](#optional-properties-2)
 
 
 #### `"overlay_scrollbar": { "options": {} }`
