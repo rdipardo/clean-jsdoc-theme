@@ -1,11 +1,7 @@
 @font-face {
     font-family: 'heading';
     src: url('../fonts/Quicksand-SemiBold.eot');
-    src: url('../fonts/Quicksand-SemiBold.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/Quicksand-SemiBold.woff2') format('woff2'),
-        url('../fonts/Quicksand-SemiBold.woff') format('woff'),
-        url('../fonts/Quicksand-SemiBold.ttf') format('truetype'),
-        url('../fonts/Quicksand-SemiBold.svg#Quicksand-SemiBold') format('svg');
+    src: url('../fonts/Quicksand-SemiBold.eot?#iefix') format('embedded-opentype'), url('../fonts/Quicksand-SemiBold.woff2') format('woff2'), url('../fonts/Quicksand-SemiBold.woff') format('woff'), url('../fonts/Quicksand-SemiBold.ttf') format('truetype'), url('../fonts/Quicksand-SemiBold.svg#Quicksand-SemiBold') format('svg');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -14,11 +10,7 @@
 @font-face {
     font-family: 'body';
     src: url('../fonts/Nunito-Regular.eot');
-    src: url('../fonts/Nunito-Regular.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/Nunito-Regular.woff2') format('woff2'),
-        url('../fonts/Nunito-Regular.woff') format('woff'),
-        url('../fonts/Nunito-Regular.ttf') format('truetype'),
-        url('../fonts/Nunito-Regular.svg#Nunito-Regular') format('svg');
+    src: url('../fonts/Nunito-Regular.eot?#iefix') format('embedded-opentype'), url('../fonts/Nunito-Regular.woff2') format('woff2'), url('../fonts/Nunito-Regular.woff') format('woff'), url('../fonts/Nunito-Regular.ttf') format('truetype'), url('../fonts/Nunito-Regular.svg#Nunito-Regular') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -27,11 +19,7 @@
 @font-face {
     font-family: 'code';
     src: url('../fonts/SourceCodePro-Regular.eot');
-    src: url('../fonts/SourceCodePro-Regular.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/SourceCodePro-Regular.woff2') format('woff2'),
-        url('../fonts/SourceCodePro-Regular.woff') format('woff'),
-        url('../fonts/SourceCodePro-Regular.ttf') format('truetype'),
-        url('../fonts/SourceCodePro-Regular.svg#SourceCodePro-Regular') format('svg');
+    src: url('../fonts/SourceCodePro-Regular.eot?#iefix') format('embedded-opentype'), url('../fonts/SourceCodePro-Regular.woff2') format('woff2'), url('../fonts/SourceCodePro-Regular.woff') format('woff'), url('../fonts/SourceCodePro-Regular.ttf') format('truetype'), url('../fonts/SourceCodePro-Regular.svg#SourceCodePro-Regular') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -41,34 +29,36 @@ pre {
     position: relative;
 }
 
+.pre-top-bar-container {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    left: 0;
+    padding: 0.3125rem 1.5rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
 .code-copy-icon-container {
     align-items: center;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
-    height: 30px;
+    height: 1.875rem;
     justify-content: center;
-    position: absolute;
-    right: 15px;
-    top: 10px;
     transition: 0.3s;
-    width: 30px;
+    width: 1.875rem;
 }
 
-.code-copy-icon-container > div {
-    margin-top: 4px;
+.code-copy-icon-container>div {
+    margin-top: 0.25rem;
     position: relative;
 }
 
 .sm-icon {
-    height: 16px;
-    width: 16px;
-}
-
-.code-lang-name-container {
-    left: 15px;
-    position: absolute;
-    top: 10px;
+    height: 1rem;
+    width: 1rem;
 }
 
 .code-lang-name {
@@ -77,6 +67,7 @@ pre {
 }
 
 .tooltip {
+    font-family: 'body';
     border-radius: 5px;
     opacity: 0;
     padding: 3px 8px;

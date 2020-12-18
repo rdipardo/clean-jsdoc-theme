@@ -9,6 +9,10 @@ html, body {
     width: 100%;
 }
 
+html {
+    display: flex;
+}
+
 body {
     font-family: 'body';
     font-size: 16px;
@@ -295,6 +299,7 @@ nav h3 {
 
 .search-box+.sidebar-list-div {
     top: 200px;
+    bottom: 2rem;
 }
 
 .sidebar-list-div ul, nav ul {
@@ -350,10 +355,6 @@ footer {
 
 .ancestors a {
     text-decoration: none;
-}
-
-.clear {
-    clear: both;
 }
 
 .important {
@@ -451,7 +452,7 @@ footer {
     font-size: 14px;
     margin: 30px 0;
     overflow: auto;
-    padding-top: 5px;
+    padding: 0.5rem 0 1.5rem;
 }
 
 .prettyprint.source {
@@ -460,9 +461,9 @@ footer {
 
 .prettyprint code {
     display: block;
-    font-size: 14px;
-    line-height: 16px;
-    padding: 30px;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    padding: 2rem;
 }
 
 .prettyprint>code {
@@ -773,6 +774,12 @@ dl.param-type {
     font-style: italic;
 }
 
+/* status badges should have no border */
+
+.readme h1 img, .readme h2 img, .readme h3 img, .readme h4 img, .readme h5 img, .readme h6 img {
+    border: 0;
+}
+
 .readme ul, .readme ol {
     list-style: circle;
 }
@@ -789,8 +796,13 @@ dl.param-type {
     padding: 0.5em 0.85em;
 }
 
+.readme .prettyprint {
+    padding-bottom: 0;
+}
+
 .readme code {
     margin-top: 1em;
+    padding-top: 0;
 }
 
 .readme blockquote {

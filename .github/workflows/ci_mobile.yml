@@ -3,12 +3,13 @@ on:
   push:
     branches:
       - develop
+      - master
   pull_request:
     branches:
       - master
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
     - name: Set up node env
@@ -19,7 +20,7 @@ jobs:
       uses: actions/cache@v2
       id: restore-cache
       with:
-        path: '**/node_modules'
+        path: ~/.npm
         key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-npm-
