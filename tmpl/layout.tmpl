@@ -105,6 +105,14 @@
           margin-top: <?js= headRoom?>px;
       }
     </style>
+
+    <!-- Add inline style -->
+    <?js if (this.dynamicStyle !== undefined ) { ?>
+    <style>
+      <?js= this.dynamicStyle ?>
+    </style>
+    <?js } ?>
+
     <!-- Adding external script-->
     <?js if(this.dynamicScriptSrc !== undefined) { ?>
       <?js this.dynamicScriptSrc.forEach(function(src){ ?>

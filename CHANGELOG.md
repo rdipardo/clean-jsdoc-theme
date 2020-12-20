@@ -1,7 +1,10 @@
 ## 2.1.0
 
 ### Fixed
-- restrict the `.pre-top-bar-container` style to actual code blocks so that markup like this:
+- restore the `dynamicStyle` property that was accidentally removed
+  from the layout template in the previous release
+- restrict the `.pre-top-bar-container` style to actual code blocks so
+  that markup like this:
 
 ```markdown
 ##Example
