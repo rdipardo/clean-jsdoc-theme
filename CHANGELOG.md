@@ -1,3 +1,22 @@
+## 2.1.0
+
+### Fixed
+- restrict the `.pre-top-bar-container` style to actual code blocks so that markup like this:
+
+```markdown
+##Example
+
+    /full/name/of/some/path
+```
+
+  looks like this:
+
+  ![fixed_code_container](.github/img/v2.1.0/after.png)
+
+  and _not_ like this:
+
+  ![v2.0.0_code_container](.github/img/v2.1.0/before.png)
+
 ## 2.0.0
 
 ### Added

@@ -1,6 +1,6 @@
 {
     "name": "clean-jsdoc",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "description": "A style-conscious fork of clean-jsdoc-theme",
     "main": "publish.js",
     "scripts": {
