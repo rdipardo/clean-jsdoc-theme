@@ -109,6 +109,9 @@ _All options must be defined under `opts.theme_opts` in your `.jsdoc.json`_
 | `footer`       | a footer to display in the page layout              | HTML string  | JSDoc version, date and theme info | any valid HTML markup                         |
 | `create_style` | inline CSS for the `head` of the page layout        | CSS string   | `null`                             | any valid CSS markup                          |
 | `add_scripts`  | inline JavaScript to add to the page layout         | JS string    | `null`                             | any valid JS code                             |
+| `static_dir`   | a list of asset folders to copy to the output dir   | &#91;"/asset/dir", ...&#93;        | `[]`         | >=1 path, relative to your `.jsdoc.json`      |
+| `include_css`  | a list of stylesheets to copy to the output dir     | &#91;"path/to/style.css", ...&#93; | `[]`         | >=1 stylesheet file path                      |
+| `include_js`   | a list of scripts to copy to the output dir         | &#91;"path/to/script.js", ...&#93; | `[]`         | >=1 script file path                          |
 
 ### Advanced
 
@@ -219,7 +222,7 @@ As of version 2.0.0, this template can detect stylesheets and shortcut
 icons from the file extension in the `href`. Support for more media types
 may be added in future releases.
 
-#### `"add_script_path: [{}, ...]`
+#### `"add_script_path": [{}, ...]`
 A list of `script` tag attributes for third-party JavaScript sources. e.g.
 
 ```json5
