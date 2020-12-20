@@ -97,7 +97,7 @@
 <nav>
     
     <div class="gh-meta">
-    <p><b>Version</b> 2.0.0</p>
+    <p><b>Version</b> 2.1.0</p>
     <p>
       <a href="https://github.com/rdipardo/clean-jsdoc-theme" title="View project on Github"><span class="fa fa-github" aria-hidden="true"></span></a>
     </p>
@@ -261,6 +261,27 @@
 <td style="text-align:center">JS string</td>
 <td style="text-align:center"><code>null</code></td>
 <td style="text-align:center">any valid JS code</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>static_dir</code></td>
+<td style="text-align:center">a list of asset folders to copy to the output dir</td>
+<td style="text-align:center">[&quot;/asset/dir&quot;, ...]</td>
+<td style="text-align:center"><code>[]</code></td>
+<td style="text-align:center">&gt;=1 path, relative to your <code>.jsdoc.json</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>include_css</code></td>
+<td style="text-align:center">a list of stylesheets to copy to the output dir</td>
+<td style="text-align:center">[&quot;path/to/style.css&quot;, ...]</td>
+<td style="text-align:center"><code>[]</code></td>
+<td style="text-align:center">&gt;=1 stylesheet file path</td>
+</tr>
+<tr>
+<td style="text-align:center"><code>include_js</code></td>
+<td style="text-align:center">a list of scripts to copy to the output dir</td>
+<td style="text-align:center">[&quot;path/to/script.js&quot;, ...]</td>
+<td style="text-align:center"><code>[]</code></td>
+<td style="text-align:center">&gt;=1 script file path</td>
 </tr>
 </tbody>
 </table>
@@ -435,7 +456,7 @@
 <p>As of version 2.0.0, this template can detect stylesheets and shortcut
 icons from the file extension in the <code>href</code>. Support for more media types
 may be added in future releases.</p>
-<h4 id="%22add_script_path%3A-%5B%7B%7D%2C-...%5D"><code>&quot;add_script_path: [{}, ...]</code></h4>
+<h4 id="%22add_script_path%22%3A-%5B%7B%7D%2C-...%5D"><code>&quot;add_script_path&quot;: [{}, ...]</code></h4>
 <p>A list of <code>script</code> tag attributes for third-party JavaScript sources. e.g.</p>
 <pre class="prettyprint source lang-json5"><code>  &quot;add_script_path&quot;: [
     {
