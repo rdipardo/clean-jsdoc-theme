@@ -29,7 +29,7 @@ pre {
     position: relative;
 }
 
-.pre-top-bar-container {
+.prettyprint.source .pre-top-bar-container {
     align-items: center;
     display: flex;
     justify-content: space-between;

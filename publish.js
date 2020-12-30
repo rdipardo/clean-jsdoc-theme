@@ -494,6 +494,26 @@ function getTheme() {
     return themeSrc;
 }
 
+function getLayoutOptions() {
+  const themeName = env && env.opts && env.opts.theme_opts &&
+                     env.opts.theme_opts.theme ||
+                     'light';
+  const hideLangNames = env && env.opts && env.opts.theme_opts &&
+                        env.opts.theme_opts.langNames !== undefined &&
+                        !env.opts.theme_opts.langNames;
+  const noSearch = env && env.opts && env.opts.theme_opts &&
+                   env.opts.theme_opts.search !== undefined &&
+                   !env.opts.theme_opts.search;
+  const wantDate = env && env.conf.templates &&
+                   env.conf.templates.default &&
+                   env.conf.templates.default.includeDate !== false;
+
+  return { themeName,
+            hideLangNames,
+            noSearch,
+            wantDate };
+}
+
 function searchList() {
     return searchListArray;
 }
@@ -866,6 +886,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     view.project = getProjectAttributes();
     view.overlayScrollbar = overlayScrollbarOptions();
     view.theme = getTheme();
+    view.layoutOptions = getLayoutOptions();
     // once for all
     view.nav = buildNav(members);
     view.searchList = searchList();
