@@ -13,9 +13,16 @@ const { linkto } = helper;
 const { resolveAuthorLinks } = helper;
 const hasOwnProp = Object.prototype.hasOwnProperty;
 
+/* prettier-ignore-start */
+// eslint-disable-next-line
+const themeOpts = env && env.opts && env.opts.theme_opts || {};
+const defaultOpts = env && env.conf.templates && env.conf.templates.default || {};
+
+/* prettier-ignore-end */
 let data;
 let view;
 const searchListArray = [];
+const haveSearch = themeOpts.search === undefined ? true : Boolean(themeOpts.search);
 
 let outdir = path.normalize(env.opts.destination);
 
@@ -23,7 +30,7 @@ function copyStaticFolder() {
 
 /* prettier-ignore-start */
 
-    const staticDir = env && env.opts && env.opts.theme_opts && env.opts.theme_opts.static_dir || undefined;
+    const staticDir = themeOpts.static_dir || undefined;
 
     /* prettier-ignore-end */
     if (staticDir) {
@@ -367,7 +374,7 @@ function buildSearch() {
 function buildFooter() {
 
     /* prettier-ignore-start */
-    const footer = env && env.opts && env.opts.theme_opts && env.opts.theme_opts.footer || '';
+    const footer = themeOpts.footer || '';
 
     /* prettier-ignore-end */
 
@@ -378,7 +385,7 @@ function buildFooter() {
 function createDynamicStyleSheet() {
 
     /* prettier-ignore-start */
-    const styleClass = env && env.opts && env.opts.theme_opts && env.opts.theme_opts.create_style || undefined;
+    const styleClass = themeOpts.create_style || undefined;
 
     /* prettier-ignore-start */
 
@@ -388,7 +395,7 @@ function createDynamicStyleSheet() {
 function createDynamicsScripts() {
 
     /* prettier-ignore-start */
-    const scripts = env && env.opts && env.opts.theme_opts && env.opts.theme_opts.add_scripts || undefined;
+    const scripts = themeOpts.add_scripts || undefined;
 
     /* prettier-ignore-end */
 
@@ -398,7 +405,7 @@ function createDynamicsScripts() {
 function returnPathOfScriptScr() {
 
     /* prettier-ignore-start */
-    const scriptPath = env && env.opts && env.opts.theme_opts && env.opts.theme_opts.add_script_path || undefined;
+    const scriptPath = themeOpts.add_script_path || undefined;
 
 
     /* prettier-ignore-end */
@@ -409,7 +416,7 @@ function returnPathOfScriptScr() {
 function getExternalAssets() {
 
 /* prettier-ignore-start */
-    const stylePath = env && env.opts && env.opts.theme_opts && env.opts.theme_opts.add_assets || undefined;
+    const stylePath = themeOpts.add_assets || undefined;
 
 
 /* prettier-ignore-end */
@@ -420,7 +427,7 @@ function getExternalAssets() {
 function includeCss() {
 
 /* prettier-ignore-start */
-    let stylePath = env && env.opts && env.opts.theme_opts && env.opts.theme_opts.include_css || undefined;
+    let stylePath = themeOpts.include_css || undefined;
 
     if (stylePath) {
         stylePath = copyToOutputFolderFromArray(stylePath);
@@ -434,7 +441,7 @@ function includeCss() {
 function overlayScrollbarOptions() {
 
 /* prettier-ignore-start */
-    const overlayOptions = env && env.opts && env.opts.theme_opts && env.opts.theme_opts.overlay_scrollbar || undefined;
+    const overlayOptions = themeOpts.overlay_scrollbar || undefined;
 
     if (overlayOptions) {
         return JSON.stringify(overlayOptions);
@@ -448,7 +455,7 @@ function overlayScrollbarOptions() {
 function includeScript() {
 
 /* prettier-ignore-start */
-    let scriptPath = env && env.opts && env.opts.theme_opts && env.opts.theme_opts.include_js || undefined;
+    let scriptPath = themeOpts.include_js || undefined;
 
     if (scriptPath) {
         scriptPath = copyToOutputFolderFromArray(scriptPath);
@@ -462,7 +469,7 @@ function includeScript() {
 function getMetaTagData() {
 
     /* prettier-ignore-start */
-    const meta = env && env.opts && env.opts.theme_opts && env.opts.theme_opts.meta || undefined;
+    const meta = themeOpts.meta || undefined;
 
     /* prettier-ignore-end */
 
@@ -473,7 +480,7 @@ function getProjectAttributes() {
 
     /* prettier-ignore-start */
 
-    const meta = env && env.opts && env.opts.theme_opts && env.opts.theme_opts.project || undefined;
+    const meta = themeOpts.project || undefined;
 
     /* prettier-ignore-end */
 
@@ -484,7 +491,7 @@ function getTheme() {
 
     /* prettier-ignore-start */
 
-    const theme = env && env.opts && env.opts.theme_opts && env.opts.theme_opts.theme || 'light';
+    const theme = themeOpts.theme || 'light';
 
 /* prettier-ignore-end */
 
@@ -495,18 +502,10 @@ function getTheme() {
 }
 
 function getLayoutOptions() {
-  const themeName = env && env.opts && env.opts.theme_opts &&
-                     env.opts.theme_opts.theme ||
-                     'light';
-  const hideLangNames = env && env.opts && env.opts.theme_opts &&
-                        env.opts.theme_opts.langNames !== undefined &&
-                        !env.opts.theme_opts.langNames;
-  const noSearch = env && env.opts && env.opts.theme_opts &&
-                   env.opts.theme_opts.search !== undefined &&
-                   !env.opts.theme_opts.search;
-  const wantDate = env && env.conf.templates &&
-                   env.conf.templates.default &&
-                   env.conf.templates.default.includeDate !== false;
+    const themeName = themeOpts.theme || 'light';
+    const hideLangNames = themeOpts.langNames !== undefined && !env.opts.theme_opts.langNames;
+    const noSearch = themeOpts.search !== undefined && !env.opts.theme_opts.search;
+    const wantDate = defaultOpts.includeDate !== false;
 
   return { themeName,
             hideLangNames,
@@ -535,10 +534,13 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
                 itemsNav += '</li>';
             } else if (!hasOwnProp.call(itemsSeen, item.longname)) {
                 itemsNav += `<li>${linktoFn(item.longname, item.name.replace(/^module:/u, ''))}`;
+                if (haveSearch) {
+
                 searchListArray.push(JSON.stringify({
                     'title': item.name,
                     'link': linkto(item.longname, item.name)
                 }));
+                }
                 if (methods.length) {
                     itemsNav += '<ul class=\'methods\'>';
 
@@ -547,11 +549,12 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
                         const [first, last] = name;
 
                         name = `${first} &rtrif; ${last}`;
-
+                        if (haveSearch) {
                         searchListArray.push(JSON.stringify({
                             'title': method.longname,
                             'link': linkto(method.longname, name)
                         }));
+                        }
                         itemsNav += '<li data-type=\'method\'>';
                         itemsNav += linkto(method.longname, method.name);
                         itemsNav += '</li>';
@@ -598,7 +601,7 @@ function buildNav(members) {
 
     /* prettier-ignore-start */
 
-    const title = env && env.opts && env.opts.theme_opts && env.opts.theme_opts.title || 'README';
+    const title = themeOpts.title || 'README';
 
     /* prettier-ignore-end */
 
@@ -622,11 +625,11 @@ function buildNav(members) {
 
     /* prettier-ignore-start */
 
-    const search = env && env.opts && env.opts.theme_opts && env.opts.theme_opts.search;
+    const { search } = themeOpts;
 
     /* prettier-ignore-end */
 
-    if (search === undefined || JSON.parse(search)) {
+    if (haveSearch) {
         nav += buildSearch();
     }
     nav += '<div class="sidebar-list-div">';
@@ -635,7 +638,7 @@ function buildNav(members) {
 
     /* prettier-ignore-start */
 
-    const menu = env && env.opts && env.opts.theme_opts && env.opts.theme_opts.menu || undefined;
+    const menu = themeOpts.menu || undefined;
 
     /* prettier-ignore-end */
 

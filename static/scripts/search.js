@@ -17,8 +17,8 @@ function checkClick(e) {
     }
 }
 
-function search(list, keys, searchKey) {
-    const options = {
+function search(list, options, keys, searchKey) {
+    const defaultOptions = {
         'shouldSort': true,
         'threshold': 0.4,
         'location': 0,
@@ -28,8 +28,11 @@ function search(list, keys, searchKey) {
         keys
     };
 
+    const op = { ...defaultOptions,
+...options };
+
     /* eslint-disable-next-line */
-    var fuse = new Fuse(list, options);
+    var fuse = new Fuse(list, op);
     const result = fuse.search(searchKey);
     const searchUL = document.getElementById('search-item-ul');
 
@@ -45,24 +48,22 @@ function search(list, keys, searchKey) {
 }
 
 /* eslint-disable-next-line */
-function setupSearch (list) {
+function setupSearch(list, options) {
     const inputBox = document.getElementById('search-box');
     const keys = ['title'];
 
     inputBox.addEventListener('keyup', () => {
         if (inputBox.value !== '') {
             showSearchList();
-            search(list, keys, inputBox.value);
-        } else {
-            hideSearchList();
+            search(list, options, keys, inputBox.value);
         }
+        else { hideSearchList(); }
     });
 
     inputBox.addEventListener('focus', () => {
         showSearchList();
-
         if (inputBox.value !== '') {
-            search(list, keys, inputBox.value);
+            search(list, options, keys, inputBox.value);
         }
 
         /* eslint-disable-next-line */
