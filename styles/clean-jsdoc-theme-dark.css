@@ -141,22 +141,28 @@ footer {
 }
 
 .prettyprint,
-.pre-top-bar-container {
-    background: #101010;
+.pre-top-bar-container,
+.prettyprint.source,
+.prettyprint code {
+    background-color: #202020;
 }
 
-.prettyprint code {
-    background-color: #101010;
+.prettyprint.source .pre-top-bar-container {
+    background-color: #202020;
+}
+
+.prettyprint.linenums {
+    color: #3f6f6f;
 }
 
 .prettyprint.linenums li {
-    border-left: 3px #222831 solid;
+    border-left: 3px #3f6f6f solid;
 }
 
 /* stylelint-disable */
 
 .prettyprint.linenums li.selected, .prettyprint.linenums li.selected * {
-    background-color: #404040;
+    background-color: #606060;
 }
 
 /* stylelint-enable */
@@ -182,7 +188,7 @@ table .params thead tr, .params .params thead tr, .props .props thead tr {
 }
 
 .disabled {
-    color: #aaaaaa;
+    color: #aaa;
 }
 
 /* navicon */
@@ -202,6 +208,8 @@ table .params thead tr, .params .params thead tr, .props .props thead tr {
 .nav-trigger:checked+label.plus .navicon::after, .nav-trigger:checked+label.x .navicon::after {
     background: #fff;
 }
+
+/* stylelint-enable */
 
 .overlay {
     background: hsla(0, 0%, 0%, 0.5);
@@ -231,90 +239,3 @@ table .params thead tr, .params .params thead tr, .props .props thead tr {
     color: #000;
 }
 
-/* code */
-
-.pln {
-    color: #ffdd4a;
-}
-
-.str {
-    color: #56e39f;
-}
-
-/* a keyword */
-
-.kwd {
-    color: #08b2e3;
-}
-
-/* a comment */
-
-.com {
-    color: #999;
-}
-
-/* a type name */
-
-.typ {
-    color: #ef6f6c;
-}
-
-/* a literal value */
-
-.lit {
-    color: #f5d67b;
-}
-
-/* punctuation */
-
-.pun {
-    color: #5adbff;
-}
-
-/* lisp open bracket */
-
-.opn {
-    color: #72e0d1;
-}
-
-/* lisp close bracket */
-
-.clo {
-    color: #72e0d1;
-}
-
-/* a markup tag name */
-
-.tag {
-    color: #007bff;
-}
-
-/* a markup attribute name */
-
-.atn {
-    color: #f5d67b;
-}
-
-/* a markup attribute value */
-
-.atv {
-    color: #3e999f;
-}
-
-/* a declaration */
-
-.dec {
-    color: #f5871f;
-}
-
-/* a variable name */
-
-.var {
-    color: #f5d67b;
-}
-
-/* a function name */
-
-.fun {
-    color: #4271ae;
-}
