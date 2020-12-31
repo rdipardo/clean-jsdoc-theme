@@ -47,7 +47,7 @@ const sortBy = (list, key, desc = false) => {
 * @param {Array<Object.<string, number>>} list - An object collection
 * @param {string} group - A common property to group the results under
 * @param {string} key - A common property whose (numeric) value will be totalled
-* @param {module:itertools~Aggregate} [xform=(x, _, k) => x[`${k}`] + 1] - An
+* @param {module:itertools~Aggregate} [xform=(x, _, k) => x[`${k}`] += 1] - An
 *  aggregating function
 * @returns {Array<Object.<string, number>>}
 */

@@ -1,3 +1,29 @@
+## 2.2.0
+
+### Fixed
+- render `@example` metadata with proper code block style
+- modify `prettify.js` to stop syntax highlighting in code blocks with
+  the `text` file type so that markup like this:
+
+  <code>
+
+  &#96;&#96;&#96;text<br/>
+  npm i && npm i jsdoc --no-save<br/>
+  &#96;&#96;&#96;
+  </code>
+
+  looks like this:
+
+  ![fixed_text_block](https://raw.githubusercontent.com/rdipardo/clean-jsdoc-theme/master/.github/img/v2.2.0/after.png)
+
+  and _not_ like this:
+
+  ![v2.1.0_text_block](https://raw.githubusercontent.com/rdipardo/clean-jsdoc-theme/master/.github/img/v2.2.0/before.png)
+
+### Changed
+- make one default set of code style rules; keep some thematic variations
+  for better contrast
+
 ## 2.1.0
 
 ### Fixed
@@ -14,11 +40,11 @@
 
   looks like this:
 
-  ![fixed_code_container](.github/img/v2.1.0/after.png)
+  ![fixed_code_container](https://raw.githubusercontent.com/rdipardo/clean-jsdoc-theme/master/.github/img/v2.1.0/after.png)
 
   and _not_ like this:
 
-  ![v2.0.0_code_container](.github/img/v2.1.0/before.png)
+  ![v2.0.0_code_container](https://raw.githubusercontent.com/rdipardo/clean-jsdoc-theme/master/.github/img/v2.1.0/before.png)
 
 ## 2.0.0
 
