@@ -314,6 +314,7 @@ nav ul a {
     display: block;
     font-family: 'body';
     font-size: 16px;
+    font-weight: 400;
     line-height: 18px;
     padding: 0;
     transition: padding 0.2s, color 0.2s, font-weight 0.2s;
@@ -453,7 +454,7 @@ footer {
     font-size: 14px;
     margin: 30px 0;
     overflow: auto;
-    padding: 0.5rem 0 1.5rem;
+    padding-top: 0.5rem;
 }
 
 .prettyprint.source {
@@ -464,12 +465,14 @@ footer {
     display: block;
     font-size: 0.875rem;
     line-height: 1rem;
-    padding: 2rem;
+    padding: 0 2rem 2rem;
 }
 
+/*
 .prettyprint>code {
     padding: 30px;
 }
+*/
 
 .prettyprint .linenums code {
     padding: 0 15px;
@@ -486,9 +489,6 @@ footer {
 }
 
 .prettyprint.linenums {
-    user-select: none;
-    user-select: none;
-    user-select: none;
     user-select: none;
 }
 
@@ -517,21 +517,18 @@ footer {
 
 .prettyprint.linenums li * {
     user-select: text;
-    user-select: text;
-    user-select: text;
-    user-select: text;
 }
 
-.params,
-.props,
-table {
+table, .params, .props {
     border-collapse: collapse;
     border-radius: 8px;
     border-spacing: 0;
-    font-size: 16px;
-    font-size: 14px;
     margin: 30px 0;
     width: 100%;
+}
+
+.params, .props {
+    font-size: 14px;
 }
 
 .params .name, .props .name, .name code {
@@ -539,12 +536,7 @@ table {
     font-size: 100%;
 }
 
-.params td,
-.params th,
-.props td,
-.props th,
-th,
-td {
+th, td, .params td, .params th, .props td, .props th {
     display: table-cell;
     margin: 0;
     padding: 15px;
@@ -560,6 +552,10 @@ td {
 
 .params .params thead tr, .props .props thead tr {
     font-weight: bold;
+}
+
+.params td, .props td {
+    white-space: nowrap;
 }
 
 .params td.description>p:first-child, .props td.description>p:first-child {
@@ -797,7 +793,8 @@ dl.param-type {
 }
 
 .readme table {
-    border-spacing: 0.5em;
+    width: inherit;
+    max-width: 100%;
 }
 
 .readme table td {

@@ -8,12 +8,9 @@
 [![BrowserStack Status Badge][]][BrowserStack Status]
 [![License: MIT][]][Read the MIT]
 
-</h3>
-
-A style-conscious fork of [clean-jsdoc-theme][]
-
 ![light_screen_1](https://rdipardo.github.io/demos/js/clean-jsdoc/img/light_doc_example_1.png)
 ![dark_screen_1](https://rdipardo.github.io/demos/js/clean-jsdoc/img/dark_doc_example_1.png)
+</h3>
 
 - [Getting Started](#quick-start)
 - [Adding to Your Workflow](#workflow-integration)
@@ -27,19 +24,19 @@ A style-conscious fork of [clean-jsdoc-theme][]
 
 Install `jsdoc`:
 
-```shell
+```text
 npm i --save-dev jsdoc
 ```
 
 Install the template assets:
 
-```shell
+```text
 npm i --save-dev rdipardo/clean-jsdoc-theme
 ```
 
 Now run:
 
-```shell
+```text
 npx jsdoc path/to/source/files -t node_modules/clean-jsdoc -r README.md
 ```
 
@@ -122,7 +119,7 @@ Details of your project, e.g.
 ```json
   "project": {
       "title": "clean-jsdoc",
-      "version": "2.0.0",
+      "version": "2.2.0",
       "repo": "https://github.com/rdipardo/clean-jsdoc-theme"
   }
 ```
@@ -260,27 +257,27 @@ Any option supported by [OverlayScrollbars].
 
 To preview a small demo website, first run:
 
-```shell
-git clone 'https://github.com/rdipardo/clean-jsdoc-theme.git' clean-jsdoc
+```text
+git clone https://github.com/rdipardo/clean-jsdoc-theme.git clean-jsdoc
 cd clean-jsdoc
 npm i && npm i jsdoc --no-save
 ```
 
 On Windows, run:
 
-```shell
+```text
 npm run test:win
 ```
 
 Otherwise:
 
-```shell
+```text
 npm test
 ```
 
 If `xdg-open` is available on your system, you can build and preview the site in one step with:
 
-```shell
+```text
 npm run browse
 ```
 
@@ -297,7 +294,7 @@ Distributed under the terms of the MIT license.
 [HTML metadata attributes]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta#Attributes
 [link attributes]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#Attributes
 <!-- badges -->
-[Build Docs Workflow]: https://github.com/rdipardo/clean-jsdoc-theme/workflows/Build%20Docs/badge.svg?branch=develop
+[Build Docs Workflow]: https://github.com/rdipardo/clean-jsdoc-theme/workflows/Build%20Docs/badge.svg
 [Build Docs]: https://github.com/rdipardo/clean-jsdoc-theme/actions?query=workflow%3ADocs
 [Chrome, Firefox, IE, Safari on macOS Workflow]: https://github.com/rdipardo/clean-jsdoc-theme/workflows/Chrome,%20Firefox,%20IE,%20Safari%20on%20macOS/badge.svg?branch=develop
 [Chrome, Firefox, IE, Safari on macOS]: https://github.com/rdipardo/clean-jsdoc-theme/actions?query=workflow%3AIE

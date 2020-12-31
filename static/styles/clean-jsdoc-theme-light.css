@@ -165,22 +165,28 @@ footer {
 }
 
 .prettyprint,
-.pre-top-bar-container {
-    background: #001628;
+.pre-top-bar-container,
+.prettyprint.source,
+.prettyprint code {
+    background-color: #022a40;
 }
 
-.prettyprint code {
-    background-color: #001628;
+.prettyprint.source .pre-top-bar-container {
+    background-color: #022a40;
+}
+
+.prettyprint.linenums {
+    color: #3d6c5b;
 }
 
 .prettyprint.linenums li {
-    border-left: 3px #222831 solid;
+    border-left: 3px #3d6c5b solid;
 }
 
 /* stylelint-disable */
 
 .prettyprint.linenums li.selected, .prettyprint.linenums li.selected * {
-    background-color: #404040;
+    background-color: #00608f;
 }
 
 /* stylelint-enable */
@@ -231,6 +237,8 @@ table .params thead tr, .params .params thead tr, .props .props thead tr {
     background: #000;
 }
 
+/* stylelint-enable */
+
 .overlay {
     background: hsla(0, 0%, 0%, 0.5);
 }
@@ -258,92 +266,4 @@ table .params thead tr, .params .params thead tr, .props .props thead tr {
 .tooltip {
     background: #ffce76;
     color: #000;
-}
-
-.pln {
-    color: #f5d67b;
-}
-
-/* string content */
-
-.str {
-    color: #55ae95;
-}
-
-/* a keyword */
-
-.kwd {
-    color: #5edfff;
-}
-
-/* a comment */
-
-.com {
-    color: #a0a0a0;
-}
-
-/* a type name */
-
-.typ {
-    color: #f5d67b;
-}
-
-/* a literal value */
-
-.lit {
-    color: #f5d67b;
-}
-
-/* punctuation */
-
-.pun {
-    color: #72e0d1;
-}
-
-/* lisp open bracket */
-
-.opn {
-    color: #72e0d1;
-}
-
-/* lisp close bracket */
-
-.clo {
-    color: #72e0d1;
-}
-
-/* a markup tag name */
-
-.tag {
-    color: #007bff;
-}
-
-/* a markup attribute name */
-
-.atn {
-    color: #f5d67b;
-}
-
-/* a markup attribute value */
-
-.atv {
-    color: #3e999f;
-}
-
-/* a declaration */
-
-.dec {
-    color: #f5871f;
-}
-
-/* a variable name */
-
-.var {
-    color: #f5d67b;
-}
-
-/* a function name */
-
-.fun {
-    color: #4271ae;
 }

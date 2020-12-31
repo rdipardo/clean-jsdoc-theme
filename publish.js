@@ -12,27 +12,18 @@ const { htmlsafe } = helper;
 const { linkto } = helper;
 const { resolveAuthorLinks } = helper;
 const hasOwnProp = Object.prototype.hasOwnProperty;
-
-/* prettier-ignore-start */
-// eslint-disable-next-line
 const themeOpts = env && env.opts && env.opts.theme_opts || {};
 const defaultOpts = env && env.conf.templates && env.conf.templates.default || {};
-
-/* prettier-ignore-end */
-let data;
-let view;
 const searchListArray = [];
 const haveSearch = themeOpts.search === undefined ? true : Boolean(themeOpts.search);
 
 let outdir = path.normalize(env.opts.destination);
+let data;
+let view;
 
 function copyStaticFolder() {
-
-/* prettier-ignore-start */
-
     const staticDir = themeOpts.static_dir || undefined;
 
-    /* prettier-ignore-end */
     if (staticDir) {
         for (let i = 0; i < staticDir.length; i++) {
             const output = path.join(outdir, staticDir[i]);
@@ -372,129 +363,79 @@ function buildSearch() {
 }
 
 function buildFooter() {
-
-    /* prettier-ignore-start */
     const footer = themeOpts.footer || '';
-
-    /* prettier-ignore-end */
 
     return footer;
 }
 
-// function copy
 function createDynamicStyleSheet() {
-
-    /* prettier-ignore-start */
     const styleClass = themeOpts.create_style || undefined;
-
-    /* prettier-ignore-start */
 
     return styleClass;
 }
 
 function createDynamicsScripts() {
-
-    /* prettier-ignore-start */
     const scripts = themeOpts.add_scripts || undefined;
-
-    /* prettier-ignore-end */
 
     return scripts;
 }
 
 function returnPathOfScriptScr() {
-
-    /* prettier-ignore-start */
     const scriptPath = themeOpts.add_script_path || undefined;
-
-
-    /* prettier-ignore-end */
 
     return scriptPath;
 }
 
 function getExternalAssets() {
-
-/* prettier-ignore-start */
     const stylePath = themeOpts.add_assets || undefined;
-
-
-/* prettier-ignore-end */
 
     return stylePath;
 }
 
 function includeCss() {
-
-/* prettier-ignore-start */
     let stylePath = themeOpts.include_css || undefined;
 
     if (stylePath) {
         stylePath = copyToOutputFolderFromArray(stylePath);
     }
 
-/* prettier-ignore-end */
-
     return stylePath;
 }
 
 function overlayScrollbarOptions() {
-
-/* prettier-ignore-start */
     const overlayOptions = themeOpts.overlay_scrollbar || undefined;
 
     if (overlayOptions) {
         return JSON.stringify(overlayOptions);
     }
 
-/* prettier-ignore-end */
-
     return undefined;
 }
 
 function includeScript() {
-
-/* prettier-ignore-start */
     let scriptPath = themeOpts.include_js || undefined;
 
     if (scriptPath) {
         scriptPath = copyToOutputFolderFromArray(scriptPath);
     }
 
-/* prettier-ignore-end */
-
     return scriptPath;
 }
 
 function getMetaTagData() {
-
-    /* prettier-ignore-start */
     const meta = themeOpts.meta || undefined;
-
-    /* prettier-ignore-end */
 
     return meta;
 }
 
 function getProjectAttributes() {
-
-    /* prettier-ignore-start */
-
     const meta = themeOpts.project || undefined;
-
-    /* prettier-ignore-end */
 
     return meta;
 }
 
 function getTheme() {
-
-    /* prettier-ignore-start */
-
     const theme = themeOpts.theme || 'light';
-
-/* prettier-ignore-end */
-
     const baseThemeName = 'clean-jsdoc-theme';
     const themeSrc = `${baseThemeName}-${theme}.css`.trim();
 
@@ -598,13 +539,7 @@ function linktoExternal(longName, name) {
  * @return {string} The HTML for the navigation sidebar.
  */
 function buildNav(members) {
-
-    /* prettier-ignore-start */
-
     const title = themeOpts.title || 'README';
-
-    /* prettier-ignore-end */
-
     const isHTML = RegExp.prototype.test.bind(/(<([^>]+)>)/iu);
     let nav;
 
@@ -623,24 +558,16 @@ function buildNav(members) {
         }
     }
 
-    /* prettier-ignore-start */
-
     const { search } = themeOpts;
-
-    /* prettier-ignore-end */
 
     if (haveSearch) {
         nav += buildSearch();
     }
+
     nav += '<div class="sidebar-list-div">';
     const seen = {};
     const seenTutorials = {};
-
-    /* prettier-ignore-start */
-
     const menu = themeOpts.menu || undefined;
-
-    /* prettier-ignore-end */
 
     if (menu !== undefined) {
         nav += buildMenuNav(menu);
