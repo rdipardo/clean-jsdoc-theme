@@ -455,6 +455,7 @@ footer {
     margin: 30px 0;
     overflow: auto;
     padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .prettyprint.source {
@@ -780,7 +781,7 @@ dl.param-type {
 
 /* status badges should have no border */
 
-.readme h1 img, .readme h2 img, .readme h3 img, .readme h4 img, .readme h5 img, .readme h6 img {
+.readme a img {
     border: 0;
 }
 
@@ -831,8 +832,12 @@ dl.param-type {
     width: inherit;
 }
 
-.gh-meta p~p a, .gh-meta p~p a:hover, .gh-meta p~p a:active, .gh-meta p~p a:focus {
+.gh-meta p~p a {
     color: #009bff;
+}
+
+.gh-meta p~p a:hover, .gh-meta p~p a:active, .gh-meta p~p a:focus {
+    color: #c7ebdf;
 }
 
 .fa.fa-github {

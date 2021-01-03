@@ -7,6 +7,9 @@ const { taffy } = require('taffydb');
 const template = require('jsdoc/template');
 const util = require('util');
 const fse = require('fs-extra');
+const babel = require('@babel/core');
+const glob = require('glob');
+const minify = require('minify');
 
 const { htmlsafe } = helper;
 const { linkto } = helper;
@@ -22,14 +25,14 @@ let data;
 let view;
 
 function copyStaticFolder() {
-    const staticDir = themeOpts.static_dir || undefined;
+    const staticDir = themeOpts.static_dir || [];
 
-    if (staticDir) {
-        for (let i = 0; i < staticDir.length; i++) {
-            const output = path.join(outdir, staticDir[i]);
+    if (staticDir.length) {
+        staticDir.forEach(dir => {
+            const output = path.join(outdir, dir);
 
-            fse.copySync(staticDir[i], output);
-        }
+            fse.copySync(dir, output);
+        });
     }
 }
 
@@ -42,11 +45,10 @@ function copyToOutputFolder(filePath) {
 }
 
 function copyToOutputFolderFromArray(filePathArray) {
-    let i = 0;
     const outputList = [];
 
     if (Array.isArray(filePathArray)) {
-        for (; i < filePathArray.length; i++) {
+        for (let i = 0; i < filePathArray.length; i++) {
             copyToOutputFolder(filePathArray[i]);
             outputList.push(path.basename(filePathArray[i]));
         }
@@ -186,11 +188,11 @@ function addSignatureReturns(f) {
     let returnTypes = [];
     let returnTypesString = '';
 
-/*
- * jam all the return-type attributes into an array. this could create odd results (for example,
- * if there are both nullable and non-nullable return types), but let's assume that most people
- * who use multiple @return tags aren't using Closure Compiler type annotations, and vice-versa.
- */
+    /*
+     * jam all the return-type attributes into an array. this could create odd results (for example,
+     * if there are both nullable and non-nullable return types), but let's assume that most people
+     * who use multiple @return tags aren't using Closure Compiler type annotations, and vice-versa.
+     */
     if (f.returns) {
         f.returns.forEach(item => {
             helper.getAttribs(item).forEach(attrib => {
@@ -319,17 +321,17 @@ function attachModuleSymbols(doclets, modules) {
             module.modules =
                 symbols[module.longname]
                     .filter(symbol => {
-                    return symbol.description || symbol.kind === 'class';
-                })
-                .map(symbol => {
-                    symbol = doop(symbol);
+                        return symbol.description || symbol.kind === 'class';
+                    })
+                    .map(symbol => {
+                        symbol = doop(symbol);
 
-                    if (symbol.kind === 'class' || symbol.kind === 'function') {
-                        symbol.name = `${symbol.name.replace('module:', '(require("')}"))`;
-                    }
+                        if (symbol.kind === 'class' || symbol.kind === 'function') {
+                            symbol.name = `${symbol.name.replace('module:', '(require("')}"))`;
+                        }
 
-                    return symbol;
-                });
+                        return symbol;
+                    });
         }
 
         return module;
@@ -363,33 +365,23 @@ function buildSearch() {
 }
 
 function buildFooter() {
-    const footer = themeOpts.footer || '';
-
-    return footer;
+    return themeOpts.footer || '';
 }
 
 function createDynamicStyleSheet() {
-    const styleClass = themeOpts.create_style || undefined;
-
-    return styleClass;
+    return themeOpts.create_style || undefined;
 }
 
 function createDynamicsScripts() {
-    const scripts = themeOpts.add_scripts || undefined;
-
-    return scripts;
+    return themeOpts.add_scripts || undefined;
 }
 
 function returnPathOfScriptScr() {
-    const scriptPath = themeOpts.add_script_path || undefined;
-
-    return scriptPath;
+    return themeOpts.add_script_path || undefined;
 }
 
 function getExternalAssets() {
-    const stylePath = themeOpts.add_assets || undefined;
-
-    return stylePath;
+    return themeOpts.add_assets || undefined;
 }
 
 function includeCss() {
@@ -406,7 +398,25 @@ function overlayScrollbarOptions() {
     const overlayOptions = themeOpts.overlay_scrollbar || undefined;
 
     if (overlayOptions) {
-        return JSON.stringify(overlayOptions);
+        const scriptPath = path.join(__dirname, 'node_modules/overlayscrollbars/js');
+        const stylePath = path.join(__dirname, 'node_modules/overlayscrollbars/css');
+
+        if (fse.existsSync(scriptPath) && fse.existsSync(stylePath)) {
+            const scriptsOut = path.join(outdir, 'scripts/third-party');
+            const styleOut = path.join(outdir, 'styles/third-party');
+
+            // TODO: let users choose the jQuery version
+            glob.sync(`${scriptPath}/!(jquery)*min*`)
+                .forEach(src => {
+                    fse.copySync(src, path.join(scriptsOut, path.basename(src)));
+                });
+            glob.sync(`${stylePath}/*min*`)
+                .forEach(src => {
+                    fse.copySync(src, path.join(styleOut, path.basename(src)));
+                });
+        }
+
+        return JSON.stringify(overlayOptions.options ? overlayOptions.options : {});
     }
 
     return undefined;
@@ -423,15 +433,11 @@ function includeScript() {
 }
 
 function getMetaTagData() {
-    const meta = themeOpts.meta || undefined;
-
-    return meta;
+    return themeOpts.meta || undefined;
 }
 
 function getProjectAttributes() {
-    const meta = themeOpts.project || undefined;
-
-    return meta;
+    return themeOpts.project || undefined;
 }
 
 function getTheme() {
@@ -447,15 +453,15 @@ function getLayoutOptions() {
     const hideLangNames = themeOpts.langNames !== undefined && !env.opts.theme_opts.langNames;
     const noSearch = themeOpts.search !== undefined && !env.opts.theme_opts.search;
     const wantDate = defaultOpts.includeDate !== false;
+    const wantOverlay = overlayScrollbarOptions() !== undefined;
 
-  return { themeName,
-            hideLangNames,
-            noSearch,
-            wantDate };
-}
-
-function searchList() {
-    return searchListArray;
+    return {
+        themeName,
+        hideLangNames,
+        noSearch,
+        wantDate,
+        wantOverlay
+    };
 }
 
 function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
@@ -477,10 +483,10 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
                 itemsNav += `<li>${linktoFn(item.longname, item.name.replace(/^module:/u, ''))}`;
                 if (haveSearch) {
 
-                searchListArray.push(JSON.stringify({
-                    'title': item.name,
-                    'link': linkto(item.longname, item.name)
-                }));
+                    searchListArray.push(JSON.stringify({
+                        'title': item.name,
+                        'link': linkto(item.longname, item.name)
+                    }));
                 }
                 if (methods.length) {
                     itemsNav += '<ul class=\'methods\'>';
@@ -491,10 +497,10 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
 
                         name = `${first} &rtrif; ${last}`;
                         if (haveSearch) {
-                        searchListArray.push(JSON.stringify({
-                            'title': method.longname,
-                            'link': linkto(method.longname, name)
-                        }));
+                            searchListArray.push(JSON.stringify({
+                                'title': method.longname,
+                                'link': linkto(method.longname, name)
+                            }));
                         }
                         itemsNav += '<li data-type=\'method\'>';
                         itemsNav += linkto(method.longname, method.name);
@@ -614,15 +620,52 @@ function buildNav(members) {
  *  @param {Tutorial} tutorials
  */
 exports.publish = function(taffyData, opts, tutorials) {
-    data = taffyData;
-
     const conf = env.conf.templates || {};
-
-    conf.default = conf.default || {};
-
     const templatePath = path.normalize(opts.template);
+    const minifyOpts = {
+        'html': {
+            'removeAttributeQuotes': false,
+            'removeComments': false,
+            'removeCommentsFromCDATA': false,
+            'removeCDATASectionsFromCDATA': false,
+            'removeEmptyElements': false,
+            'removeOptionalTags': false,
+            'useShortDoctype': false,
+            'removeStyleLinkTypeAttributes': false
+        },
+        'css': {
+            'compatibility': '*'
+        },
+        'js': {
+            'ecma': 5,
+            'comments': false
+        }
+    };
+    const babelOpts = {
+        'presets': [
+            [
+                '@babel/preset-env',
+                {
+                    'targets': {
+                        'ie': '11'
+                    }
+                }
+            ],
+            [
+                'minify', {
+                    'evaluate': false,
+                    'removeDebugger': true,
+                    'removeUndefined': false,
+                    'undefinedToVoid': false
+                }
+            ]
+        ],
+        'comments': false
+    };
 
+    data = taffyData;
     view = new template.Template(path.join(templatePath, 'tmpl'));
+    conf.default = conf.default || {};
 
     /*
      * claim some special filenames in advance, so the All-Powerful Overseer of Filename Uniqueness
@@ -704,9 +747,35 @@ exports.publish = function(taffyData, opts, tutorials) {
 
     staticFiles.forEach(fileName => {
         const toDir = fs.toDir(fileName.replace(fromDir, outdir));
+        const isThirdParty = fileName.split('/').includes('third-party');
 
         fs.mkPath(toDir);
-        fs.copyFileSync(fileName, toDir);
+
+        if ((/(?<!(min))\.((css)|(htm*))$/iu).test(fileName) && !isThirdParty) {
+            minify(fileName, minifyOpts)
+                .then(min => {
+                    const minified = path.join(toDir, path.basename(fileName));
+
+                    logger.info('Minifying: %s', minified);
+                    fs.writeFileSync(minified, min);
+                })
+                .catch(err => logger.error(err.message));
+        } else if ((/(?<!(min))\.(m?js*)$/iu).test(fileName) && !isThirdParty) {
+            const compiled = path.join(toDir, path.basename(fileName));
+
+            babel.transformFile(fileName, babelOpts, (err, out) => {
+                if (err) {
+                    logger.error(err.message);
+
+                    return;
+                }
+
+                logger.info('Compiling: %s', compiled);
+                fs.writeFileSync(compiled, out.code);
+            });
+        } else {
+            fs.copyFileSync(fileName, toDir);
+        }
     });
 
     // copy user-specified static files to outdir
@@ -716,10 +785,10 @@ exports.publish = function(taffyData, opts, tutorials) {
 
     if (conf.default.staticFiles) {
 
-    /*
-     * The canonical property name is `include`. We accept `paths` for backwards compatibility
-     * with a bug in JSDoc 3.2.x.
-     */
+        /*
+         * The canonical property name is `include`. We accept `paths` for backwards compatibility
+         * with a bug in JSDoc 3.2.x.
+         */
         staticFilePaths = conf.default.staticFiles.include ||
             conf.default.staticFiles.paths ||
             [];
@@ -819,7 +888,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     view.layoutOptions = getLayoutOptions();
     // once for all
     view.nav = buildNav(members);
-    view.searchList = searchList();
+    view.searchList = searchListArray;
     attachModuleSymbols(find({ 'longname': { 'left': 'module:' } }), members.modules);
 
     // generate the pretty-printed source files first so other pages can link to them

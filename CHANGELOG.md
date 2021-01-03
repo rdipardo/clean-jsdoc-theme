@@ -6,9 +6,8 @@
   the `text` file type so that markup like this:
 
   <code>
-
   &#96;&#96;&#96;text<br/>
-  npm i && npm i jsdoc --no-save<br/>
+        npm i && npm i jsdoc --no-save</br>
   &#96;&#96;&#96;
   </code>
 
