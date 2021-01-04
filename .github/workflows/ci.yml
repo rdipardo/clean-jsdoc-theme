@@ -2,8 +2,7 @@ name: Chrome, Firefox, IE, Safari on macOS
 on:
   push:
     branches:
-      #- develop
-      - master
+      - develop
   pull_request:
     branches:
       - master

@@ -1,3 +1,21 @@
+## 2.3.0
+
+### Fixed
+- restore `fs-extra` dependency removed in last release
+- defer loading font-awesome assets until DOM is ready so that
+  error-handler actually works
+
+### Changed
+- use the [`overlayscrollbars`][] npm package
+- compile and minify all non-third-party scripts
+- minify all non-third-party static assets
+
+[`overlayscrollbars`]: https://www.npmjs.com/package/overlayscrollbars
+
+### Added
+- improve code prettifier with more keywords and smarter regex matching
+- give regex literals their own style rule
+
 ## 2.2.0
 
 ### Fixed

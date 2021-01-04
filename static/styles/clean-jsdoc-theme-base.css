@@ -83,15 +83,18 @@ pre {
     transform: scale(1);
 }
 
-/* This rule is adapted from the "tomorrow" theme for Google Code Prettify
+/*! This rule is adapted from the "tomorrow" theme for Google Code Prettify
  * @copyright Yoshihide Jimbo
  * @license MIT
  * @url https://github.com/jmblog/color-themes-for-google-code-prettify
  */
+
 /* stylelint-disable */
+
 ol.linenums {
     margin-top: 0;
     margin-bottom: 0;
     list-style-position: outside;
 }
+
 /* stylelint-enable */
