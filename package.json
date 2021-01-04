@@ -7,8 +7,8 @@
         "lint:js": "eslint --fix *.js static/scripts tests/specs",
         "lint:style": "stylelint static/styles/",
         "lint": "concurrently --prefix \"{time}-{pid}\" \"npm run lint:js\" \"npm run lint:style\"",
-        "test": "npm run lint && ./demo/copy && node_modules/.bin/jsdoc -c jsdoc-config.json",
-        "test:win": "npm run lint && demo\\copy && node_modules\\.bin\\jsdoc -c jsdoc-config.json",
+        "test": "npm run lint && ./demo/copy && node_modules/.bin/jsdoc -c jsdoc-config.json --verbose",
+        "test:win": "npm run lint && demo\\copy && node_modules\\.bin\\jsdoc -c jsdoc-config.json --verbose",
         "test:ui": "wdio run ./tests/wdio.conf.js",
         "test:safari": "wdio run ./tests/wdio.safari.conf.js",
         "test:mobile": "wdio run ./tests/wdio.mobile.conf.js",
@@ -61,7 +61,7 @@
         "stylelint-scss": "^3.18.0"
     },
     "dependencies": {
-        "@babel/cli": "^7.12.10",
+        "@babel/core": "^7.12.10",
         "@babel/preset-env": "^7.12.11",
         "babel-preset-minify": "^0.5.1",
         "fs-extra": "^9.0.1",

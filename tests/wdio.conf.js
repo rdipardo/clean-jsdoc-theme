@@ -27,7 +27,7 @@ exports.config = {
             'os': 'OS X',
             'os_version': 'Catalina',
             'browserName': 'Chrome',
-            'browser_version': '83.0',
+            'browser_version': 'latest',
             'browserstack.local': true,
             'browserstack.appiumLogs': false,
             'browserstack.seleniumLogs': false
@@ -39,7 +39,7 @@ exports.config = {
             'os': 'Windows',
             'os_version': '10',
             'browserName': 'Firefox',
-            'browser_version': 'latest-beta',
+            'browser_version': 'latest',
             'browserstack.local': true,
             'browserstack.appiumLogs': false,
             'browserstack.seleniumLogs': false
