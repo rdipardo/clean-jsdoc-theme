@@ -11,6 +11,17 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
+    - name: Set up BrowserStack env
+      uses: browserstack/github-actions/setup-env@master
+      with:
+        username:  ${{ secrets.BROWSERSTACK_USERNAME }}
+        access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+    - name: Start BrowserStackLocal Tunnel
+      uses: browserstack/github-actions/setup-local@master
+      with:
+        local-testing: start
+        local-logging-level: false
+        local-identifier: random
     - uses: actions/checkout@v2
     - name: Set up node env
       uses: actions/setup-node@v2.1.4
@@ -34,7 +45,11 @@ jobs:
       env:
         BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
         BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-        PORT: 3003
+        PORT: 8099
       run: |
         npm run bs:android
         npm run bs:ios
+    - name: Stop BrowserStackLocal
+      uses: browserstack/github-actions/setup-local@master
+      with:
+        local-testing: stop
