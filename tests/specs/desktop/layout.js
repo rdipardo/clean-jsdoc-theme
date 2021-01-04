@@ -7,8 +7,6 @@ if (process.env.SAFARI) {
 describe('Page layout', () => {
     let searchBox = null;
 
-    beforeAll(() => browser.setTimeout({ 'pageLoad': 10000 }));
-
     beforeEach(async () => {
         await (async () => {
             await browser.url(`${HOME_PAGE}`);

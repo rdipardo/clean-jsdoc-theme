@@ -747,7 +747,7 @@ exports.publish = function(taffyData, opts, tutorials) {
 
     staticFiles.forEach(fileName => {
         const toDir = fs.toDir(fileName.replace(fromDir, outdir));
-        const isThirdParty = fileName.split('/').includes('third-party');
+        const isThirdParty = fileName.split(path.sep).includes('third-party');
 
         fs.mkPath(toDir);
 

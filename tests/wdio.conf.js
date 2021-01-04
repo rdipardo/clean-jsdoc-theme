@@ -18,7 +18,8 @@ exports.config = {
             'browserstack.sendKeys': true,
             'browserstack.local': true,
             'browserstack.appiumLogs': false,
-            'browserstack.seleniumLogs': false
+            'browserstack.seleniumLogs': false,
+            'browserstack.localIdentifier': process.env.BROWSERSTACK_LOCAL_IDENTIFIER
         },
         {
             'name': 'Chrome-ui-test',
@@ -27,10 +28,11 @@ exports.config = {
             'os': 'OS X',
             'os_version': 'Catalina',
             'browserName': 'Chrome',
-            'browser_version': '83.0',
+            'browser_version': 'latest',
             'browserstack.local': true,
             'browserstack.appiumLogs': false,
-            'browserstack.seleniumLogs': false
+            'browserstack.seleniumLogs': false,
+            'browserstack.localIdentifier': process.env.BROWSERSTACK_LOCAL_IDENTIFIER
         },
         {
             'name': 'Firefox-ui-test',
@@ -39,16 +41,17 @@ exports.config = {
             'os': 'Windows',
             'os_version': '10',
             'browserName': 'Firefox',
-            'browser_version': 'latest-beta',
+            'browser_version': 'latest',
             'browserstack.local': true,
             'browserstack.appiumLogs': false,
-            'browserstack.seleniumLogs': false
+            'browserstack.seleniumLogs': false,
+            'browserstack.localIdentifier': process.env.BROWSERSTACK_LOCAL_IDENTIFIER
         }
     ],
     'logLevel': 'error',
     'coloredLogs': false,
     'baseUrl': `http://localhost:${process.env.PORT || 3000}`,
-    'waitforTimeout': 50000,
+    'waitforTimeout': 100000,
     'connectionRetryTimeout': 90000,
     'connectionRetryCount': 3,
     'framework': 'jasmine',

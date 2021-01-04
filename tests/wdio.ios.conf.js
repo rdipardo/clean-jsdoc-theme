@@ -16,7 +16,8 @@ exports.config = {
         'browserName': 'iPhone',
         'browserstack.local': true,
         'browserstack.appiumLogs': false,
-        'browserstack.seleniumLogs': false
+        'browserstack.seleniumLogs': false,
+        'browserstack.localIdentifier': process.env.BROWSERSTACK_LOCAL_IDENTIFIER
     }],
     'logLevel': 'error',
     'coloredLogs': false,

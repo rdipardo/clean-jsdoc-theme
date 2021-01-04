@@ -19,6 +19,7 @@ describe('Mobile page layout', () => {
 
     it('should toggle nav bar when button is tapped', async () => {
         const navicon = await browser.$('.navicon-button.x');
+        const trigger = await browser.$('#nav-trigger');
 
         await navicon.click();
 
@@ -28,7 +29,13 @@ describe('Mobile page layout', () => {
 
         await navicon.click();
 
-        expect(await searchBox.isDisplayedInViewport()).toBeFalse();
+        await browser.waitUntil(async () => !await searchBox.isDisplayedInViewport(),
+        {
+            'timeout': 1000,
+            'timeoutMsg': 'expected nav bar to disappear after 1s'
+        });
+
+        expect(await trigger.getAttribute('checked')).toBeFalsy();
     });
 
     it('should hide nav bar on link navigation', async () => {

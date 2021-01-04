@@ -17,7 +17,8 @@ exports.config = {
             'browser_version': '12.1',
             'browserstack.local': true,
             'browserstack.appiumLogs': false,
-            'browserstack.seleniumLogs': false
+            'browserstack.seleniumLogs': false,
+            'browserstack.localIdentifier': process.env.BROWSERSTACK_LOCAL_IDENTIFIER
     }],
     'logLevel': 'error',
     'coloredLogs': false,
