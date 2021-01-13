@@ -3,10 +3,10 @@ on:
   push:
     branches:
       - develop
+      - '!dependabot/**'
   pull_request:
     branches:
       - master
-      - '!dependabot/**'
 jobs:
   build:
     runs-on: ubuntu-20.04
