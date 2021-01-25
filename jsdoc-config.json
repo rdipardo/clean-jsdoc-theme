@@ -45,7 +45,8 @@
             ],
             "add_assets": [
                 {
-                    "href": "img/html-5.png"
+                    "href": "img/html-5.png",
+                    "type": "image/x-icon"
                 }
             ],
             "overlay_scrollbar": {

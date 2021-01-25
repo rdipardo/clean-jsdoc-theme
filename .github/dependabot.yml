@@ -9,12 +9,3 @@ updates:
       timezone: "America/Toronto"
     commit-message:
       prefix: gh-actions
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-      time: "04:00"
-      timezone: "America/Toronto"
-    versioning-strategy: lockfile-only
-    commit-message:
-      prefix: dependencies

@@ -18,10 +18,10 @@
        src.type = 'text/css'
        src.media = 'screen'
        src.rel = 'stylesheet'
-    } else if (!src.type && !src.rel &&
+    } else if (!src.type || !src.rel &&
         ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'ico'].includes(ext.toLowerCase())) {
-       src.type = 'image/x-icon'
-       src.rel = 'shortcut icon'
+       src.type = src.type || 'image/x-icon'
+       src.rel = src.rel || 'shortcut icon'
     }
     return src
   }
@@ -30,7 +30,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <!-- Adding meta -->
     <?js if(this.meta !== undefined) { ?>
       <?js this.meta.forEach(function(src){ ?>
         <meta <?js=Object.keys(src).map(key => `${key}="${src[key]}"`).join(" ") ?>>
@@ -51,23 +50,23 @@
     <link type="text/css" rel="stylesheet" media="screen" href="styles/clean-jsdoc-theme-base.css">
     <link type="text/css" rel="stylesheet" media="screen" href="styles/clean-jsdoc-colorscheme.css">
     <link type="text/css" rel="stylesheet" media="screen" href="styles/<?js= this.theme ?>">
-    <!-- Adding overlay -->
+
     <?js if(this.layoutOptions.wantOverlay) { ?>
     <link type="text/css" rel="stylesheet" media="screen" href="styles/third-party/OverlayScrollbars.min.css">
     <?js } ?>
-    <!-- Adding assets -->
+
     <?js if(this.externalAssets !== undefined) { ?>
       <?js this.externalAssets.forEach(src => { ?>
         <link <?js=Object.keys(src).map(key => `${key}="${toAssetLink(src)[key]}"`).join(" ") ?>>
       <?js }) ?>
     <?js } ?>
-    <!-- Adding style-->
+
     <?js if(this.includeCss !== undefined) { ?>
       <?js this.includeCss.forEach(function(source){ ?>
         <link type="text/css" rel="stylesheet" href="<?js= source ?>">
       <?js }) ?>
     <?js } ?>
-    <!-- Dynamic style tweaks -->
+
     <?js if (this.layoutOptions.noSearch) { ?>
       <style>
         nav > h2 {
@@ -85,6 +84,7 @@
         }
       </style>
     <?js } ?>
+
     <style>
       <?js
         const isTitleSet = env.opts && env.opts.theme_opts && env.opts.theme_opts.title
@@ -95,19 +95,19 @@
           margin-top: <?js= headRoom?>px;
       }
     </style>
-    <!-- Add inline style -->
+
     <?js if (this.dynamicStyle !== undefined ) { ?>
     <style>
       <?js= this.dynamicStyle ?>
     </style>
     <?js } ?>
-    <!-- Adding external script-->
+
     <?js if(this.dynamicScriptSrc !== undefined) { ?>
       <?js this.dynamicScriptSrc.forEach(function(src){ ?>
         <script <?js=Object.keys(src).map(key => `${key}="${src[key]}"`).join(" ") ?> ></script>
       <?js }) ?>
     <?js } ?>
-    <!-- Adding scripts-->
+
     <?js if(this.includeScript !== undefined) { ?>
         <?js this.includeScript.forEach(function(source){ ?>
         <script src="<?js= source ?>"></script>
