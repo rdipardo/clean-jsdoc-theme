@@ -1,3 +1,5 @@
+const accordionLocalStorageKey = 'accordion-id';
+
 function copy(value) {
     const el = document.createElement('textarea');
 
@@ -68,4 +70,87 @@ function copyFunction (id) {
             `${langNameDiv}${langName.length ? copyToClipboard : ''}</div>`;
         allPre[i].setAttribute('id', id);
     }
+})();
+
+
+/**
+ * Function to set accordion id to localStorage.
+ * @param {string} id Accordion id
+ */
+function setAccordionIdToLocalStorage(id) {
+
+    /**
+     * @type {object}
+     */
+    const ids = JSON.parse(localStorage.getItem(accordionLocalStorageKey));
+
+    ids[id] = id;
+    localStorage.setItem(accordionLocalStorageKey, JSON.stringify(ids));
+}
+
+/**
+ * Function to remove accordion id from localStorage.
+ * @param {string} id Accordion id
+ */
+function removeAccordionIdFromLocalStorage(id) {
+
+    /**
+     * @type {object}
+     */
+    const ids = JSON.parse(localStorage.getItem(accordionLocalStorageKey));
+
+    delete ids[id];
+    localStorage.setItem(accordionLocalStorageKey, JSON.stringify(ids));
+}
+
+/**
+ * Function to get all accordion ids from localStorage.
+ *
+ * @returns {object}
+ */
+function getAccordionIdsFromLocalStorage() {
+
+    /**
+     * @type {object}
+     */
+    const ids = JSON.parse(localStorage.getItem(accordionLocalStorageKey));
+
+    return ids || {};
+}
+
+
+function toggleAccordion(element) {
+    const currentNode = element;
+    const isCollapsed = currentNode.classList.contains('collapsed');
+    const currentNodeUL = currentNode.querySelector('ul');
+
+    if (isCollapsed) {
+        const { scrollHeight } = currentNodeUL;
+
+        currentNodeUL.style.height = `${scrollHeight + 20}px`;
+        currentNode.classList.remove('collapsed');
+        setAccordionIdToLocalStorage(currentNode.id);
+    } else {
+        currentNodeUL.style.height = '0px';
+        currentNode.classList.add('collapsed');
+        removeAccordionIdFromLocalStorage(currentNode.id);
+    }
+}
+
+(function() {
+    if (localStorage.getItem(accordionLocalStorageKey) === undefined ||
+    localStorage.getItem(accordionLocalStorageKey) === null) {
+        localStorage.setItem(accordionLocalStorageKey, '{}');
+    }
+    const getAllAccordion = document.querySelectorAll('.accordion');
+    const ids = getAccordionIdsFromLocalStorage();
+
+    getAllAccordion.forEach(item => {
+        const clickElement = item.querySelector('.accordion-title');
+
+        clickElement.addEventListener('click', () => toggleAccordion(item));
+        if (item.id in ids) {
+            toggleAccordion(item);
+        }
+    });
 })();

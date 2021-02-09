@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - develop
+      - '!dependabot/**'
   pull_request:
     branches:
       - master

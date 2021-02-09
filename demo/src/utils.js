@@ -33,6 +33,48 @@ const fetchWeatherIcon = function (reading) {
 }
 
 /**
+ * Prepares weather data for display
+ * @private
+ */
+const formatData = function (reading) {
+    const truncate = val => {
+        const parsedTemp = parseFloat(val).toFixed(0);
+
+        return Math.abs(parsedTemp) === 0 ? 0 : parsedTemp;
+    }
+
+    const celsiusToFahrenheit = val => {
+        const tempInFahrenheit = parseFloat(val) * 9 / 5 + 32;
+
+        return `${truncate(parseFloat(val) * 9 / 5 + 32)} \u00B0F`;
+    }
+
+    const millimetersToInches = val => {
+        return `${(parseFloat(val) * 0.039370).toFixed(2)} inches`;
+    }
+
+    const metersPerSecondToMilesPerHour = val => {
+        return `${truncate(parseFloat(val) * 3600 / 1609.344)} miles/hr`;
+    }
+
+    reading.brief = reading.brief.replace('_', ' ').toUpperCase();
+    reading.temp = `${truncate(reading.temp)} \u00B0C`;
+    reading.high = `${truncate(reading.high)} \u00B0C`;
+    reading.low = `${truncate(reading.low)} \u00B0C`;
+    reading.windSpeed = `${truncate(reading.windSpeed)} meters/sec`;
+
+    if (reading.rainAmount) {
+        reading.rainAmount = `${truncate(reading.rainAmount)} mm`;
+    }
+
+    if (reading.snowAmount) {
+        reading.snowAmount = `${truncate(reading.snowAmount)} mm`;
+    }
+
+    return reading;
+}
+
+/**
  * Encapsulates weather forecast information
  */
 class WeatherReading {

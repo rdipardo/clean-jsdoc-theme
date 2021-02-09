@@ -95,7 +95,7 @@ nav h2, nav h3, nav h3 a {
 
 /* stylelint-disable */
 
-.sidebar-list-div>ul>li>a {
+.sidebar-list-div>ul>li a {
     color: #c9d1d3;
 }
 
@@ -104,6 +104,10 @@ nav h2, nav h3, nav h3 a {
 }
 
 /* stylelint-enable */
+
+.accordion-content {
+    background: rgba(255, 255, 255, 0.1);
+}
 
 footer {
     background: #101010;
@@ -238,4 +242,3 @@ table .params thead tr, .params .params thead tr, .props .props thead tr {
     background: #ffce76;
     color: #000;
 }
-

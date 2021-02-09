@@ -1,3 +1,8 @@
+## 2.3.1
+
+### Fixed
+- prevent regex literals from matching with the division operator
+
 ## 2.3.0
 
 ### Fixed
