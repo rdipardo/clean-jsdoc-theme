@@ -120,7 +120,7 @@ nav a:hover {
 
 /* stylelint-disable */
 
-.sidebar-list-div>ul>li>a {
+.sidebar-list-div>ul>li a {
     color: #c9d1d3;
 }
 
@@ -129,6 +129,10 @@ nav a:hover {
 }
 
 /* stylelint-enable */
+
+.accordion-content {
+    background: rgba(255, 255, 255, 0.05);
+}
 
 footer {
     color: #555;

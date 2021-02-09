@@ -10,6 +10,7 @@ const fse = require('fs-extra');
 const babel = require('@babel/core');
 const glob = require('glob');
 const minify = require('minify');
+const svgDownIcon = require('./helpers/down-arrow');
 
 const { htmlsafe } = helper;
 const { linkto } = helper;
@@ -480,7 +481,33 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
                 itemsNav += `<li>${linktoFn('', item.name)}`;
                 itemsNav += '</li>';
             } else if (!hasOwnProp.call(itemsSeen, item.longname)) {
-                itemsNav += `<li>${linktoFn(item.longname, item.name.replace(/^module:/u, ''))}`;
+
+                /**
+                 * Only have accordion class name if it have any child.
+                 * Otherwise it didn't makes any sense.
+                 */
+                const accordionClassName = methods.length ? '"accordion collapsed"' : '""';
+
+                /**
+                 * Id give to accordion.
+                 */
+                const accordionId = methods.length ? Math.floor(Math.random() * 10000000) : '""';
+
+                itemsNav += `<li class=${
+                    accordionClassName
+                    } id=${
+                    accordionId
+                    }>`;
+
+                const linkTitle = linktoFn(item.longname, item.name.replace(/^module:/u, ''));
+
+                if (methods.length) {
+                    itemsNav += `<div class="accordion-title">${linkTitle}${svgDownIcon}</div>`;
+                } else {
+                    itemsNav += linkTitle;
+                }
+
+
                 if (haveSearch) {
 
                     searchListArray.push(JSON.stringify({
@@ -489,7 +516,7 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
                     }));
                 }
                 if (methods.length) {
-                    itemsNav += '<ul class=\'methods\'>';
+                    itemsNav += '<ul class=\'methods accordion-content\'>';
 
                     methods.forEach(method => {
                         let name = method.longname.split('#');
