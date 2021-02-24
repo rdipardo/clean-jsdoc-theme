@@ -7,18 +7,20 @@ exports.config = {
     'key': process.env.BROWSERSTACK_ACCESS_KEY,
     'specs': ['./tests/specs/desktop/**'],
     'capabilities': [{
-            'name': 'Safari-macOS-ui-test',
-            'project': 'clean-jsdoc',
-            'build': 'clean-jsdoc-ui-safari-testing',
+        'browserName': 'Safari',
+        // https://github.com/webdriverio/webdriverio/issues/4565
+        'browserVersion': '12.1',
+        'bstack:options': {
+            'sessionName': 'Safari-macOS-ui-test',
+            'projectName': 'clean-jsdoc',
+            'buildName': 'clean-jsdoc-ui-safari-testing',
             'os': 'OS X',
-            'os_version': 'Mojave',
-            'browserName': 'Safari',
-            // https://github.com/webdriverio/webdriverio/issues/4565
-            'browser_version': '12.1',
-            'browserstack.local': true,
-            'browserstack.appiumLogs': false,
-            'browserstack.seleniumLogs': false,
-            'browserstack.localIdentifier': process.env.BROWSERSTACK_LOCAL_IDENTIFIER
+            'osVersion': 'Mojave',
+            'local': true,
+            'appiumLogs': false,
+            'seleniumLogs': false,
+            'localIdentifier': process.env.BROWSERSTACK_LOCAL_IDENTIFIER
+        }
     }],
     'logLevel': 'error',
     'coloredLogs': false,
@@ -35,8 +37,8 @@ exports.config = {
         console.log('Connecting to local server');
 
         return new Promise((resolve, reject) => {
-            exports.bs_local = new browserstack.Local();
-            exports.bs_local.start({
+            exports.bsLocal = new browserstack.Local();
+            exports.bsLocal.start({
                 'key': exports.config.key,
                 'force': 'true',
                 'onlyAutomate': 'true'
@@ -50,7 +52,7 @@ exports.config = {
         });
     },
     'onComplete'(capabilties, specs) {
-        exports.bs_local.stop(() => {
+        exports.bsLocal.stop(() => {
             console.log('Shutting down local server');
         });
     }

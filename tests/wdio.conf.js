@@ -8,44 +8,55 @@ exports.config = {
     'specs': ['./tests/specs/desktop/**'],
     'capabilities': [
         {
-            'name': 'IE-ui-test',
-            'project': 'clean-jsdoc',
-            'build': 'clean-jsdoc-ui-testing',
-            'os': 'Windows',
-            'os_version': '7',
             'browserName': 'IE',
-            'browser_version': '11.0',
-            'browserstack.sendKeys': true,
-            'browserstack.local': true,
-            'browserstack.appiumLogs': false,
-            'browserstack.seleniumLogs': false,
-            'browserstack.localIdentifier': process.env.BROWSERSTACK_LOCAL_IDENTIFIER
+            'browserVersion': '11.0',
+            'bstack:options': {
+                'sessionName': 'IE-ui-test',
+                'projectName': 'clean-jsdoc',
+                'buildName': 'clean-jsdoc-ui-testing',
+                'os': 'Windows',
+                'osVersion': '7',
+                'ie': {
+                    'noFlash': true,
+                    "compatibility" : "11001",
+                    'enablePopups': false,
+                },
+                'local': true,
+                'appiumLogs': false,
+                'seleniumLogs': false,
+                'seleniumVersion': '3.5.2',
+                'localIdentifier': process.env.BROWSERSTACK_LOCAL_IDENTIFIER
+            }
         },
         {
-            'name': 'Chrome-ui-test',
-            'project': 'clean-jsdoc',
-            'build': 'clean-jsdoc-ui-testing',
-            'os': 'OS X',
-            'os_version': 'Catalina',
             'browserName': 'Chrome',
-            'browser_version': 'latest',
-            'browserstack.local': true,
-            'browserstack.appiumLogs': false,
-            'browserstack.seleniumLogs': false,
-            'browserstack.localIdentifier': process.env.BROWSERSTACK_LOCAL_IDENTIFIER
+            'browserVersion': 'latest',
+            'bstack:options': {
+                'sessionName': 'Chrome-ui-test',
+                'projectName': 'clean-jsdoc',
+                'buildName': 'clean-jsdoc-ui-testing',
+                'os': 'OS X',
+                'osVersion': 'Catalina',
+                'local': true,
+                'appiumLogs': false,
+                'seleniumLogs': false,
+                'localIdentifier': process.env.BROWSERSTACK_LOCAL_IDENTIFIER
+            }
         },
         {
-            'name': 'Firefox-ui-test',
-            'project': 'clean-jsdoc',
-            'build': 'clean-jsdoc-ui-testing',
-            'os': 'Windows',
-            'os_version': '10',
             'browserName': 'Firefox',
-            'browser_version': 'latest',
-            'browserstack.local': true,
-            'browserstack.appiumLogs': false,
-            'browserstack.seleniumLogs': false,
-            'browserstack.localIdentifier': process.env.BROWSERSTACK_LOCAL_IDENTIFIER
+            'browserVersion': 'latest',
+            'bstack:options': {
+                'sessionName': 'Firefox-ui-test',
+                'projectName': 'clean-jsdoc',
+                'buildName': 'clean-jsdoc-ui-testing',
+                'os': 'Windows',
+                'osVersion': '10',
+                'local': true,
+                'appiumLogs': false,
+                'seleniumLogs': false,
+                'localIdentifier': process.env.BROWSERSTACK_LOCAL_IDENTIFIER
+            }
         }
     ],
     'logLevel': 'error',
@@ -63,8 +74,8 @@ exports.config = {
         console.log('Connecting to local server');
 
         return new Promise((resolve, reject) => {
-            exports.bs_local = new browserstack.Local();
-            exports.bs_local.start({
+            exports.bsLocal = new browserstack.Local();
+            exports.bsLocal.start({
                 'key': exports.config.key,
                 'force': 'true',
                 'onlyAutomate': 'true'
@@ -78,7 +89,7 @@ exports.config = {
         });
     },
     'onComplete'(capabilties, specs) {
-        exports.bs_local.stop(() => {
+        exports.bsLocal.stop(() => {
             console.log('Shutting down local server');
         });
     }

@@ -7,8 +7,6 @@ if (process.env.SAFARI) {
 describe('Line numbers', () => {
     const SOURCE_LINE = 'line29';
 
-    beforeAll(() => browser.setTimeout({ 'pageLoad': 10000 }));
-
     beforeEach(async () => {
         await (async () => {
             await browser.url(`${HOME_PAGE}/Environment.html`);
