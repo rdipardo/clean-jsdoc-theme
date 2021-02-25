@@ -11,7 +11,7 @@ exports.config = {
         'bstack:options': {
             'sessionName': 'Android-ui-test',
             'projectName': 'clean-jsdoc',
-            'buildName': 'clean-jsdoc-ui-safari-testing',
+            'buildName': 'clean-jsdoc-mobile-ui-testing',
             'deviceName': 'Google Pixel 3',
             'osVersion': '9.0',
             'realMobile': true,

@@ -48,6 +48,12 @@ describe('Mobile page layout', () => {
         await searchBox.setValue('cr');
         const foundMethod = await browser.$('[href="Tree.html#crop"]');
 
+        await browser.waitUntil(() => foundMethod.isClickable(),
+            {
+                'timeout': 10000,
+                'timeoutMsg': 'expected link to respond to clicks'
+            }
+        );
         await foundMethod.click();
 
         const title = await browser.getTitle();

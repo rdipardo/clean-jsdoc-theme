@@ -11,7 +11,7 @@ exports.config = {
         'bstack:options': {
             'sessionName': 'iPhone-ui-test',
             'projectName': 'clean-jsdoc',
-            'buildName': 'clean-jsdoc-ui-safari-testing',
+            'buildName': 'clean-jsdoc-mobile-ui-testing',
             'deviceName': 'iPhone XS',
             'osVersion': '13.3',
             'realMobile': true,
