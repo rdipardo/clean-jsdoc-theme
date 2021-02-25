@@ -142,7 +142,7 @@ function toggleAccordion(element) {
     localStorage.getItem(accordionLocalStorageKey) === null) {
         localStorage.setItem(accordionLocalStorageKey, '{}');
     }
-    const getAllAccordion = document.querySelectorAll('.accordion');
+    const getAllAccordion = Array.prototype.slice.call(document.querySelectorAll('.accordion'));
     const ids = getAccordionIdsFromLocalStorage();
 
     getAllAccordion.forEach(item => {

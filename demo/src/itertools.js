@@ -3,6 +3,7 @@
  * @description Functional transformers for object collections using ES6
  *    features (e.g. computed property names)
  * @see [Computed Property Names]{@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names}
+ * @see [Functional JavaScript, by Michael Fogus]{@link https://www.oreilly.com/library/view/functional-javascript/9781449360757/}
  */
 
 /**
@@ -10,7 +11,7 @@
  * @param {Array<Object>} list - An object collection
  * @param {string} key - The property to sort by
  * @param {boolean} [desc=false] - Option to sort in reverse order
- * @returns {Array<Object>}
+ * @returns {Array<Object>} - A sorted copy of `list`
  */
 const sortBy = (list, key, desc = false) => {
     const sorted = list
@@ -49,7 +50,8 @@ const sortBy = (list, key, desc = false) => {
 * @param {string} key - A common property whose (numeric) value will be totalled
 * @param {module:itertools~Aggregate} [xform=(x, _, k) => x[`${k}`] += 1] - An
 *  aggregating function
-* @returns {Array<Object.<string, number>>}
+* @returns {Array<Object.<string, number>>} - A mapping of each item in `list`
+*   to its respective frequency
 */
 const frequencyOf = (list, group, key, xform = (x, _, k) => x[`${k}`] += 1) => {
     return sortBy(list, group).reduce((freqs, item) => {
@@ -79,7 +81,7 @@ const frequencyOf = (list, group, key, xform = (x, _, k) => x[`${k}`] += 1) => {
 * @param {Object.<string, number>} - The first object
 * @param {Object.<string, number>} - The second object
 * @param {string} - The name of a property common to both
-* @returns The sum the values of each object's common property
+* @returns {number} - The sum of the values of each object's common property
 * @example
 * const fn = (x, y, k) => x[`${k}`] + y[`${k}`]
 * const h1 = {'height': 7}

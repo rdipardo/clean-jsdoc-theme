@@ -7,17 +7,19 @@ exports.config = {
     'key': process.env.BROWSERSTACK_ACCESS_KEY,
     'specs': ['./tests/specs/mobile/**'],
     'capabilities': [{
-        'name': 'Android-ui-test',
-        'project': 'clean-jsdoc',
-        'build': 'clean-jsdoc-mobile-ui-testing',
-        'device': 'Google Pixel 3',
-        'os_version': '9.0',
-        'realMobile': true,
         'browserName': 'Android',
-        'browserstack.local': true,
-        'browserstack.appiumLogs': false,
-        'browserstack.seleniumLogs': false,
-        'browserstack.localIdentifier': process.env.BROWSERSTACK_LOCAL_IDENTIFIER
+        'bstack:options': {
+            'sessionName': 'Android-ui-test',
+            'projectName': 'clean-jsdoc',
+            'buildName': 'clean-jsdoc-ui-safari-testing',
+            'deviceName': 'Google Pixel 3',
+            'osVersion': '9.0',
+            'realMobile': true,
+            'local': true,
+            'appiumLogs': false,
+            'seleniumLogs': false,
+            'localIdentifier': process.env.BROWSERSTACK_LOCAL_IDENTIFIER
+        }
     }],
     'logLevel': 'error',
     'coloredLogs': false,
@@ -34,8 +36,8 @@ exports.config = {
         console.log('Connecting to local server');
 
         return new Promise((resolve, reject) => {
-            exports.bs_local = new browserstack.Local();
-            exports.bs_local.start({
+            exports.bsLocal = new browserstack.Local();
+            exports.bsLocal.start({
                 'key': exports.config.key,
                 'force': 'true',
                 'onlyAutomate': 'true'
@@ -49,7 +51,7 @@ exports.config = {
         });
     },
     'onComplete'(capabilties, specs) {
-        exports.bs_local.stop(() => {
+        exports.bsLocal.stop(() => {
             console.log('Shutting down local server');
         });
     }
