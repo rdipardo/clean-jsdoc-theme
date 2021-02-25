@@ -74,9 +74,11 @@
     <?js } ?>
     </div>
 
-	<?js if (doc.see) { ?>
-        <h3 class="subsection-title">See:</h3>
-        <p><?js= doc.see ?></p>
+    <?js if (doc.see && doc.see.length) {?>
+        <h3 class="subsection-title">See Also</h3>
+        <ul class="see-links"><?js doc.see.forEach(function(s) { ?>
+            <li><?js= self.linkto(s) ?></li>
+        <?js }); ?></ul>
     <?js } ?>
 
     <?js if (doc.augments && doc.augments.length) { ?>

@@ -151,17 +151,6 @@ if (data.defaultvalue && (data.defaultvaluetype === 'object' || data.defaultvalu
         </div>
     <?js } ?>
 
-    <?js if (data.see && see.length) {?>
-        <div class="details-item-container">
-            <dt class="tag-see">See:</dt>
-            <dd class="tag-see">
-                <ul><?js see.forEach(function(s) { ?>
-                    <li><?js= self.linkto(s) ?></li>
-                <?js }); ?></ul>
-            </dd>
-        </div>
-    <?js } ?>
-
     <?js if (data.todo && todo.length) {?>
         <div class="details-item-container">
             <dt class="tag-todo">To Do:</dt>
