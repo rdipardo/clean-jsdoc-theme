@@ -1,3 +1,16 @@
+## 2.4.0
+
+### Ported from upstream
+- [fold navigation link hierarchies][]
+- move `@see` metadata to [its own section][]
+
+### Fixed
+- display `@see` metadata as a list
+- apply bold font weight to folded link lists as well as childless ones
+
+### Changed
+- use _SEE ALSO_ as external link section heading
+
 ## 2.3.1
 
 ### Fixed
@@ -71,7 +84,7 @@
 ## 2.0.0
 
 ### Added
-- new features introduced by [upstream][]
+- new features introduced [upstream][]
 - the `add_assets` option will generate a `link` tag for stylesheets and
   image icons (so far) when only an `href` attribute is provided.
   Otherwise, it behaves the same as the (removed) `add_style_path` option
@@ -146,5 +159,7 @@
 1.  Fix ordered list style [issue: [#40](https://github.com/ankitskvmdam/clean-jsdoc-theme/issues/40)]
 1.  Fix code overflow issue.
 
-[upstream]: https://github.com/ankitskvmdam/clean-jsdoc-theme/commits/master
+[upstream]: https://github.com/ankitskvmdam/clean-jsdoc-theme/commit/44e76bae8804e0fd17a961347024117b37275a0a#diff-5e733ad892a637d40e61205f71cd63352d98d5ddfd929ab000003eb1eee67fbc
+[fold navigation link hierarchies]: https://github.com/ankitskvmdam/clean-jsdoc-theme/commit/6d6f93123ac51bbb9a2f9bd3ee185deca56b9fd9
+[its own section]: https://github.com/ankitskvmdam/clean-jsdoc-theme/commit/277998015dd209fa548a89081001617df26a6753
 [npm installation steps]: https://github.com/rdipardo/clean-jsdoc-theme#quick-start

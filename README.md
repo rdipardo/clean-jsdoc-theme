@@ -6,14 +6,14 @@
 [![Chrome, Firefox, IE, Safari on macOS Workflow][]][Chrome, Firefox, IE, Safari on macOS]
 [![Chrome on Android, Safari on iOS Workflow][]][Chrome on Android, Safari on iOS]
 [![BrowserStack Status Badge][]][BrowserStack Status]
-[![License: MIT][]][Read the MIT]
+[![Current Release][]][Releases]
 </h3>
 
 <div align="center">
 
-![light_doc_page](https://heredocs.com/clean-jsdoc-theme/img/light_doc_example_2.png)
+![light_doc_page](https://heredocs.com/clean-jsdoc-theme/img/light_doc_example.png)
 ![light_code_example](https://heredocs.com/clean-jsdoc-theme/img/light_code_example.png)
-![dark_doc_page](https://heredocs.com/clean-jsdoc-theme/img/dark_doc_example_2.png)
+![dark_doc_page](https://heredocs.com/clean-jsdoc-theme/img/dark_doc_example.png)
 ![dark_code_example](https://heredocs.com/clean-jsdoc-theme/img/dark_code_example.png)
 </div>
 
@@ -124,7 +124,7 @@ Details of your project, e.g.
 ```json
   "project": {
       "title": "clean-jsdoc",
-      "version": "2.2.0",
+      "version": "2.4.0",
       "repo": "https://github.com/rdipardo/clean-jsdoc-theme"
   }
 ```
@@ -291,7 +291,7 @@ npm run browse
 Copyright (c) 2019 [Ankit Kumar](https://github.com/ankitskvmdam/)<br/>
 Copyright (c) 2020 [Robert Di Pardo](https://github.com/rdipardo/)
 
-Distributed under the terms of the MIT license.
+Distributed under the terms of the [MIT license][Read the MIT].
 
 [clean-jsdoc-theme]: https://github.com/ankitskvmdam/clean-jsdoc-theme
 [Fuse.js]: https://fusejs.io/
@@ -307,5 +307,6 @@ Distributed under the terms of the MIT license.
 [Chrome on Android, Safari on iOS]: https://github.com/rdipardo/clean-jsdoc-theme/actions?query=workflow%3AAndroid
 [BrowserStack Status]: https://automate.browserstack.com/public-build/UmpiQjdrd0h6SGt6YlJYWUUvcERSRXNmZUpaR2pFVFJQb0I0MGwrM0dVcz0tLS9ENVVPc1I1eW5NQUF5MWFEUzUrOUE9PQ==--8a4ece5b7c6ffbe261a062d49079b8408b32760c
 [BrowserStack Status Badge]: https://automate.browserstack.com/badge.svg?badge_key=UmpiQjdrd0h6SGt6YlJYWUUvcERSRXNmZUpaR2pFVFJQb0I0MGwrM0dVcz0tLS9ENVVPc1I1eW5NQUF5MWFEUzUrOUE9PQ==--8a4ece5b7c6ffbe261a062d49079b8408b32760c
-[License: MIT]: https://img.shields.io/github/license/rdipardo/clean-jsdoc-theme.svg?logo=Github
 [Read the MIT]: https://github.com/rdipardo/clean-jsdoc-theme/blob/master/LICENSE
+[Releases]: https://github.com/rdipardo/clean-jsdoc-theme/releases
+[Current Release]: https://img.shields.io/github/package-json/v/rdipardo/clean-jsdoc-theme?logo=github
