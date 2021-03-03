@@ -46,7 +46,7 @@ p {
     width: 100%;
 }
 
-.description>p, .param-desc>p {
+.description>p, .param-desc:not(.flex)>p {
     margin-bottom: 0;
 }
 

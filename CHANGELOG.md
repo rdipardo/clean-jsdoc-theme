@@ -1,3 +1,10 @@
+## 2.4.1
+
+### Fixed
+- keep the bottom margin consistent when `plugins/markdown` doesn't find a `-`
+  after the `@returns` tag -- i.e., when the return value description is wrapped
+  in `<p>` tags instead of `<ul>`s
+
 ## 2.4.0
 
 ### Ported from upstream
