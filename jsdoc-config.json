@@ -26,7 +26,7 @@
             "langNames": false,
             "project": {
                 "title": "clean-jsdoc",
-                "version": "2.4.1",
+                "version": "2.5.0",
                 "repo": "https://github.com/rdipardo/clean-jsdoc-theme"
             },
             "meta": [

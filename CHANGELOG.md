@@ -1,3 +1,17 @@
+## 2.5.0
+
+### Fixed
+- restore list style to `<ul>`s in README pages and make bullets solid to match
+  with `@see` metadata
+
+### Changed
+- update [clean-jsdoc colorscheme][] to make punctuation bolder
+
+### Added
+- recognize JSON syntax in code blocks
+
+[clean-jsdoc colorscheme]: static/styles/clean-jsdoc-colorscheme.css
+
 ## 2.4.1
 
 ### Fixed

@@ -4,6 +4,7 @@
  * @copyright 2020 Robert Di Pardo
  * @license MIT
  * @url https://github.com/rdipardo/clean-jsdoc-theme
+ * v1.1.1 : make punctuation bolder
  * v1.1.0 : add .re style class
  * v1.0.0 : initial release
  */
@@ -47,6 +48,7 @@
 /* operators */
 .pun, .opn, .clo {
     color: #bf8ce1;
+    font-weight: 700;
 }
 
 /* a markup tag name */

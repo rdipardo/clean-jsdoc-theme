@@ -785,7 +785,7 @@ dl.param-type {
 }
 
 .readme ul, .readme ol {
-    list-style: circle;
+    list-style: disc !important;
 }
 
 .readme ul li, .readme ol li {
