@@ -1,3 +1,14 @@
+## 2.5.1
+
+### Fixed
+**publish.js**
+- remove invalid option from `minifyOpts`
+- correct file filter so that `minify` can actually process HTML
+- prevent legacy HTML from being invalidated by overly aggressive optimization
+
+### Changed
+- slightly better contrast in JSON syntax highlighting
+
 ## 2.5.0
 
 ### Fixed

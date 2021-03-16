@@ -658,14 +658,16 @@ exports.publish = function(taffyData, opts, tutorials) {
             'removeEmptyElements': false,
             'removeOptionalTags': false,
             'useShortDoctype': false,
-            'removeStyleLinkTypeAttributes': false
+            'removeStyleLinkTypeAttributes': false,
+            'removeScriptTypeAttributes': false,
+            'keepClosingSlash': true,
+            'html5': false
         },
         'css': {
             'compatibility': '*'
         },
         'js': {
-            'ecma': 5,
-            'comments': false
+            'ecma': 5
         }
     };
     const babelOpts = {
@@ -778,7 +780,7 @@ exports.publish = function(taffyData, opts, tutorials) {
 
         fs.mkPath(toDir);
 
-        if ((/(?<!(min))\.((css)|(htm*))$/iu).test(fileName) && !isThirdParty) {
+        if ((/(?<!(min))\.((css)|(html))$/iu).test(fileName) && !isThirdParty) {
             minify(fileName, minifyOpts)
                 .then(min => {
                     const minified = path.join(toDir, path.basename(fileName));
