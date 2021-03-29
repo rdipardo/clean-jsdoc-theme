@@ -11,9 +11,9 @@
 
 <div align="center">
 
-![light_doc_page](https://heredocs.com/clean-jsdoc-theme/img/light_doc_example_2.png)
+![light_doc_page](https://heredocs.com/clean-jsdoc-theme/img/light_doc_example.png)
 ![light_code_example](https://heredocs.com/clean-jsdoc-theme/img/light_code_example.png)
-![dark_doc_page](https://heredocs.com/clean-jsdoc-theme/img/dark_doc_example_2.png)
+![dark_doc_page](https://heredocs.com/clean-jsdoc-theme/img/dark_doc_example.png)
 ![dark_code_example](https://heredocs.com/clean-jsdoc-theme/img/dark_code_example.png)
 </div>
 

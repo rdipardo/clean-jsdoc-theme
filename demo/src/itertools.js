@@ -11,7 +11,7 @@
  * @param {Array<Object>} list - An object collection
  * @param {string} key - The property to sort by
  * @param {boolean} [desc=false] - Option to sort in reverse order
- * @returns {Array<Object>} - A sorted copy of `list`
+ * @returns {Array<Object>} A sorted copy of `list`
  */
 const sortBy = (list, key, desc = false) => {
     const sorted = list
@@ -50,7 +50,7 @@ const sortBy = (list, key, desc = false) => {
 * @param {string} key - A common property whose (numeric) value will be totalled
 * @param {module:itertools~Aggregate} [xform=(x, _, k) => x[`${k}`] += 1] - An
 *  aggregating function
-* @returns {Array<Object.<string, number>>} - A mapping of each item in `list`
+* @returns {Array<Object.<string, number>>} A mapping of each item in `list`
 *   to its respective frequency
 */
 const frequencyOf = (list, group, key, xform = (x, _, k) => x[`${k}`] += 1) => {
@@ -81,7 +81,7 @@ const frequencyOf = (list, group, key, xform = (x, _, k) => x[`${k}`] += 1) => {
 * @param {Object.<string, number>} - The first object
 * @param {Object.<string, number>} - The second object
 * @param {string} - The name of a property common to both
-* @returns {number} - The sum of the values of each object's common property
+* @returns {number} The sum of the values of each object's common property
 * @example
 * const fn = (x, y, k) => x[`${k}`] + y[`${k}`]
 * const h1 = {'height': 7}

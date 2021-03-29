@@ -37,7 +37,7 @@
     <?js } ?>
     <title>
       <?js if (this.project !== undefined && this.project.title !== undefined) { ?>
-      <?js= this.project.title ?> - <?js= title ?>
+      <?js= this.project.title ?> | <?js= title ?>
       <?js } else { ?>
       <?js= title ?>
       <?js } ?>
@@ -200,7 +200,7 @@
     }
 
     var fa = document.createElement('link')
-    fa.href = 'https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'
+    fa.href = 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
     fa.rel = 'stylesheet'
     fa.type = 'text/css'
     fa.onerror = replaceIcon
