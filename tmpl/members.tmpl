@@ -13,7 +13,9 @@ var self = this;
 
 <?js if (data.description) { ?>
     <div class="description">
-        <?js= data.description ?>
+        <div class="param-desc flex">
+            <?js= data.description ?>
+        </div>
         <?js if (data.type && data.type.names) {?>
             <div class="member-item-container flex">
                 <strong>Type: </strong>
