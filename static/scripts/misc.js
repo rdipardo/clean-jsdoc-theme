@@ -119,17 +119,28 @@ function getAccordionIdsFromLocalStorage() {
 }
 
 
-function toggleAccordion(element) {
+function toggleAccordion(element, isImmediate) {
     const currentNode = element;
     const isCollapsed = currentNode.classList.contains('collapsed');
-    const currentNodeUL = currentNode.querySelector('ul');
+    const currentNodeUL = currentNode.querySelector('.accordion-content');
 
     if (isCollapsed) {
+        if (isImmediate) {
+            currentNode.classList.remove('collapsed');
+            currentNodeUL.style.height = 'auto';
+
+            return;
+        }
+
         const { scrollHeight } = currentNodeUL;
 
-        currentNodeUL.style.height = `${scrollHeight + 20}px`;
+        currentNodeUL.style.height = `${scrollHeight}px`;
         currentNode.classList.remove('collapsed');
         setAccordionIdToLocalStorage(currentNode.id);
+        setTimeout(() => {
+            if (!currentNode.classList.contains('collapsed'))
+            { currentNodeUL.style.height = 'auto'; }
+        }, 600);
     } else {
         currentNodeUL.style.height = '0px';
         currentNode.classList.add('collapsed');
@@ -142,15 +153,54 @@ function toggleAccordion(element) {
     localStorage.getItem(accordionLocalStorageKey) === null) {
         localStorage.setItem(accordionLocalStorageKey, '{}');
     }
-    const getAllAccordion = Array.prototype.slice.call(document.querySelectorAll('.accordion'));
+    const allAccordion = document.querySelectorAll('.accordion-heading');
     const ids = getAccordionIdsFromLocalStorage();
 
-    getAllAccordion.forEach(item => {
-        const clickElement = item.querySelector('.accordion-title');
 
-        clickElement.addEventListener('click', () => toggleAccordion(item));
-        if (item.id in ids) {
-            toggleAccordion(item);
+    allAccordion.forEach(item => {
+        const parent = item.parentNode;
+
+        item.addEventListener('click', () => {
+            toggleAccordion(parent);
+        });
+        if (parent.id in ids) {
+            toggleAccordion(parent, true);
         }
     });
+})();
+
+
+/**
+ *
+ * @param {HTMLElement} element
+ * @param {HTMLElement} navbar
+ */
+function toggleNavbar(element, navbar) {
+
+    /**
+     * If class is present than it is expanded.
+     */
+    const isExpanded = element.classList.contains('expanded');
+
+    if (isExpanded) {
+        element.classList.remove('expanded');
+        navbar.classList.remove('expanded');
+    } else {
+        element.classList.add('expanded');
+        navbar.classList.add('expanded');
+    }
+}
+
+/**
+ * Navbar ham
+ */
+(function() {
+    const navbarHam = document.querySelector('#navbar-ham');
+    const navbar = document.querySelector('#navbar');
+
+    if (navbarHam && navbar) {
+        navbarHam.addEventListener('click', () => {
+            toggleNavbar(navbarHam, navbar);
+        });
+    }
 })();

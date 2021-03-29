@@ -10,7 +10,6 @@ const fse = require('fs-extra');
 const babel = require('@babel/core');
 const glob = require('glob');
 const minify = require('minify');
-const svgDownIcon = require('./helpers/down-arrow');
 
 const { htmlsafe } = helper;
 const { linkto } = helper;
@@ -344,11 +343,15 @@ function buildMenuNav(menu) {
 
     menu.forEach(item => {
         // Setting default value for optional parameter
-        const c = item.class || '';
+        let c = item.class || '';
         const id = item.id || '';
         const target = item.target || '';
 
-        m += `<li><a href='${item.link}' class='${c}' id='${id}' target='${target}'>${item.title}</a></li>`;
+        c += ' menu-link';
+
+      m += '<li class="menu-li">' +
+            `<a href="${item.link}" class="${c}" id="${id}" target="${target}">` +
+            `${item.title}</a></li>`;
     });
 
     m += '</ul>';
@@ -357,12 +360,18 @@ function buildMenuNav(menu) {
 }
 
 function buildSearch() {
-    let search = '<div class="search-box"><input type="text" placeholder="Search..." id="search-box" />';
-    const searchItemContainer = '<div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div>';
+    let searchHTML = '<div class="search-box" id="search-box">' +
+        '<div class="search-box-input-container">' +
+        '<input class="search-box-input" type="text" placeholder="Search..." id="search-box-input" />' +
+        '<svg class="search-icon" aria-labelledby="search-icon"><use xlink:href="#search-icon"></use></svg>' +
+        '</div>';
 
-    search += searchItemContainer;
+    const searchItemContainer =
+        '<div class="search-item-container" id="search-item-container"><ul class="search-item-ul" id="search-item-ul"></ul></div></div>';
 
-    return search;
+    searchHTML += searchItemContainer;
+
+    return searchHTML;
 }
 
 function buildFooter() {
@@ -486,35 +495,29 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
                  * Only have accordion class name if it have any child.
                  * Otherwise it didn't makes any sense.
                  */
-                const accordionClassName = methods.length ? '"accordion collapsed"' : '""';
+                const accordionClassName = methods.length ? '"accordion collapsed child"' : '"accordion-list"';
+                const accordionId = Math.floor(Math.random() * 10000000);
 
-                /**
-                 * Id give to accordion.
-                 */
-                const accordionId = methods.length ? Math.floor(Math.random() * 10000000) : '""';
+                itemsNav += `<li class=${accordionClassName} id=${accordionId}>`;
 
-                itemsNav += `<li class=${
-                    accordionClassName
-                    } id=${
-                    accordionId
-                    }>`;
-
-                const linkTitle = linktoFn(item.longname, item.name.replace(/^module:/u, ''));
+                const linkTitle = linktoFn(item.longname, item.name.replace(/^module:/iu, ''));
 
                 if (methods.length) {
-                    itemsNav += `<div class="accordion-title">${linkTitle}${svgDownIcon}</div>`;
+                    itemsNav += `<div class="accordion-heading child">${
+                        linkTitle
+                        }<svg><use xlink:href="#down-icon"></use></svg>` +
+                        '</div>';
                 } else {
                     itemsNav += linkTitle;
                 }
 
-
                 if (haveSearch) {
-
                     searchListArray.push(JSON.stringify({
                         'title': item.name,
                         'link': linkto(item.longname, item.name)
                     }));
                 }
+
                 if (methods.length) {
                     itemsNav += '<ul class=\'methods accordion-content\'>';
 
@@ -523,6 +526,7 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
                         const [first, last] = name;
 
                         name = `${first} &rtrif; ${last}`;
+
                         if (haveSearch) {
                             searchListArray.push(JSON.stringify({
                                 'title': method.longname,
@@ -542,7 +546,13 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
         });
 
         if (itemsNav !== '') {
-            nav += `<h3>${itemHeading}</h3><ul>${itemsNav}</ul>`;
+            nav += `<div class="accordion collapsed" id="${
+                Math.floor(Math.random() * 10000000)
+                }" > <h3 class="accordion-heading">${
+                itemHeading}<svg><use xlink:href="#down-icon"></use></svg>` +
+                `</h3><ul class="accordion-content">${
+                itemsNav
+                }</ul> </div>`;
         }
     }
 
@@ -577,13 +587,15 @@ function buildNav(members) {
     let nav;
 
     if (!isHTML(title)) {
-        nav = `<h2><a href="index.html"><span class="text">${title}</span></a></h2>`;
+        nav = '<div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">' +
+            `${title}</h2></a></div>`;
     } else {
-        const filter = env && env.opts && env.opts.theme_opts;
+        const filter = env && env.opts && env.opts.themeOpts;
 
         if (filter.filter === undefined) {
             filter.filter = true;
         }
+
         if (JSON.parse(filter.filter)) {
             nav = `<h2><a href="index.html" class="filter">${title}</a></h2>`;
         } else {
@@ -591,13 +603,11 @@ function buildNav(members) {
         }
     }
 
-    const { search } = themeOpts;
-
     if (haveSearch) {
-        nav += buildSearch();
+         nav += buildSearch();
     }
 
-    nav += '<div class="sidebar-list-div">';
+    nav += '<div class="sidebar-main-content" id="sidebar-main-content">';
     const seen = {};
     const seenTutorials = {};
     const menu = themeOpts.menu || undefined;
@@ -613,29 +623,7 @@ function buildNav(members) {
     nav += buildMemberNav(members.namespaces, 'Namespaces', seen, linkto);
     nav += buildMemberNav(members.mixins, 'Mixins', seen, linkto);
     nav += buildMemberNav(members.interfaces, 'Interfaces', seen, linkto);
-
-    if (members.globals.length) {
-        let globalNav = '';
-
-        members.globals.forEach(g => {
-            if (g.kind !== 'typedef' && !hasOwnProp.call(seen, g.longname)) {
-                searchListArray.push(JSON.stringify({
-                    'title': g.name,
-                    'link': linkto(g.longname, `Global &rtrif; ${g.name}`)
-                }));
-                globalNav += `<li>${linkto(g.longname, g.name)}</li>`;
-            }
-            seen[g.longname] = true;
-        });
-
-        if (!globalNav) {
-            // turn the heading into a link so you can actually get to the global page
-            nav += `<h3>${linkto('global', 'Global')}</h3>`;
-        } else {
-            nav += `<h3>${linkto('global', 'Global')}</h3><ul>${globalNav}</ul>`;
-        }
-    }
-
+    nav += buildMemberNav(members.globals, 'Global', seen, linkto);
     nav += '</div>';
 
     return nav;
