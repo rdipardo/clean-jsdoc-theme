@@ -10,7 +10,7 @@ describe('Page layout', () => {
     beforeEach(async () => {
         await (async () => {
             await browser.url(`${HOME_PAGE}`);
-            searchBox = await browser.$('#search-box');
+            searchBox = await browser.$('#search-box-input');
             await searchBox.clearValue();
         })();
     });

@@ -12,14 +12,14 @@ describe('Mobile page layout', () => {
     });
 
     it('should display navigation toggle button without scrolling', async () => {
-        const navicon = await browser.$('.navicon-button.x');
+        const navicon = await browser.$('#navbar-ham');
 
-        expect(await navicon.isDisplayedInViewport()).toBeTrue();
+        expect(await navicon.isClickable()).toBeTrue();
     });
 
     it('should toggle nav bar when button is tapped', async () => {
-        const navicon = await browser.$('.navicon-button.x');
-        const trigger = await browser.$('#nav-trigger');
+        const navicon = await browser.$('#navbar-ham');
+        const target = await browser.$('#navbar');
 
         await navicon.click();
 
@@ -35,14 +35,16 @@ describe('Mobile page layout', () => {
             'timeoutMsg': 'expected nav bar to disappear after 1s'
         });
 
-        expect(await trigger.getAttribute('checked')).toBeFalsy();
+        const classList = await target.getAttribute('class');
+
+        expect(classList).not.toContain('expanded');
     });
 
     it('should hide nav bar on link navigation', async () => {
-        const navicon = await browser.$('.navicon-button.x');
+        const navicon = await browser.$('#navbar-ham');
 
         await navicon.click();
-        let searchBox = await browser.$('#search-box');
+        let searchBox = await browser.$('#search-box-input');
 
         await searchBox.clearValue();
         await searchBox.setValue('cr');
@@ -55,12 +57,17 @@ describe('Mobile page layout', () => {
             }
         );
         await foundMethod.click();
+        await browser.waitUntil(async () => !await foundMethod.isDisplayedInViewport(),
+        {
+            'timeout': 1000,
+            'timeoutMsg': 'expected search list to disappear after 1s'
+        });
 
         const title = await browser.getTitle();
 
         searchBox = await browser.$('#search-box');
 
         expect(title).toContain('Tree');
-        expect(await searchBox.isDisplayedInViewport()).toBeFalse();
+        expect(await searchBox.isDisplayedInViewport()).toBe(false);
     });
 });

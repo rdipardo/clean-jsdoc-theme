@@ -142,7 +142,6 @@ article ol {
 
 .name>a {
     font-size: 1.25rem;
-    /* font-style: italic; */
     font-weight: lighter;
 }
 
@@ -325,11 +324,6 @@ article ol {
 }
 
 /* stylelint-disable */
-
-/*
-table.props {
-    margin-top: 1.25rem;
-} */
 
 .params .params thead tr, .props .props thead tr {
     font-weight: bold;
