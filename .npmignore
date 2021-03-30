@@ -18,4 +18,5 @@ img/
 *.style*
 *.prettier*
 .babelrc
+.npmrc
 .env*

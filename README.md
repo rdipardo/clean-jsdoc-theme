@@ -11,10 +11,10 @@
 
 <div align="center">
 
-![light_doc_page](https://heredocs.com/clean-jsdoc-theme/img/light_doc_example.png)
-![light_code_example](https://heredocs.com/clean-jsdoc-theme/img/light_code_example.png)
-![dark_doc_page](https://heredocs.com/clean-jsdoc-theme/img/dark_doc_example.png)
-![dark_code_example](https://heredocs.com/clean-jsdoc-theme/img/dark_code_example.png)
+![light_code_example](https://rdipardo.github.io/clean-jsdoc-theme/img/light_code_example.png)
+![light_doc_page](https://rdipardo.github.io/clean-jsdoc-theme/img/light_doc_example.png)
+![dark_code_example](https://rdipardo.github.io/clean-jsdoc-theme/img/dark_code_example.png)
+![dark_doc_page](https://rdipardo.github.io/clean-jsdoc-theme/img/dark_doc_example.png)
 </div>
 
 - [Getting Started](#quick-start)
@@ -124,7 +124,7 @@ Details of your project, e.g.
 ```json
   "project": {
       "title": "clean-jsdoc",
-      "version": "2.4.0",
+      "version": "3.0.0",
       "repo": "https://github.com/rdipardo/clean-jsdoc-theme"
   }
 ```
