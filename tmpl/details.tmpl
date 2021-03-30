@@ -2,24 +2,54 @@
 var data = obj;
 var self = this;
 var defaultObjectClass = '';
+var printDeatils = false
+var loopVar = 0;
+var detailsKeys = [
+    'version',
+    'since',
+    'inherited',
+    'inherits',
+    'overrides',
+    'implementations',
+    'implements',
+    'mixes',
+    'deprecated',
+    'author',
+    'copyright',
+    'license',
+    'defaultvalue',
+    'tutorials',
+    'todo'
+]
 
 // Check if the default value is an object or array; if so, apply code highlighting
 if (data.defaultvalue && (data.defaultvaluetype === 'object' || data.defaultvaluetype === 'array')) {
     data.defaultvalue = "<pre class=\"prettyprint\"><code>" + data.defaultvalue + "</code></pre>";
     defaultObjectClass = ' class="object-value"';
 }
+
+// Check whether to print details or not
+for(; loopVar < detailsKeys.length; loopVar += 1) {
+    if(data[detailsKeys[loopVar]]) {
+        printDeatils = true
+        break
+    }
+}
+
 ?>
+
 <?js
     var properties = data.properties;
     if (properties && properties.length && properties.forEach) {
 ?>
 
-    <h5 class="subsection-title">Properties</h5>
+    <strong>Properties</strong>
 
     <?js= this.partial('properties.tmpl', data) ?>
 
 <?js } ?>
 
+<?js if(printDeatils) { ?>
 <dl class="details">
 
     <?js if (data.version) {?>
@@ -126,17 +156,8 @@ if (data.defaultvalue && (data.defaultvaluetype === 'object' || data.defaultvalu
         <div class="details-item-container">
             <dt class="tag-default">Default Value:</dt>
             <dd class="tag-default"><ul class="dummy">
-                    <li <?js= defaultObjectClass ?> ><?js= data.defaultvalue ?></li>
+                    <li <?js= defaultObjectClass ?> ><code><?js= data.defaultvalue ?></code></li>
                 </ul></dd>
-        </div>
-    <?js } ?>
-
-    <?js if (data.meta && self.outputSourceFiles) {?>
-        <div class="details-item-container">
-            <dt class="tag-source">Source:</dt>
-            <dd class="tag-source"><ul class="dummy"><li>
-                <?js= self.linkto(meta.shortpath) ?>, <?js= self.linkto(meta.shortpath, 'line ' + meta.lineno, null, 'line' + meta.lineno) ?>
-            </li></ul></dd>
         </div>
     <?js } ?>
 
@@ -162,5 +183,15 @@ if (data.defaultvalue && (data.defaultvaluetype === 'object' || data.defaultvalu
         </div>
     <?js } ?>
 </dl>
+<?js } ?>
 
-<hr />
+<?js if (data.meta && self.outputSourceFiles) {?>
+    <dl class="details">
+        <div class="details-item-container">
+            <dt class="tag-source">Source:</dt>
+            <dd class="tag-source"><ul class="dummy"><li>
+                <?js= self.linkto(meta.shortpath) ?>, <?js= self.linkto(meta.shortpath, 'line ' + meta.lineno, null, 'line' + meta.lineno) ?>
+            </li></ul></dd>
+        </div>
+    </dl>
+<?js } ?>

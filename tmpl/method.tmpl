@@ -20,50 +20,42 @@ var self = this;
 <?js if (data.kind !== 'module' && data.description) { ?>
     <div class="description">
         <?js= data.description ?>
-        <?js if (kind === 'event' && data.type && data.type.names) { ?>
-            <div class="member-item-container flex">
-                <strong>Type:</strong>
-                <ul>
-                    <li>
-                        <?js= self.partial('type.tmpl', data.type.names) ?>
-                    </li>
-                </ul>
-            </div>
-        <?js } ?>
-    </div>
-<?js } else { ?>
-    <div>
-        <?js if (kind === 'event' && data.type && data.type.names) {?>
-            <div class="member-item-container flex">
-                <strong>Type:</strong>
-                <ul>
-                    <li>
-                        <?js= self.partial('type.tmpl', data.type.names) ?>
-                    </li>
-                </ul>
-            </div>
-        <?js } ?>
     </div>
 <?js } ?>
 
 <?js if (data.augments && data.alias && data.alias.indexOf('module:') === 0) { ?>
+    <div class="method-member-container mt-20">
     <strong>Extends:</strong>
     <?js= self.partial('augments.tmpl', data) ?>
+    </div>
 <?js } ?>
 
-
+<?js if (kind === 'event' && data.type && data.type.names) {?>
+    <div class="method-member-container mt-20">
+    <strong>Type:</strong>
+    <ul>
+        <li>
+            <?js= self.partial('type.tmpl', data.type.names) ?>
+        </li>
+    </ul>
+    </div>
+<?js } ?>
 
 <?js if (data['this']) { ?>
+    <div class="method-member-container mt-20">
     <strong>This:</strong>
     <ul><li><?js= this.linkto(data['this'], data['this']) ?></li></ul>
+    </div>
 <?js } ?>
 
 <?js if (data.params && params.length) { ?>
     <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
-        <strong>Parameters:</strong>
+        <strong>Parameters</strong>
         <?js= this.partial('params.tmpl', params) ?>
     </div>
 <?js } ?>
+
+<?js= this.partial('details.tmpl', data) ?>
 
 <?js if (data.kind !== 'module' && data.requires && data.requires.length) { ?>
     <div class="method-member-container flex flex-col w-100 overflow-auto mt-20">
@@ -99,27 +91,28 @@ var self = this;
 <?js } ?>
 
 <?js if (data.listeners && listeners.length) { ?>
+    <div class="method-member-container mt-20">
     <strong>Listeners of This Event:</strong>
     <ul>
         <?js listeners.forEach(function(f) { ?>
             <li><?js= self.linkto(f) ?></li>
         <?js }); ?>
     </ul>
+    </div>
 <?js } ?>
 
 <?js if (data.exceptions && exceptions.length) { ?>
-    <div class="method-member-container flex">
-        <strong>Throws:</strong>
-        <?js if (exceptions.length > 1) { ?>
-            <ul>
-                <?js exceptions.forEach(function(r) { ?>
-                    <li><?js= self.partial('exceptions.tmpl', r) ?></li>
-                <?js }); ?>
-            </ul>
-        <?js } else { exceptions.forEach(function(r) { ?>
-            <?js= self.partial('exceptions.tmpl', r) ?>
-        <?js });
-            }?>
+    <div class="method-member-container mt-20">
+    <strong>Throws:</strong>
+    <?js if (exceptions.length > 1) { ?>
+        <ul>
+            <?js exceptions.forEach(function(r) { ?>
+                <li><?js= self.partial('exceptions.tmpl', r) ?></li>
+            <?js }); ?>
+        </ul>
+    <?js } else { exceptions.forEach(function(r) { ?>
+        <?js= self.partial('exceptions.tmpl', r) ?>
+    <?js });} ?>
     </div>
 <?js } ?>
 
@@ -135,8 +128,7 @@ var self = this;
 
         <?js } else { returns.forEach(function(r) { ?>
             <?js= self.partial('returns.tmpl', r) ?>
-        <?js });
-        } ?>
+            <?js });} ?>
     </div>
 <?js } ?>
 
@@ -146,5 +138,3 @@ var self = this;
         <?js= this.partial('examples.tmpl', examples) ?>
     </div>
 <?js } ?>
-
-<?js= this.partial('details.tmpl', data) ?>
