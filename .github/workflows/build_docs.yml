@@ -14,7 +14,7 @@ jobs:
     - name: Set up node env
       uses: actions/setup-node@v2.1.5
       with:
-        node-version: '12.x'
+        node-version: '15.x'
     - name: Get npm cache directory
       id: npm-cache
       run: echo "::set-output name=dir::$(npm config get cache)"
@@ -38,7 +38,7 @@ jobs:
       run: npm run test:win
       shell: cmd
     - name: Publish Docs
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-gh-pages@v3.8.0
       if: ${{ startsWith(runner.os, 'Linux') }}
       with:
         deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}

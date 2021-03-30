@@ -4,9 +4,8 @@ on:
     branches:
       - develop
       - '!dependabot/**'
-  pull_request:
-    branches:
-      - master
+  pull_request_target:
+    types: [opened, edited, reopened]
 jobs:
   build:
     runs-on: ubuntu-20.04
