@@ -74,14 +74,6 @@ img {
     max-width: 100%;
 }
 
-a {
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
 p {
     margin: 1rem 0;
 }
@@ -452,10 +444,6 @@ code {
 
 .gh-meta p~p a {
     color: #009bff;
-}
-
-.gh-meta p~p a:hover, .gh-meta p~p a:active, .gh-meta p~p a:focus {
-    color: #c7ebdf;
 }
 
 .fa.fa-github {

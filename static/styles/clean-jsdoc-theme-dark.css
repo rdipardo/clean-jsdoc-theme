@@ -12,6 +12,10 @@ a, a:active {
     color: #00abff;
 }
 
+.gh-meta p~p a:hover, .gh-meta p~p a:active, .gh-meta p~p a:focus {
+    color: #f8f8f9;
+}
+
 hr {
     border: 1px solid #333;
 }

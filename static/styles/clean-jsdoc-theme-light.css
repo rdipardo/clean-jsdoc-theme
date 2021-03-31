@@ -13,6 +13,10 @@ a, a:active, a:focus {
     font-weight: bold;
 }
 
+.gh-meta p~p a:hover, .gh-meta p~p a:active, .gh-meta p~p a:focus {
+    color: #008b8b;
+}
+
 .name a, .details-item-container a {
     font-weight: normal;
 }
@@ -128,10 +132,6 @@ blockquote {
 
 .menu-link {
     color: #000;
-}
-
-footer {
-    color: #555;
 }
 
 .signature-attributes {
