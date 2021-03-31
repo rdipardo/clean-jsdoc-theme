@@ -6,8 +6,12 @@ if (process.env.SAFARI) {
 
 describe('Page layout', () => {
     let searchBox = null;
+    let originalTimeout = 10000;
 
     beforeEach(async () => {
+        originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = 25000;
+
         await (async () => {
             await browser.url(`${HOME_PAGE}`);
             searchBox = await browser.$('#search-box-input');
@@ -59,5 +63,9 @@ describe('Page layout', () => {
         const title = await browser.getTitle();
 
         expect(title).toContain('Tree');
+    });
+
+    afterEach(() => {
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
     });
 });

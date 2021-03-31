@@ -5,7 +5,12 @@ if (process.env.IOS) {
 }
 
 describe('Mobile page layout', () => {
+    let originalTimeout = 10000;
+
     beforeEach(async () => {
+        originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+        jasmine.DEFAULT_TIMEOUT_INTERVAL = 25000;
+
         await (async () => {
             await browser.url(`${HOME_PAGE}`);
         })();
@@ -69,5 +74,9 @@ describe('Mobile page layout', () => {
 
         expect(title).toContain('Tree');
         expect(await searchBox.isDisplayedInViewport()).toBe(false);
+    });
+
+    afterEach(() => {
+      jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
     });
 });
