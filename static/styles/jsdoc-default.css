@@ -170,7 +170,7 @@ article ol {
 }
 
 .see-links li {
-    padding: 0.1rem 0;
+    padding: 0;
 }
 
 .see-links li::before, .details ul li::before {
@@ -388,8 +388,16 @@ code {
     border: 0;
 }
 
-.readme ul, .readme ol {
+/* stylelint-disable */
+
+.readme ul, .readme ol, ul.see-links, ol.see-links {
+    padding-left: 2.25rem;
     list-style: circle !important;
+}
+
+/* stylelint-enable */
+
+.readme ul, .readme ol {
     margin-bottom: 0;
     padding-bottom: 0;
 }

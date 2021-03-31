@@ -17,6 +17,10 @@
 ![dark_doc_page](https://rdipardo.github.io/clean-jsdoc-theme/img/dark_doc_example.png)
 </div>
 
+<hr/>
+
+## Contents
+
 - [Getting Started](#quick-start)
 - [Adding to Your Workflow](#workflow-integration)
 - [Configuration](#options)
