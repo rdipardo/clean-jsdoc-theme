@@ -1,3 +1,9 @@
+## 3.0.0
+
+### Changed
+- require npm version >=7.0.0
+- integrate [upstream style enhancements][]
+
 ## 2.5.1
 
 ### Fixed
@@ -191,6 +197,7 @@
 1.  Fix ordered list style [issue: [#40](https://github.com/ankitskvmdam/clean-jsdoc-theme/issues/40)]
 1.  Fix code overflow issue.
 
+[upstream style enhancements]: https://github.com/ankitskvmdam/clean-jsdoc-theme/releases/tag/v3.1.0
 [upstream]: https://github.com/ankitskvmdam/clean-jsdoc-theme/commit/44e76bae8804e0fd17a961347024117b37275a0a#diff-5e733ad892a637d40e61205f71cd63352d98d5ddfd929ab000003eb1eee67fbc
 [fold navigation link hierarchies]: https://github.com/ankitskvmdam/clean-jsdoc-theme/commit/6d6f93123ac51bbb9a2f9bd3ee185deca56b9fd9
 [its own section]: https://github.com/ankitskvmdam/clean-jsdoc-theme/commit/277998015dd209fa548a89081001617df26a6753
