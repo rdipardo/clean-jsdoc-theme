@@ -4,7 +4,8 @@
  * @copyright 2020 Robert Di Pardo
  * @license MIT
  * @url https://github.com/rdipardo/clean-jsdoc-theme
+ * v1.2.0 : add .tooltip styles
  * v1.1.1 : make punctuation bolder
  * v1.1.0 : add .re style class
  * v1.0.0 : initial release
- */.pln{color:#f1f1b9}.str{color:#addb67}.re{color:#37cfc0}.kwd{color:#f08080}.com{color:#a0a0a0;font-style:italic}.typ{color:#82aaff}.lit{color:#ffc600}.clo,.opn,.pun{color:#bf8ce1;font-weight:700}.tag{color:#f1f1b9}.atn{color:#93cdba}.atv{color:#addb67}.dec{color:#8069ff}.var{color:#378bf0}.fun{color:#c0ffff}
+ */.tooltip .pun,.tooltip .typ{background:#ffce76;color:#000}.pln{color:#f1f1b9}.str{color:#addb67}.re{color:#37cfc0}.kwd{color:#f08080}.com{color:#a0a0a0;font-style:italic}.typ{color:#82aaff}.lit{color:#ffc600}.clo,.opn,.pun{color:#bf8ce1;font-weight:700}.tag{color:#f1f1b9}.atn{color:#93cdba}.atv{color:#addb67}.dec{color:#8069ff}.var{color:#378bf0}.fun{color:#c0ffff}

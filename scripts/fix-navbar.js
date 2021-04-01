@@ -1,0 +1,1 @@
+"use strict";(function(){function a(){var a=document.querySelector("#navbar-heading"),b=document.querySelector("#search-box"),c=document.querySelector("#sidebar-main-content"),d=32;a&&(d+=a.getBoundingClientRect().height),b&&(d+=b.getBoundingClientRect().height),c.style.height+="".concat(window.innerHeight-d,"px")}a(),window.addEventListener("resize",a)})();
