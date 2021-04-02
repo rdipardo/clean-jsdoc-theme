@@ -172,10 +172,6 @@ blockquote {
     background: #000;
 }
 
-.prettyprint code {
-    background-color: #000;
-}
-
 .prettyprint.linenums li {
     border-left: 3px #3d6c5b solid;
 }

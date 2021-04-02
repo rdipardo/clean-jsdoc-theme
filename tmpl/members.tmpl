@@ -18,7 +18,7 @@ var self = this;
         </div>
         <?js if (data.type && data.type.names) {?>
             <div class="member-item-container flex">
-                <strong>Type: </strong>
+                <strong>Type</strong>
                 <ul>
                     <li>
                         <?js= self.partial('type.tmpl', data.type.names) ?>
@@ -30,7 +30,7 @@ var self = this;
 <?js } else { ?>
     <?js if (data.type && data.type.names) {?>
         <div class="member-item-container flex">
-            <strong>Type: </strong>
+            <strong>Type</strong>
             <ul>
                 <li>
                     <?js= self.partial('type.tmpl', data.type.names) ?>
@@ -41,7 +41,7 @@ var self = this;
 <?js } ?>
 
 <?js if (data.fires && fires.length) { ?>
-    <h5>Fires:</h5>
+    <strong>Fires</strong>
     <ul><?js fires.forEach(function(f) { ?>
         <li><?js= self.linkto(f) ?></li>
     <?js }); ?></ul>

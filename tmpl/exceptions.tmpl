@@ -1,28 +1,10 @@
 <?js
     var data = obj;
+    if (data.description && data.type && data.type.names) {
 ?>
-<?js if (data.description && data.type && data.type.names) { ?>
-<dl>
-    <dt>
-        <div class="param-desc">
-        <?js= data.description ?>
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                <?js= this.partial('type.tmpl', data.type.names) ?>
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
+<?js= this.partial('returns.tmpl', data) ?>
 <?js } else { ?>
-    <div class="param-desc">
+    <div class="param-desc flex">
     <?js if (data.description) { ?>
         <span class="lone-param"><?js= data.description ?></span>
     <?js } else if (data.type && data.type.names) { ?>

@@ -1,3 +1,13 @@
+## 3.0.1
+
+### Fixed
+- clean up names of _"inner"_ module members in search results (**publish.js**)
+  and parameter descriptions (**tmpl/type.tmpl**)
+- make the _Properties_ subheading visible in tabular parameter descriptions
+- remove empty heading when a return value has no description
+- use consistent style for exceptions and fired events
+- make line numbers the same colour in both themes
+
 ## 3.0.0
 
 ### Changed

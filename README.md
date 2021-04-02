@@ -11,10 +11,10 @@
 
 <div align="center">
 
-![light_code_example](https://rdipardo.github.io/clean-jsdoc-theme/img/light_code_example.png)
-![light_doc_page](https://rdipardo.github.io/clean-jsdoc-theme/img/light_doc_example.png)
-![dark_code_example](https://rdipardo.github.io/clean-jsdoc-theme/img/dark_code_example.png)
-![dark_doc_page](https://rdipardo.github.io/clean-jsdoc-theme/img/dark_doc_example.png)
+![light_code_example](https://raw.githubusercontent.com/rdipardo/clean-jsdoc-theme/gh-pages/img/light_code_example.png)
+![light_doc_page](https://raw.githubusercontent.com/rdipardo/clean-jsdoc-theme/gh-pages/img/light_doc_example.png)
+![dark_code_example](https://raw.githubusercontent.com/rdipardo/clean-jsdoc-theme/gh-pages/img/dark_code_example.png)
+![dark_doc_page](https://raw.githubusercontent.com/rdipardo/clean-jsdoc-theme/gh-pages/img/dark_doc_example.png)
 </div>
 
 <hr/>
@@ -34,7 +34,7 @@
 Install `jsdoc`:
 
 ```text
-npm i --save-dev jsdoc
+npm i --no-save jsdoc
 ```
 
 Install the template assets:

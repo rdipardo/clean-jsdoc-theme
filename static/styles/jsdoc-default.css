@@ -78,7 +78,7 @@ p {
     margin: 1rem 0;
 }
 
-article ul {
+article ul, .lone-param p {
     padding-left: 1rem;
 }
 
@@ -86,7 +86,7 @@ article ul:not(.see-links) {
     list-style: none;
 }
 
-article ul li::before {
+article ul li::before, .lone-param p::before {
     content: '\2014\a0';
     margin-right: 0.5rem;
 }
@@ -104,9 +104,9 @@ article ol {
 }
 
 .signature-attributes {
-    font-size: 60%;
     font-style: italic;
     font-weight: lighter;
+    padding-left: 0.2rem;
 }
 
 .ancestors a {
@@ -210,7 +210,6 @@ article ol {
 .code-caption {
     font-size: 107%;
     font-style: italic;
-    margin: 0;
 }
 
 .prettyprint {
@@ -220,6 +219,10 @@ article ol {
     overflow: auto;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+}
+
+.prettyprint.source, .prettyprint code {
+    background-color: #000;
 }
 
 .prettyprint.source {
@@ -268,6 +271,7 @@ article ol {
 }
 
 .prettyprint.linenums li {
+    color: #f8f8f9;
     min-height: 18px;
 }
 
@@ -325,6 +329,10 @@ article ol {
     white-space: nowrap;
 }
 
+.params td.description h4, .params td.description h5, .params td.description h6 {
+    margin-left: 0;
+}
+
 .params td.description>p:first-child, .props td.description>p:first-child {
     margin-top: 0;
     padding-top: 0;
@@ -348,11 +356,6 @@ dl.param-type {
 .param-type dd {
     font-family: 'code';
     font-size: 80%;
-}
-
-.lone-param {
-    display: block;
-    font-family: 'code';
 }
 
 code {
