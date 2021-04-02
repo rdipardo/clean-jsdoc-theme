@@ -211,6 +211,9 @@
     fa.onerror = replaceIcon
     var style = document.getElementsByTagName('link')[0]
     style.parentNode.insertBefore(fa, style)
+    // hide emoji markup when not publishing to GitHub
+    var warnIcon = document.querySelector('.fa.fa-warning')
+    warnIcon.innerText = ''
 </script>
 </body>
 </html>

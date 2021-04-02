@@ -1,6 +1,6 @@
 {
-    "name": "clean-jsdoc",
-    "version": "3.0.1",
+    "name": "@rdipardo/clean-jsdoc",
+    "version": "3.0.1-rc-1",
     "description": "A style-conscious fork of clean-jsdoc-theme",
     "main": "publish.js",
     "scripts": {
@@ -19,10 +19,7 @@
         "bs:safari": "SAFARI=1 concurrently -k -s first \"npm:serve:safari\" \"npm:test:safari\"",
         "bs:android": "concurrently -k -s first \"npm:serve\" \"npm:test:mobile\"",
         "bs:ios": "IOS=1 concurrently -k -s first \"npm:serve:safari\" \"npm:test:ios\"",
-        "fetch:issue": "git checkout e71940a -- @default-tag-issue/ && npm install jsdoc --no-save",
-        "browse": "npm test && xdg-open demo/output/index.html 2> /dev/null || exit 0",
-        "browse:issue": "xdg-open @default-tag-issue/doc/index.html 2> /dev/null || exit 0",
-        "doc:issue": "npm run fetch:issue && node node_modules/jsdoc/jsdoc.js @default-tag-issue/src/css.js -c @default-tag-issue/.jsdoc.json && npm run browse:issue"
+        "browse": "npm test && xdg-open demo/output/index.html 2> /dev/null || exit 0"
     },
     "repository": {
         "type": "git",
@@ -40,9 +37,8 @@
     "keywords": [
         "jsdoc",
         "template",
-        "jsdoc-template",
         "javascript documentation",
-        "customizable jsdoc theme / template"
+        "forks"
     ],
     "devDependencies": {
         "@jsdoc/eslint-config": "^1.1.4",
@@ -71,5 +67,8 @@
     },
     "engines": {
         "npm": ">=7.0.0"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com"
     }
 }

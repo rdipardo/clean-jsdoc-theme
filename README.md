@@ -2,7 +2,7 @@
 
 <h3 align="center">
 
-[![Build Docs Workflow][]][Build Docs]
+[![Package Workflow][]][Package]
 [![Chrome, Firefox, IE, Safari on macOS Workflow][]][Chrome, Firefox, IE, Safari on macOS]
 [![Chrome on Android, Safari on iOS Workflow][]][Chrome on Android, Safari on iOS]
 [![BrowserStack Status Badge][]][BrowserStack Status]
@@ -21,6 +21,7 @@
 
 ## Contents
 
+- [Installation](#installation)
 - [Getting Started](#quick-start)
 - [Adding to Your Workflow](#workflow-integration)
 - [Configuration](#options)
@@ -29,24 +30,43 @@
 - [Testing](#testing)
 - [License](#license)
 
+## Installation
+<i class="fa fa-warning" style="color:#890000;font-size:2em" aria-hidden="true">:warning:</i>
+
+Installing from the [GitHub Package Registry][] ([currently][]) requires a
+[personal access token][] (PAT) with the `read:packages` scope.
+
+Be sure to [authenticate with the registry][] via `npm login`, or by adding this
+line to a `.npmrc` file in your `$HOME` directory:
+
+~~~text
+//npm.pkg.github.com/:_authToken=<YOUR_PERSONAL_ACCESS_TOKEN>
+~~~
+
 ## Quick start
+
+Add this line to a `.npmrc` file at the root of your project:
+
+~~~text
+@rdipardo:registry=https://npm.pkg.github.com
+~~~
 
 Install `jsdoc`:
 
 ```text
-npm i --save-dev jsdoc
+npm i --no-save jsdoc
 ```
 
 Install the template assets:
 
 ```text
-npm i --save-dev rdipardo/clean-jsdoc-theme
+npm i --save-dev @rdipardo/clean-jsdoc
 ```
 
 Now run:
 
 ```text
-npx jsdoc path/to/source/files -t node_modules/clean-jsdoc -r README.md
+npx jsdoc path/to/source/files -t node_modules/@rdipardo/clean-jsdoc -r README.md
 ```
 
 ### Workflow Integration
@@ -55,7 +75,7 @@ Configure `jsdoc` to use the template in your `.jsdoc.json` file:
 
 ```json
   "opts": {
-    "template": "node_modules/clean-jsdoc"
+    "template": "node_modules/@rdipardo/clean-jsdoc"
   }
 ```
 
@@ -78,7 +98,7 @@ For example:
         "dictionaries": ["jsdoc", "closure"]
     },
     "opts": {
-        "template": "node_modules/clean-jsdoc",
+        "template": "node_modules/@rdipardo/clean-jsdoc",
         /* see below */
         "theme_opts": {},
         "encoding": "utf8",
@@ -303,8 +323,8 @@ Distributed under the terms of the [MIT license][Read the MIT].
 [HTML metadata attributes]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta#Attributes
 [link attributes]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#Attributes
 <!-- badges -->
-[Build Docs Workflow]: https://github.com/rdipardo/clean-jsdoc-theme/workflows/Build%20Docs/badge.svg
-[Build Docs]: https://github.com/rdipardo/clean-jsdoc-theme/actions?query=workflow%3ADocs
+[Package Workflow]: https://github.com/rdipardo/clean-jsdoc-theme/workflows/publish.yml/badge.svg
+[Package]: https://github.com/rdipardo/clean-jsdoc-theme/actions/workflows/publish.yml
 [Chrome, Firefox, IE, Safari on macOS Workflow]: https://github.com/rdipardo/clean-jsdoc-theme/workflows/Chrome,%20Firefox,%20IE,%20Safari%20on%20macOS/badge.svg?branch=develop
 [Chrome, Firefox, IE, Safari on macOS]: https://github.com/rdipardo/clean-jsdoc-theme/actions?query=workflow%3AIE
 [Chrome on Android, Safari on iOS Workflow]: https://github.com/rdipardo/clean-jsdoc-theme/workflows/Chrome%20on%20Android,%20Safari%20on%20iOS/badge.svg?branch=develop
@@ -314,3 +334,7 @@ Distributed under the terms of the [MIT license][Read the MIT].
 [Read the MIT]: https://github.com/rdipardo/clean-jsdoc-theme/blob/master/LICENSE
 [Releases]: https://github.com/rdipardo/clean-jsdoc-theme/releases
 [Current Release]: https://img.shields.io/github/package-json/v/rdipardo/clean-jsdoc-theme?logo=github
+[GitHub Package Registry]: https://docs.github.com/en/packages/guides/configuring-npm-for-use-with-github-packages#authenticating-with-a-personal-access-token
+[currently]: https://github.community/t/download-from-github-package-registry-without-authentication/14407/2
+[authenticate with the registry]: https://docs.github.com/en/packages/guides/configuring-npm-for-use-with-github-packages#installing-a-package
+[personal access token]: https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token
