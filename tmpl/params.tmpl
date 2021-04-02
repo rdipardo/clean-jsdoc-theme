@@ -92,15 +92,15 @@
             <?js if (params.hasAttributes) {?>
                 <td class="attributes">
                 <?js if (param.optional) { ?>
-                    &lt;optional><br>
+                    &lt;optional&gt;
                 <?js } ?>
 
                 <?js if (param.nullable) { ?>
-                    &lt;nullable><br>
+                    &lt;nullable&gt;
                 <?js } ?>
 
                 <?js if (param.variable) { ?>
-                    &lt;repeatable><br>
+                    &lt;repeatable&gt;
                 <?js } ?>
                 </td>
             <?js } ?>
@@ -108,13 +108,13 @@
             <?js if (params.hasDefault) {?>
                 <td class="default">
                 <?js if (typeof param.defaultvalue !== 'undefined') { ?>
-                    <?js= self.htmlsafe(param.defaultvalue) ?>
+                    <code><?js= self.htmlsafe(param.defaultvalue) ?></code>
                 <?js } ?>
                 </td>
             <?js } ?>
 
             <td class="description last"><?js= param.description ?><?js if (param.subparams) { ?>
-                <h6>Properties</h6>
+                <h4>Properties</h4>
                 <?js= self.partial('params.tmpl', param.subparams) ?>
             <?js } ?></td>
         </tr>

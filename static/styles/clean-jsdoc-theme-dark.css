@@ -143,10 +143,6 @@ tt, code, kbd, samp {
     color: #fff;
 }
 
-.prettyprint.source, .prettyprint code {
-    background-color: #000;
-}
-
 .prettyprint.linenums li {
     border-left: 3px #3f6f6f solid;
 }

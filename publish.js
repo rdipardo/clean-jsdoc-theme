@@ -497,10 +497,9 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
                  */
                 const accordionClassName = methods.length ? '"accordion collapsed child"' : '"accordion-list"';
                 const accordionId = Math.floor(Math.random() * 10000000);
+                const linkTitle = linktoFn(item.longname, item.name.replace(/^(module:)/iu, ''));
 
                 itemsNav += `<li class=${accordionClassName} id=${accordionId}>`;
-
-                const linkTitle = linktoFn(item.longname, item.name.replace(/^module:/iu, ''));
 
                 if (methods.length) {
                     itemsNav += `<div class="accordion-heading child">${
@@ -524,8 +523,9 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
                     methods.forEach(method => {
                         let name = method.longname.split('#');
                         const [first, last] = name;
+                        const identifier = last ? ` &rtrif; ${last}` : '';
 
-                        name = `${first} &rtrif; ${last}`;
+                        name = `${first.replace(/^(module:)\w+~/iu, '')}${identifier}`;
 
                         if (haveSearch) {
                             searchListArray.push(JSON.stringify({
