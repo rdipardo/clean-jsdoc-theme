@@ -323,7 +323,7 @@ Distributed under the terms of the [MIT license][Read the MIT].
 [HTML metadata attributes]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta#Attributes
 [link attributes]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#Attributes
 <!-- badges -->
-[Package Workflow]: https://github.com/rdipardo/clean-jsdoc-theme/workflows/publish.yml/badge.svg
+[Package Workflow]: https://github.com/rdipardo/clean-jsdoc-theme/actions/workflows/publish.yml/badge.svg
 [Package]: https://github.com/rdipardo/clean-jsdoc-theme/actions/workflows/publish.yml
 [Chrome, Firefox, IE, Safari on macOS Workflow]: https://github.com/rdipardo/clean-jsdoc-theme/workflows/Chrome,%20Firefox,%20IE,%20Safari%20on%20macOS/badge.svg?branch=develop
 [Chrome, Firefox, IE, Safari on macOS]: https://github.com/rdipardo/clean-jsdoc-theme/actions?query=workflow%3AIE

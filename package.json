@@ -1,6 +1,6 @@
 {
     "name": "@rdipardo/clean-jsdoc",
-    "version": "3.0.1-rc-1",
+    "version": "3.0.1",
     "description": "A style-conscious fork of clean-jsdoc-theme",
     "main": "publish.js",
     "scripts": {
@@ -30,7 +30,7 @@
     "bugs": {
         "url": "https://github.com/rdipardo/clean-jsdoc-theme/issues"
     },
-    "homepage": "https://heredocs.com/clean-jsdoc-theme",
+    "homepage": "https://github.com/rdipardo/clean-jsdoc-theme#readme",
     "peerDependencies": {
         "jsdoc": "3"
     },
