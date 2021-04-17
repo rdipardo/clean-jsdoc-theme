@@ -61,6 +61,16 @@ describe('Page layout', () => {
         );
 
         await foundMethod.click();
+
+        if ((/(bs-local)/iu).test(HOME_PAGE)) {
+            await browser.waitUntil(async () => (/(Tree)/iu).test(await browser.getTitle()),
+                {
+                    'timeout': 20000,
+                    'timeoutMsg': 'expected page navigation to complete in 2s'
+                }
+            );
+        }
+
         const title = await browser.getTitle();
 
         expect(title).toContain('Tree');
