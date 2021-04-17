@@ -52,6 +52,14 @@ tt, code, kbd, samp {
     background: #fff;
 }
 
+.navbar-resize {
+    background: #222;
+}
+
+.resize-dots-container .dots {
+    background-color: #fff;
+}
+
 .search-box-input-container {
     background: #2a2b2c;
 }
