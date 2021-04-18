@@ -17,8 +17,8 @@ function checkClick(e) {
     }
 }
 
-function search(list, options, keys, searchKey) {
-    const defaultOptions = {
+function search(list, _, keys, searchKey) {
+    const options = {
         'shouldSort': true,
         'threshold': 0.4,
         'location': 0,
@@ -28,12 +28,18 @@ function search(list, options, keys, searchKey) {
         keys
     };
 
-    const op = { ...defaultOptions,
-...options };
+    // eslint-disable-next-line no-undef
+    const searchIndex = Fuse.createIndex(options.keys, list);
 
-    /* eslint-disable-next-line */
-    var fuse = new Fuse(list, op);
-    const result = fuse.search(searchKey);
+    // eslint-disable-next-line no-undef
+    const fuse = new Fuse(list, options, searchIndex);
+
+    let result = fuse.search(searchKey);
+
+    if (result.length > 20) {
+        result = result.slice(0, 20);
+    }
+
     const searchUL = document.getElementById('search-item-ul');
 
     searchUL.innerHTML = '';
@@ -41,21 +47,21 @@ function search(list, options, keys, searchKey) {
     if (result.length === 0) {
         searchUL.innerHTML += '<li class="p-h-n"> No Result Found </li>';
     } else {
-        result.forEach(item => {
-            searchUL.innerHTML += `<li>${item.link}</li>`;
+        result.forEach(obj => {
+            searchUL.innerHTML += `<li>${obj.item.link}</li>`;
         });
     }
 }
 
 /* eslint-disable-next-line */
-function setupSearch(list, options) {
+function setupSearch(list) {
     const inputBox = document.getElementById('search-box-input');
     const keys = ['title'];
 
     inputBox.addEventListener('keyup', () => {
         if (inputBox.value !== '') {
             showSearchList();
-            search(list, options, keys, inputBox.value);
+            search(list, null, keys, inputBox.value);
         }
         else { hideSearchList(); }
     });
@@ -63,7 +69,7 @@ function setupSearch(list, options) {
     inputBox.addEventListener('focus', () => {
         showSearchList();
         if (inputBox.value !== '') {
-            search(list, options, keys, inputBox.value);
+            search(list, null, keys, inputBox.value);
         }
 
         /* eslint-disable-next-line */

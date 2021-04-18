@@ -590,17 +590,7 @@ function buildNav(members) {
         nav = '<div class="navbar-heading" id="navbar-heading"><a href="index.html"><h2 class="navbar-heading-text">' +
             `${title}</h2></a></div>`;
     } else {
-        const filter = env && env.opts && env.opts.themeOpts;
-
-        if (filter.filter === undefined) {
-            filter.filter = true;
-        }
-
-        if (JSON.parse(filter.filter)) {
-            nav = `<h2><a href="index.html" class="filter">${title}</a></h2>`;
-        } else {
-            nav = `<h2><a href="index.html">${title}</a></h2>`;
-        }
+        nav = `<h2><a href="index.html">${title}</a></h2>`;
     }
 
     if (haveSearch) {

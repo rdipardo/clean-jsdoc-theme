@@ -4,9 +4,7 @@
     "description": "A style-conscious fork of clean-jsdoc-theme",
     "main": "publish.js",
     "scripts": {
-        "lint:js": "eslint --fix *.js static/scripts tests/specs",
-        "lint:style": "stylelint static/styles/",
-        "lint": "concurrently --prefix \"{time}-{pid}\" \"npm run lint:js\" \"npm run lint:style\"",
+        "lint": "eslint --fix *.js static/scripts tests/specs",
         "test": "npm run lint && ./demo/copy && node_modules/.bin/jsdoc -c jsdoc-config.json --verbose",
         "test:win": "npm run lint && demo\\copy && node_modules\\.bin\\jsdoc -c jsdoc-config.json --verbose",
         "test:ui": "wdio run ./tests/wdio.conf.js",
@@ -49,12 +47,7 @@
         "concurrently": "^5.3.0",
         "dotenv": "^8.2.0",
         "eslint": "^7.18.0",
-        "express": "^4.17.1",
-        "stylelint": "^13.9.0",
-        "stylelint-config-sass-guidelines": "^7.1.0",
-        "stylelint-config-standard": "^20.0.0",
-        "stylelint-order": "^4.1.0",
-        "stylelint-scss": "^3.18.0"
+        "express": "^4.17.1"
     },
     "dependencies": {
         "@babel/core": "^7.12.10",

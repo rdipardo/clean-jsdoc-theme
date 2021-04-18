@@ -5,6 +5,7 @@ if (process.env.SAFARI) {
 }
 
 describe('Page layout', () => {
+    const linkTitle = '[title="View project on GitHub"]';
     let searchBox = null;
     let originalTimeout = 10000;
 
@@ -28,13 +29,13 @@ describe('Page layout', () => {
     });
 
     it('should display a link to project\'s homepage', async () => {
-        const github = await browser.$('[title="View project on Github"]');
+        const github = await browser.$(linkTitle);
 
         expect(await github.isExisting()).toBeTrue();
     });
 
     it('should display project\'s version number', async () => {
-        const github = await browser.$('[title="View project on Github"]');
+        const github = await browser.$(linkTitle);
         const projectVersion = await github.parentElement();
         const version = await projectVersion.previousElement();
 
@@ -60,6 +61,16 @@ describe('Page layout', () => {
         );
 
         await foundMethod.click();
+
+        if ((/(bs-local)/iu).test(HOME_PAGE)) {
+            await browser.waitUntil(async () => (/(Tree)/iu).test(await browser.getTitle()),
+                {
+                    'timeout': 20000,
+                    'timeoutMsg': 'expected page navigation to complete in 2s'
+                }
+            );
+        }
+
         const title = await browser.getTitle();
 
         expect(title).toContain('Tree');
