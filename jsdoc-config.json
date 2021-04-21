@@ -24,9 +24,10 @@
         "template": "./",
         "theme_opts": {
             "langNames": false,
+            "theme": "dark",
             "project": {
                 "title": "clean-jsdoc",
-                "version": "3.0.1",
+                "version": "3.0.2",
                 "repo": "https://github.com/rdipardo/clean-jsdoc-theme"
             },
             "meta": [

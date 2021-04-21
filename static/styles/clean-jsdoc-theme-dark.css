@@ -8,6 +8,10 @@ body {
     color: #f8f8f9;
 }
 
+blockquote {
+    background-color: #222;
+}
+
 a, a:active {
     color: #00abff;
 }

@@ -395,7 +395,14 @@ code {
 
 .readme ul, .readme ol, ul.see-links, ol.see-links {
     padding-left: 2.25rem;
+}
+
+.readme ul, ul.see-links, ol.see-links {
     list-style: circle !important;
+}
+
+.readme ol {
+    list-style: decimal !important;
 }
 
 /* stylelint-enable */
@@ -419,8 +426,13 @@ code {
     max-width: 100%;
 }
 
+.readme table th {
+    padding: 8px;
+}
+
 .readme table td {
     padding: 0.5em 0.85em;
+    background-color: transparent;
 }
 
 .readme .prettyprint {

@@ -31,7 +31,7 @@
 - [License](#license)
 
 ## Installation
-<i class="fa fa-warning" style="color:#890000;font-size:2em" aria-hidden="true">:warning:</i>
+<i class="fa fa-warning" style="color:#f90;font-size:2em" aria-hidden="true">:warning:</i>
 
 Installing from the [GitHub Package Registry][] ([currently][]) requires a
 [personal access token][] (PAT) with the `read:packages` scope.

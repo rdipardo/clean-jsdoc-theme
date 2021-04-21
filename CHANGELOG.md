@@ -1,3 +1,13 @@
+## 3.0.2
+
+### Fixed
+- give `<blockquotes>` a visible background in the dark theme
+
+### Changed
+**README page**
+- preserve numbers in ordered lists
+- make tables more discreet
+
 ## 3.0.1
 
 ### Fixed
