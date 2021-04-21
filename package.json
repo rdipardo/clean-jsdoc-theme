@@ -1,5 +1,5 @@
 {
-    "name": "@rdipardo/clean-jsdoc",
+    "name": "clean-jsdoc",
     "version": "3.0.2",
     "description": "A style-conscious fork of clean-jsdoc-theme",
     "main": "publish.js",

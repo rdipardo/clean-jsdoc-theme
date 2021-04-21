@@ -2,6 +2,7 @@
 
 <h3 align="center">
 
+[![Build Docs Workflow][]][Build Docs]
 [![Package Workflow][]][Package]
 [![Chrome, Firefox, IE, Safari on macOS Workflow][]][Chrome, Firefox, IE, Safari on macOS]
 [![Chrome on Android, Safari on iOS Workflow][]][Chrome on Android, Safari on iOS]
@@ -45,6 +46,8 @@ line to a `.npmrc` file in your `$HOME` directory:
 
 ## Quick start
 
+**GitHub package only**
+
 Add this line to a `.npmrc` file at the root of your project:
 
 ~~~text
@@ -59,23 +62,47 @@ npm i --no-save jsdoc
 
 Install the template assets:
 
+**as a GitHub package:**
+
 ```text
 npm i --save-dev @rdipardo/clean-jsdoc
 ```
 
-Now run:
+**. . . or, directly from the source tree:**
+
+```text
+npm i --save-dev rdipardo/clean-jsdoc-theme
+```
+
+If you installed the GitHub package, run:
 
 ```text
 npx jsdoc path/to/source/files -t node_modules/@rdipardo/clean-jsdoc -r README.md
+```
+
+Otherwise. run:
+
+```text
+npx jsdoc path/to/source/files -t node_modules/clean-jsdoc -r README.md
 ```
 
 ### Workflow Integration
 
 Configure `jsdoc` to use the template in your `.jsdoc.json` file:
 
+If you installed the GitHub package:
+
 ```json
   "opts": {
     "template": "node_modules/@rdipardo/clean-jsdoc"
+  }
+```
+
+Otherwise:
+
+```json5
+  "opts": {
+    "template": "node_modules/clean-jsdoc"
   }
 ```
 
@@ -98,7 +125,8 @@ For example:
         "dictionaries": ["jsdoc", "closure"]
     },
     "opts": {
-        "template": "node_modules/@rdipardo/clean-jsdoc",
+        "template": "node_modules/@rdipardo/clean-jsdoc", /* GitHub package */
+        "template": "node_modules/clean-jsdoc", /* source tree assets */
         /* see below */
         "theme_opts": {},
         "encoding": "utf8",
@@ -323,6 +351,8 @@ Distributed under the terms of the [MIT license][Read the MIT].
 [HTML metadata attributes]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta#Attributes
 [link attributes]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#Attributes
 <!-- badges -->
+[Build Docs Workflow]: https://github.com/rdipardo/clean-jsdoc-theme/workflows/Build%20Docs/badge.svg
+[Build Docs]: https://github.com/rdipardo/clean-jsdoc-theme/actions?query=workflow%3ADocs
 [Package Workflow]: https://github.com/rdipardo/clean-jsdoc-theme/actions/workflows/publish.yml/badge.svg
 [Package]: https://github.com/rdipardo/clean-jsdoc-theme/actions/workflows/publish.yml
 [Chrome, Firefox, IE, Safari on macOS Workflow]: https://github.com/rdipardo/clean-jsdoc-theme/workflows/Chrome,%20Firefox,%20IE,%20Safari%20on%20macOS/badge.svg?branch=develop
