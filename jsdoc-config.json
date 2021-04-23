@@ -27,7 +27,7 @@
             "theme": "dark",
             "project": {
                 "title": "clean-jsdoc",
-                "version": "3.0.2",
+                "version": "4.0.0",
                 "repo": "https://github.com/rdipardo/clean-jsdoc-theme"
             },
             "meta": [
@@ -44,9 +44,10 @@
                     "content": "Favicon made by https://www.freepik.com from https://www.flaticon.com"
                 }
             ],
-            "add_assets": [
+            "asset_paths" : [ "img", "../does/not/exist" ],
+            "remote_assets": [
                 {
-                    "href": "img/html-5.png",
+                    "href": "https://raw.githubusercontent.com/rdipardo/clean-jsdoc-theme/c66f2cb8e2592b7a0185bf2e6160bcdd698063dd/img/html-5.png",
                     "type": "image/x-icon"
                 }
             ],
@@ -55,7 +56,7 @@
                     "autoUpdate": false
                 }
             },
-            "create_style": ".readme img { max-width: 900px; }"
+            "inline_style": ".readme img { max-width: 900px; }"
         }
     }
 }

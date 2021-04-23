@@ -13,14 +13,23 @@
   }
 
   function toAssetLink(src) {
-    const [ext] = (src.href || '').split('.').reverse()
-    if (ext.toLowerCase() == 'css') {
+    const [extension] = (src.href || '').split('.').reverse()
+    const ext = extension.toLowerCase()
+    if (ext === 'css') {
        src.type = 'text/css'
        src.media = 'screen'
        src.rel = 'stylesheet'
     } else if (!src.type || !src.rel &&
-        ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'ico'].includes(ext.toLowerCase())) {
-       src.type = src.type || 'image/x-icon'
+        ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'tif', 'tiff', 'ico', 'webp', 'svg'].includes(ext)) {
+        const mime =
+            ['jpg', 'jpeg'].includes(ext)
+            ? 'jpeg'
+            : ['tif', 'tiff'].includes(ext)
+                ? 'tiff'
+                : (ext === 'svg')
+                    ? 'svg+xml'
+                    : ext
+       src.type = src.type || (ext === 'ico') ? 'image/x-icon' : `image/${mime}`
        src.rel = src.rel || 'shortcut icon'
     }
     return src
@@ -30,7 +39,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <?js if(this.meta !== undefined) { ?>
+    <meta name="generator" content="jsdoc v<?js= env.version.number ?>">
+    <?js if (this.meta.length) { ?>
       <?js this.meta.forEach(function(src){ ?>
         <meta <?js=Object.keys(src).map(key => `${key}="${src[key]}"`).join(" ") ?>>
       <?js }) ?>
@@ -54,14 +64,14 @@
     <link type="text/css" rel="stylesheet" media="screen" href="styles/third-party/OverlayScrollbars.min.css">
     <?js } ?>
 
-    <?js if(this.externalAssets !== undefined) { ?>
+    <?js if(this.externalAssets.length) { ?>
       <?js this.externalAssets.forEach(src => { ?>
         <link <?js=Object.keys(src).map(key => `${key}="${toAssetLink(src)[key]}"`).join(" ") ?>>
       <?js }) ?>
     <?js } ?>
 
-    <?js if(this.includeCss !== undefined) { ?>
-      <?js this.includeCss.forEach(function(source){ ?>
+    <?js if(this.staticStyles.length) { ?>
+      <?js this.staticStyles.forEach(function(source){ ?>
         <link type="text/css" rel="stylesheet" href="<?js= source ?>">
       <?js }) ?>
     <?js } ?>
@@ -95,20 +105,20 @@
       }
     </style>
 
-    <?js if (this.dynamicStyle !== undefined ) { ?>
+    <?js if (this.inlineStyle !== undefined ) { ?>
     <style>
-      <?js= this.dynamicStyle ?>
+      <?js= this.inlineStyle ?>
     </style>
     <?js } ?>
 
-    <?js if(this.dynamicScriptSrc !== undefined) { ?>
-      <?js this.dynamicScriptSrc.forEach(function(src){ ?>
-        <script <?js=Object.keys(src).map(key => `${key}="${src[key]}"`).join(" ") ?> ></script>
+    <?js if(this.externalScripts.length) { ?>
+      <?js this.externalScripts.forEach(function(src){ ?>
+        <script <?js=Object.keys(src).map(key => `${key}="${src[key]}"`).join(" ")?>></script>
       <?js }) ?>
     <?js } ?>
 
-    <?js if(this.includeScript !== undefined) { ?>
-        <?js this.includeScript.forEach(function(source){ ?>
+    <?js if(this.staticScripts.length) { ?>
+        <?js this.staticScripts.forEach(function(source){ ?>
         <script src="<?js= source ?>"></script>
         <?js }) ?>
     <?js } ?>
@@ -119,7 +129,7 @@
 <nav id="navbar" class="navbar">
     <?js if (this.project !== undefined) { ?>
     <div class="gh-meta">
-    <p><b>Version</b> <?js= this.project.version ?></p>
+    <p><b>Version</b> <?js= this.project.version || "1.0.0" ?></p>
     <p>
       <a href="<?js= this.project.repo ?>" title="View project on GitHub"><span class="fa fa-github" aria-hidden="true"></span></a>
     </p>
@@ -181,12 +191,6 @@
   document.addEventListener("DOMContentLoaded", function () {
       OverlayScrollbars(document.querySelectorAll('body'), options)
   })
-</script>
-<?js } ?>
-
-<?js if (this.dynamicScript !== undefined ) { ?>
-<script>
-  <?js= this.dynamicScript ?>
 </script>
 <?js } ?>
 

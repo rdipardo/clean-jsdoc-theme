@@ -37,7 +37,7 @@ jobs:
     - name: Install dependencies
       run: npm i && npm i --save-dev jsdoc
     - name: Set file perms on dev script
-      run: chmod +x ./demo/copy
+      run: chmod +x ./demo/clean
     - name: Build docs
       run: npm test
     - name: Run Selenium tests

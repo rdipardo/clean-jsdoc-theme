@@ -1,12 +1,12 @@
 {
-    "name": "clean-jsdoc",
-    "version": "3.0.2",
+    "name": "@rdipardo/clean-jsdoc",
+    "version": "4.0.0",
     "description": "A style-conscious fork of clean-jsdoc-theme",
     "main": "publish.js",
     "scripts": {
         "lint": "eslint --fix *.js static/scripts tests/specs",
-        "test": "npm run lint && ./demo/copy && node_modules/.bin/jsdoc -c jsdoc-config.json --verbose",
-        "test:win": "npm run lint && demo\\copy && node_modules\\.bin\\jsdoc -c jsdoc-config.json --verbose",
+        "test": "npm run lint && ./demo/clean && node_modules/.bin/jsdoc -c jsdoc-config.json --verbose",
+        "test:win": "npm run lint && demo\\clean && node_modules\\.bin\\jsdoc -c jsdoc-config.json --verbose",
         "test:ui": "wdio run ./tests/wdio.conf.js",
         "test:safari": "wdio run ./tests/wdio.safari.conf.js",
         "test:mobile": "wdio run ./tests/wdio.mobile.conf.js",

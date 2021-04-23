@@ -11,50 +11,54 @@ const babel = require('@babel/core');
 const glob = require('glob');
 const minify = require('minify');
 
-const { htmlsafe } = helper;
-const { linkto } = helper;
-const { resolveAuthorLinks } = helper;
+const { htmlsafe, linkto, resolveAuthorLinks } = helper;
 const hasOwnProp = Object.prototype.hasOwnProperty;
 const themeOpts = env && env.opts && env.opts.theme_opts || {};
 const defaultOpts = env && env.conf.templates && env.conf.templates.default || {};
 const searchListArray = [];
 const haveSearch = themeOpts.search === undefined ? true : Boolean(themeOpts.search);
+const staticStyles = [];
+const staticScripts = [];
+const externalAssets = themeOpts.remote_assets || [];
 
 let outdir = path.normalize(env.opts.destination);
 let data;
 let view;
 
 function copyStaticFolder() {
-    const staticDir = themeOpts.static_dir || [];
+    const staticDir = themeOpts.asset_paths || [];
 
     if (staticDir.length) {
         staticDir.forEach(dir => {
-            const output = path.join(outdir, dir);
+            try {
+                const output = path.join(outdir, dir);
+                const staticFiles = fs.ls(dir, 3);
 
-            fse.copySync(dir, output);
+                staticFiles.forEach(file => {
+                    const assetPath = path.dirname(file).split('.').filter(part => part.trim()).join('/');
+                    const relativePath = assetPath[0] === '/' ? assetPath.slice(1) : assetPath;
+                    const assetDir = path.join(outdir, relativePath);
+                    const ext = path.extname(file).toLowerCase();
+                    const uri = path.join(relativePath, path.basename(file));
+
+
+                        if (!fse.existsSync(assetDir)) {
+                            fs.mkPath(assetDir);
+                        }
+                        fs.copyFileSync(uri, assetDir);
+
+                        if (['.js', '.mjs'].includes(ext)) {
+                            staticScripts.push(uri);
+                        }
+                        else if (ext === '.css') {
+                            staticStyles.push(uri);
+                        }
+                    });
+            } catch (err) {
+                 logger.warn(`'${err.path}' is not in the working directory at '${__dirname}'`);
+            }
         });
     }
-}
-
-copyStaticFolder();
-
-function copyToOutputFolder(filePath) {
-    const filePathNormalized = path.normalize(filePath);
-
-    fs.copyFileSync(filePathNormalized, outdir);
-}
-
-function copyToOutputFolderFromArray(filePathArray) {
-    const outputList = [];
-
-    if (Array.isArray(filePathArray)) {
-        for (let i = 0; i < filePathArray.length; i++) {
-            copyToOutputFolder(filePathArray[i]);
-            outputList.push(path.basename(filePathArray[i]));
-        }
-    }
-
-    return outputList;
 }
 
 function find(spec) {
@@ -374,36 +378,6 @@ function buildSearch() {
     return searchHTML;
 }
 
-function buildFooter() {
-    return themeOpts.footer || '';
-}
-
-function createDynamicStyleSheet() {
-    return themeOpts.create_style || undefined;
-}
-
-function createDynamicsScripts() {
-    return themeOpts.add_scripts || undefined;
-}
-
-function returnPathOfScriptScr() {
-    return themeOpts.add_script_path || undefined;
-}
-
-function getExternalAssets() {
-    return themeOpts.add_assets || undefined;
-}
-
-function includeCss() {
-    let stylePath = themeOpts.include_css || undefined;
-
-    if (stylePath) {
-        stylePath = copyToOutputFolderFromArray(stylePath);
-    }
-
-    return stylePath;
-}
-
 function overlayScrollbarOptions() {
     const overlayOptions = themeOpts.overlay_scrollbar || undefined;
 
@@ -430,24 +404,6 @@ function overlayScrollbarOptions() {
     }
 
     return undefined;
-}
-
-function includeScript() {
-    let scriptPath = themeOpts.include_js || undefined;
-
-    if (scriptPath) {
-        scriptPath = copyToOutputFolderFromArray(scriptPath);
-    }
-
-    return scriptPath;
-}
-
-function getMetaTagData() {
-    return themeOpts.meta || undefined;
-}
-
-function getProjectAttributes() {
-    return themeOpts.project || undefined;
 }
 
 function getTheme() {
@@ -559,7 +515,7 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
     return nav;
 }
 
-function linktoTutorial(longName, name) {
+function linktoTutorial(_, name) {
     return tutoriallink(name);
 }
 
@@ -746,17 +702,27 @@ exports.publish = function(taffyData, opts, tutorials) {
     if (packageInfo && packageInfo.name) {
         outdir = path.join(outdir, packageInfo.name, packageInfo.version || '');
     }
+
     fs.mkPath(outdir);
+
+    // copy user-supplied static files
+    copyStaticFolder();
 
     // copy the template's static files to outdir
     const fromDir = path.join(templatePath, 'static');
     const staticFiles = fs.ls(fromDir, 3);
+    const extraStyles =
+        staticStyles.reduce((assets, style) => assets.concat(path.join(outdir, style)), []);
+    const extraScripts =
+        staticScripts.reduce((assets, script) => assets.concat(path.join(outdir, script)), []);
 
-    staticFiles.forEach(fileName => {
+    staticFiles.concat(extraStyles, extraScripts).forEach(fileName => {
         const toDir = fs.toDir(fileName.replace(fromDir, outdir));
         const isThirdParty = fileName.split(path.sep).includes('third-party');
 
-        fs.mkPath(toDir);
+         if (!fse.existsSync(toDir)) {
+            fs.mkPath(toDir);
+         }
 
         if ((/(?<!(min))\.((css)|(html))$/iu).test(fileName) && !isThirdParty) {
             minify(fileName, minifyOpts)
@@ -809,6 +775,8 @@ exports.publish = function(taffyData, opts, tutorials) {
                 const sourcePath = fs.toDir(filePath);
                 const toDir = fs.toDir(fileName.replace(sourcePath, outdir));
 
+
+                logger.info(`3. Creating path: ${toDir}`);
                 fs.mkPath(toDir);
                 fs.copyFileSync(fileName, toDir);
             });
@@ -881,15 +849,14 @@ exports.publish = function(taffyData, opts, tutorials) {
     view.tutoriallink = tutoriallink;
     view.htmlsafe = htmlsafe;
     view.outputSourceFiles = outputSourceFiles;
-    view.footer = buildFooter();
-    view.externalAssets = getExternalAssets();
-    view.dynamicStyle = createDynamicStyleSheet();
-    view.dynamicScript = createDynamicsScripts();
-    view.dynamicScriptSrc = returnPathOfScriptScr();
-    view.includeScript = includeScript();
-    view.includeCss = includeCss();
-    view.meta = getMetaTagData();
-    view.project = getProjectAttributes();
+    view.footer = themeOpts.footer || '';
+    view.externalAssets = externalAssets;
+    view.inlineStyle = themeOpts.inline_style || undefined;
+    view.externalScripts = themeOpts.remote_scripts || [];
+    view.staticScripts = staticScripts;
+    view.staticStyles = staticStyles;
+    view.meta = themeOpts.meta || [];
+    view.project = themeOpts.project || undefined;
     view.overlayScrollbar = overlayScrollbarOptions();
     view.theme = getTheme();
     view.layoutOptions = getLayoutOptions();

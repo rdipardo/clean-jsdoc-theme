@@ -358,7 +358,7 @@ dl.param-type {
     font-size: 80%;
 }
 
-code {
+tt, code, kbd, samp {
     border-radius: 0.3rem;
     font-family: 'code';
     font-size: 0.8rem;

@@ -53,7 +53,8 @@ h1 {
 }
 
 tt, code, kbd, samp {
-    background: #f4f4f4;
+    background: #e0e0f0;
+    color: #333;
 }
 
 section {
@@ -74,14 +75,6 @@ section h2::after {
 
 .navbar-ham .first, .navbar-ham .second, .navbar-ham .third {
     background: #000;
-}
-
-.navbar-resize {
-    background: #eee;
-}
-
-.resize-dots-container .dots {
-    background-color: #000;
 }
 
 blockquote {

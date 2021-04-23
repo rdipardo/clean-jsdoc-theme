@@ -2,7 +2,6 @@
 
 <h3 align="center">
 
-[![Build Docs Workflow][]][Build Docs]
 [![Package Workflow][]][Package]
 [![Chrome, Firefox, IE, Safari on macOS Workflow][]][Chrome, Firefox, IE, Safari on macOS]
 [![Chrome on Android, Safari on iOS Workflow][]][Chrome on Android, Safari on iOS]
@@ -28,6 +27,12 @@
 - [Configuration](#options)
   + [Basic Options](#basic)
   + [Advanced Options](#advanced)
+    * [project](#project_option)
+    * [menu](#menu_option)
+    * [meta](#meta_option)
+    * [remote_assets](#remote_assets_option)
+    * [remote_scripts](#remote_scripts_option)
+    * [overlay_scrollbar](#overlay_scrollbar_option)
 - [Testing](#testing)
 - [License](#license)
 
@@ -74,16 +79,10 @@ npm i --save-dev @rdipardo/clean-jsdoc
 npm i --save-dev rdipardo/clean-jsdoc-theme
 ```
 
-If you installed the GitHub package, run:
+Now run:
 
 ```text
 npx jsdoc path/to/source/files -t node_modules/@rdipardo/clean-jsdoc -r README.md
-```
-
-Otherwise. run:
-
-```text
-npx jsdoc path/to/source/files -t node_modules/clean-jsdoc -r README.md
 ```
 
 ### Workflow Integration
@@ -95,14 +94,6 @@ If you installed the GitHub package:
 ```json
   "opts": {
     "template": "node_modules/@rdipardo/clean-jsdoc"
-  }
-```
-
-Otherwise:
-
-```json5
-  "opts": {
-    "template": "node_modules/clean-jsdoc"
   }
 ```
 
@@ -125,8 +116,7 @@ For example:
         "dictionaries": ["jsdoc", "closure"]
     },
     "opts": {
-        "template": "node_modules/@rdipardo/clean-jsdoc", /* GitHub package */
-        "template": "node_modules/clean-jsdoc", /* source tree assets */
+        "template": "node_modules/@rdipardo/clean-jsdoc",
         /* see below */
         "theme_opts": {},
         "encoding": "utf8",
@@ -161,22 +151,22 @@ _All options must be defined under `opts.theme_opts` in your `.jsdoc.json`_
 | `langNames`    | display language names in code blocks               | bool         | `true`                             | `true`, `false`                               |
 | `title`        | the name of the home link to display on the nav bar | HTML string  | `"README"`                         | any valid HTML markup, or just a plain string |
 | `footer`       | a footer to display in the page layout              | HTML string  | JSDoc version, date and theme info | any valid HTML markup                         |
-| `create_style` | inline CSS for the `head` of the page layout        | CSS string   | `null`                             | any valid CSS markup                          |
-| `add_scripts`  | inline JavaScript to add to the page layout         | JS string    | `null`                             | any valid JS code                             |
-| `static_dir`   | a list of asset folders to copy to the output dir   | &#91;"/asset/dir", ...&#93;        | `[]`         | >=1 path, relative to your `.jsdoc.json`      |
-| `include_css`  | a list of stylesheets to copy to the output dir     | &#91;"path/to/style.css", ...&#93; | `[]`         | >=1 stylesheet file path                      |
-| `include_js`   | a list of scripts to copy to the output dir         | &#91;"path/to/script.js", ...&#93; | `[]`         | >=1 script file path                          |
+| `inline_style` | inline CSS for the `head` of the page layout        | CSS string   | `null`                             | any valid CSS markup                          |
+| `asset_paths`   | a list of folders to search for scripts and CSS files  | &#91;"path/to/assets", ...&#93;   | `[]`       | >=1 path, relative to your `.jsdoc.json` &#91;&ast;&#93;  |
+
+<hr/>
+&#91;&ast;&#93; non-existent paths, or paths outside the working directory, will be ignored with a warning message
 
 ### Advanced
 
-#### `"project": {}`
+#### `"project": {}` <a id="project_option"></a>
 
 Details of your project, e.g.
 
 ```json
   "project": {
       "title": "clean-jsdoc",
-      "version": "3.0.0",
+      "version": "4.0.0",
       "repo": "https://github.com/rdipardo/clean-jsdoc-theme"
   }
 ```
@@ -184,16 +174,16 @@ Details of your project, e.g.
 ##### Required properties
 | name      | type   |
 |:---------:|:------:|
-| `version` | string |
 | `repo`    | URL    |
 
 ##### Optional properties
-| name    | purpose                                                              | type   |
-|:-------:|:--------------------------------------------------------------------:|:------:|
-| `title` | the title of the project; it will appear in every page's `title` tag | string |
+| name      | purpose                                                              | type   | default |
+|:---------:|:--------------------------------------------------------------------:|:------:|:-------:|
+| `title`   | the title of the project; it will appear in every page's `title` tag | string | `null`  |
+| `version` | the semantic version number                                          | string | "1.0.0" |
 
 
-#### `"menu": [{}, ...]`
+#### `"menu": [{}, ...]` <a id="menu_option"></a>
 
 A list of hyperlinks to add to the navigation bar, e.g.
 
@@ -208,6 +198,7 @@ A list of hyperlinks to add to the navigation bar, e.g.
     }
   ]
 ```
+
 ##### Required properties
 | name    | type   |
 |:-------:|:------:|
@@ -221,7 +212,8 @@ A list of hyperlinks to add to the navigation bar, e.g.
 | `class`  | CSS class selector    |
 | `id`     | CSS id selector       |
 
-#### `"meta": [{}, ...]`
+
+#### `"meta": [{}, ...]` <a id="meta_option"></a>
 
 A list of `meta` tag attributes to add to the `head` of each page, e.g.
 
@@ -237,14 +229,16 @@ A list of `meta` tag attributes to add to the `head` of each page, e.g.
       }
     ]
 ```
+
 ##### Required properties
 Any valid combinaton of [HTML metadata attributes][].
 
-#### `"add_assets": [{}, ...]`
+
+#### `"remote_assets": [{}, ...]`  <a id="remote_assets_option"></a>
 A list of `link` tag attributes for asset resources, e.g.
 
 ```json5
-  "add_assets": [
+  "remote_assets": [
     {
       "href": "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css",
       "integrity": "sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1",
@@ -276,11 +270,12 @@ As of version 2.0.0, this template can detect stylesheets and shortcut
 icons from the file extension in the `href`. Support for more media types
 may be added in future releases.
 
-#### `"add_script_path": [{}, ...]`
+
+#### `"remote_scripts": [{}, ...]` <a id="remote_scripts_option"></a>
 A list of `script` tag attributes for third-party JavaScript sources. e.g.
 
 ```json5
-  "add_script_path": [
+  "remote_scripts": [
     {
       "src": "https://code.jquery.com/jquery-3.5.1.js",
       "integrity": "sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=",
@@ -297,10 +292,10 @@ A list of `script` tag attributes for third-party JavaScript sources. e.g.
 
 ##### Optional properties
 
-Mostly the same as [`add_assets`](#optional_asset_attrs)
+Mostly the same as [`remote_assets`](#optional_asset_attrs)
 
 
-#### `"overlay_scrollbar": { "options": {} }`
+#### `"overlay_scrollbar": { "options": {} }` <a id="overlay_scrollbar_option"></a>
 Includes the [OverlayScrollbars] plugin.
 
 ##### Required properties
@@ -351,8 +346,6 @@ Distributed under the terms of the [MIT license][Read the MIT].
 [HTML metadata attributes]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta#Attributes
 [link attributes]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link#Attributes
 <!-- badges -->
-[Build Docs Workflow]: https://github.com/rdipardo/clean-jsdoc-theme/workflows/Build%20Docs/badge.svg
-[Build Docs]: https://github.com/rdipardo/clean-jsdoc-theme/actions?query=workflow%3ADocs
 [Package Workflow]: https://github.com/rdipardo/clean-jsdoc-theme/actions/workflows/publish.yml/badge.svg
 [Package]: https://github.com/rdipardo/clean-jsdoc-theme/actions/workflows/publish.yml
 [Chrome, Firefox, IE, Safari on macOS Workflow]: https://github.com/rdipardo/clean-jsdoc-theme/workflows/Chrome,%20Firefox,%20IE,%20Safari%20on%20macOS/badge.svg?branch=develop
