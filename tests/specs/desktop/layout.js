@@ -13,11 +13,16 @@ describe('Page layout', () => {
         originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
         jasmine.DEFAULT_TIMEOUT_INTERVAL = 25000;
 
-        await (async () => {
-            await browser.url(`${HOME_PAGE}`);
-            searchBox = await browser.$('#search-box-input');
-            await searchBox.clearValue();
-        })();
+        await browser.url(`${HOME_PAGE}`);
+
+        searchBox = await browser.$('#search-box-input');
+
+        await browser.waitUntil(() => searchBox.isClickable(),
+            {
+                'timeout': 50000,
+                'timeoutMsg': 'expected search input to be responsive in 5s'
+            }
+        );
     });
 
     it('should have project\'s name in title', async () => {
