@@ -1,3 +1,41 @@
+## 4.0.0
+
+### BREAKING CHANGES
+- rename package so that releases can be pushed to the
+  [GitHub Package Registry][] directly from the default branch
+
+  **Note.**
+  Installing from the repo will work as before using the `npm` CLI, i.e.
+
+        npm i rdipardo/clean-jsdoc-theme
+
+  You should, however, update any dependent `package.json`:
+
+```diff
+    "devDependencies": {
+-       "clean-jsdoc": "github:rdipardo/clean-jsdoc-theme",
++       "@rdipardo/clean-jsdoc": "github:rdipardo/clean-jsdoc-theme",
+```
+
+   and change the template path in your `.jsdoc.json`:
+
+```diff
+        "opts": {
+-       "template": "node_modules/clean-jsdoc",
++       "template": "node_modules/@rdipardo/clean-jsdoc",
+```
+
+- drop options we don't intend to support, and give new names to the
+  [remaining options][]
+
+### Fixed
+- give sufficient padding to inline code quotations, even when inside `<kbd>` or
+  `<samp>` tags
+- increase contrast of code quotations in both themes
+
+[GitHub Package Registry]: https://github.com/rdipardo/clean-jsdoc-theme/packages/707496
+[remaining options]: https://github.com/rdipardo/clean-jsdoc-theme#contents
+
 ## 3.0.2
 
 ### Fixed

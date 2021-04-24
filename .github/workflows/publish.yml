@@ -19,7 +19,7 @@ jobs:
       id: npm-cache
       run: echo "::set-output name=dir::$(npm config get cache)"
     - name: Cache modules
-      uses: actions/cache@v2.1.4
+      uses: actions/cache@v2.1.5
       id: restore-cache
       with:
         path: ${{ steps.npm-cache.outputs.dir }}
@@ -44,8 +44,8 @@ jobs:
         deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         enable_jekyll: false
         publish_dir: ./demo/output
-        user_name: 'github-actions[bot]'
-        user_email: 'github-actions@users.noreply.github.com'
+        user_name: 'clean-jsdoc [action]'
+        user_email: 'clean-jsdoc@users.noreply.github.com'
         commit_message: '${{ github.event.head_commit.message }}'
 
   publish:

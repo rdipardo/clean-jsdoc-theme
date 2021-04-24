@@ -24,7 +24,6 @@
         "template": "./",
         "theme_opts": {
             "langNames": false,
-            "theme": "dark",
             "project": {
                 "title": "clean-jsdoc",
                 "version": "4.0.0",
