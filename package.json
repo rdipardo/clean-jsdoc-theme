@@ -29,9 +29,6 @@
         "url": "https://github.com/rdipardo/clean-jsdoc-theme/issues"
     },
     "homepage": "https://github.com/rdipardo/clean-jsdoc-theme#readme",
-    "peerDependencies": {
-        "jsdoc": "3"
-    },
     "keywords": [
         "jsdoc",
         "template",
