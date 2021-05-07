@@ -1,3 +1,11 @@
+## 4.0.1
+
+### Fixed
+- removed the peer dependency on `jsdoc` because it was pulling in a
+  vulnerable version of `underscore`.
+
+  See <https://www.npmjs.com/advisories/1674>
+
 ## 4.0.0
 
 ### BREAKING CHANGES
