@@ -23,17 +23,10 @@ jobs:
         local-identifier: random
     - uses: actions/checkout@v2
     - name: Set up node env
-      uses: actions/setup-node@v2.1.5
+      uses: actions/setup-node@v2.2.0
       with:
         node-version: '15.x'
-    - name: Cache modules
-      uses: actions/cache@v2.1.6
-      id: restore-cache
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-npm-
+        cache: 'npm'
     - name: Install dependencies
       run: npm i && npm i --save-dev jsdoc
     - name: Set file perms on dev script
